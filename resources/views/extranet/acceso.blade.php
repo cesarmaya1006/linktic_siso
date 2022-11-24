@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="centrar-items mt-4">
                                         <p><a class="card-text h6" href="{{ route('solicitar_password') }}">Olvidé mi nombre
-                                                de usuario o contraseñasss</a></p>
+                                                de usuario o contraseña bromelias</a></p>
                                     </div>
                                 </form>
                             </div>
