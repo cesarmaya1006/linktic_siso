@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Intranet\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\ImportUsuario;
 use App\Models\Admin\Rol;
 use App\Models\Admin\Tipo_Docu;
 use App\Models\Admin\Usuario;
 use App\Models\Mgl\Apoderado;
 use App\Models\Mgl\Asistente;
+use App\Models\Personas\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UsuarioController extends Controller
 {
@@ -20,8 +23,41 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $roles = Rol::get();
+        $roles = Rol::where('id', '>', '2')->get();
         return view('intranet.sistema.usuario.index', compact('roles'));
+    }
+
+    public function importar()
+    {
+        return view('intranet.sistema.usuario.importar');
+    }
+
+    public function import(Request $request){
+        $file = $request->file('file');
+        //$excel = Excel::load($file->getRealPath())->get();
+        //$excel = Excel::import($request->file('file')->store('files'));
+        //dd($excel);
+        Excel::import(new ImportUsuario, $request->file('file')->store('files'));
+        return redirect('admin/usuarios')->with(
+            'mensaje',
+            'Importacion hecha con éxito'
+        );
+    }
+
+    public function cargar(Request $request,$id){
+        if ($request->ajax()) {
+            $id = $_GET['id'];
+            $persona = Persona::with('tipos_docu')
+                              ->with('usuario')
+                              ->with('usuario.roles')
+                              ->with('usuario.roles.carnets')
+                              ->with('cargo')
+                              ->with('cargo.area')
+                              ->with('carrera')
+                              ->with('carrera.facultad')
+                              ->findOrFail($id);
+            return $persona;
+        }
     }
 
     /**
@@ -32,8 +68,14 @@ class UsuarioController extends Controller
     public function crear()
     {
         $tiposdocu = Tipo_Docu::orderBy('id')->get();
-        $roles = Rol::whereIn('id', [2, 3, 4])->orderBy('id')->pluck('nombre', 'id')->toArray();
-        return view('intranet.sistema.usuario.crear', compact('roles', 'tiposdocu'));
+        $roles = Rol::whereIn('id', [2, 3, 4])
+            ->orderBy('id')
+            ->pluck('nombre', 'id')
+            ->toArray();
+        return view(
+            'intranet.sistema.usuario.crear',
+            compact('roles', 'tiposdocu')
+        );
     }
 
     /**
@@ -44,12 +86,13 @@ class UsuarioController extends Controller
      */
     public function guardar(Request $request)
     {
-
         //.........................................................................
         $nuevoUsuario['docutipos_id'] = $request['docutipos_id'];
         $nuevoUsuario['identificacion'] = $request['identificacion'];
         $nuevoUsuario['nombres'] = utf8_encode(ucwords($request['nombres']));
-        $nuevoUsuario['apellidos'] = utf8_encode(ucwords($request['apellidos']));
+        $nuevoUsuario['apellidos'] = utf8_encode(
+            ucwords($request['apellidos'])
+        );
         $nuevoUsuario['email'] = strtolower($request['email']);
         $nuevoUsuario['telefono'] = $request['telefono'];
         $nuevoUsuario['password'] = bcrypt(utf8_encode($request['password']));
@@ -59,7 +102,10 @@ class UsuarioController extends Controller
         $usuario = Usuario::create($nuevoUsuario);
         $usuario->roles()->sync($request->rol_id);
         //...........................................................................
-        return redirect('admin/usuario-index')->with('mensaje', 'Usuario creado con exito');
+        return redirect('admin/usuario-index')->with(
+            'mensaje',
+            'Usuario creado con exito'
+        );
     }
 
     /**
@@ -82,9 +128,15 @@ class UsuarioController extends Controller
     public function editar($id)
     {
         $tiposdocu = Tipo_Docu::orderBy('id')->get();
-        $roles = Rol::where('id', '>', 1)->orderBy('id')->pluck('nombre', 'id')->toArray();
+        $roles = Rol::where('id', '>', 1)
+            ->orderBy('id')
+            ->pluck('nombre', 'id')
+            ->toArray();
         $data = Usuario::findOrFail($id);
-        return view('intranet.sistema.usuario.editar', compact('data', 'roles', 'tiposdocu'));
+        return view(
+            'intranet.sistema.usuario.editar',
+            compact('data', 'roles', 'tiposdocu')
+        );
     }
 
     /**
@@ -109,7 +161,10 @@ class UsuarioController extends Controller
         Usuario::findOrFail($id)->update($actualizar_usuario);
         $usuario->update($actualizar_usuario);
         //-------------------------------------------
-        return redirect('admin/usuario-index')->with('mensaje', 'Usuario Actualizado con exito');
+        return redirect('admin/usuario-index')->with(
+            'mensaje',
+            'Usuario Actualizado con exito'
+        );
     }
 
     /**

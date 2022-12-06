@@ -2,8 +2,6 @@
 
 namespace App\Models\Admin;
 
-use App\Models\Empleados\Empleado;
-use App\Models\Empresas\Representante;
 use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
@@ -30,19 +28,9 @@ class Usuario extends Authenticatable
         return $this->belongsToMany(Rol::class, 'usuario_rol', 'usuario_id', 'rol_id');
     }
     //==================================================================================
-    public function empleado()
-    {
-        return $this->belongsTo(Empleado::class, 'id');
-    }
-    //==================================================================================
     public function persona()
     {
         return $this->belongsTo(Persona::class, 'id');
-    }
-    //==================================================================================
-    public function representante()
-    {
-        return $this->belongsTo(Representante::class, 'id');
     }
     //==================================================================================
     public function setSession($roles)

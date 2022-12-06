@@ -2,6 +2,8 @@
 
 namespace App\Models\Personas;
 
+use App\Models\Admin\Cargo;
+use App\Models\Admin\Carrera;
 use App\Models\Admin\Municipio;
 use App\Models\Admin\Pais;
 use App\Models\Admin\Tipo_Docu;
@@ -27,18 +29,15 @@ class Persona extends Model
         return $this->hasOne(Usuario::class, 'id');
     }
     //----------------------------------------------------------------------------------
-    public function pqrs()
+    public function cargo()
     {
-        return $this->hasMany(PQR::class, 'persona_id', 'id');
+        return $this->belongsTo(Cargo::class, 'cargo_id', 'id');
     }
     //----------------------------------------------------------------------------------
-    public function pais()
+    public function carrera()
     {
-        return $this->belongsTo(Pais::class, 'pais_id', 'id');
+        return $this->belongsTo(Carrera::class, 'carrera_id', 'id');
     }
     //----------------------------------------------------------------------------------
-    public function municipio()
-    {
-        return $this->belongsTo(Municipio::class, 'municipio_id', 'id');
-    }
+
 }

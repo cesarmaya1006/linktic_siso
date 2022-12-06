@@ -22,23 +22,7 @@
                 <div class="info">
 
                     <a href="#" class="d-block">
-                        @if (session('rol_id') == 6)
-                            @if ($usuario->persona)
-                                {{ $usuario->persona->nombre1 . ' ' . $usuario->persona->nombre2 }}<br>{{ ucwords($usuario->persona->apellido1 . ' ' . $usuario->persona->apellido2) }}
-                            @endif
-                            @if ($usuario->representante)
-                                {{ $usuario->representante->nombre1 . ' ' . $usuario->representante->nombre2 }}<br>{{ ucwords($usuario->representante->apellido1 . ' ' . $usuario->representante->apellido2) }}
-                            @endif
-                        @else
-                            @if (session('rol_id') == 5)
-                                {{ $usuario->empleado->nombre1 . ' ' . $usuario->empleado->nombre2 }}<br>{{ ucwords($usuario->empleado->apellido1 . ' ' . $usuario->empleado->apellido2) }}
-                            @endif
-                        @endif
-                        @if($usuario->empleado)
-                            <br>{{ $usuario->empleado->cargo->cargo }}
-                        @else
-                            <br>{{ session('rol_nombre') }}
-                        @endif
+
                     </a>
                 </div>
             </div>

@@ -1,1 +1,4 @@
-@include('intranet.funcionarios.menu.menu')
+<div class="container">
+    algo
+    {{session('rol_id')}}
+</div>

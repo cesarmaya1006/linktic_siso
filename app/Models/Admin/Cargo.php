@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\Empleados\Empleado;
 use App\Models\Empresas\Sede;
+use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -14,18 +15,13 @@ class Cargo extends Model
     protected $table = 'cargos';
     protected $guarded = [];
     //----------------------------------------------------------------------------------
-    public function nivel()
+    public function area()
     {
-        return $this->belongsTo(Nivel::class, 'nivel_id', 'id');
+        return $this->belongsTo(Area::class, 'area_id', 'id');
     }
     //----------------------------------------------------------------------------------
-    public function empelados()
+    public function personas()
     {
-        return $this->hasMany(Empleado::class, 'cargo_id', 'id');
-    }
-    //----------------------------------------------------------------------------------
-    public function sedes()
-    {
-        return $this->belongsToMany(Sede::class, 'empleados');
+        return $this->hasMany(Persona::class, 'cargo_id', 'id');
     }
 }

@@ -12,9 +12,9 @@ class Area extends Model
     protected $table = 'areas';
     protected $guarded = [];
     //----------------------------------------------------------------------------------
-    public function niveles()
+    public function cargos()
     {
-        return $this->hasMany(Nivel::class, 'area_id', 'id');
+        return $this->hasMany(Cargo::class, 'area_id', 'id');
     }
     //----------------------------------------------------------------------------------
 }

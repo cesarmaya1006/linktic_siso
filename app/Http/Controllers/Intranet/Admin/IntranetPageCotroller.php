@@ -20,36 +20,8 @@ class IntranetPageCotroller extends Controller
      */
     public function index()
     {
-        $tipoPQR = tipoPQR::all();
         $usuario = Usuario::findOrFail(session('id_usuario'));
-        $tareas = AsignacionTarea::where('empleado_id', $usuario->id)->get();
-        if (session('rol_id') == 6) {
-            if ($usuario->persona->count() > 0) {
-                $pqrs = PQR::where('persona_id', session('id_usuario'))->get();
-            } else {
-                foreach ($usuario->representante->empresas as $empresa) {
-                    $pqrs = PQR::where('empresa_id', session('id_usuario'))->get();
-                }
-            }
-        } elseif (session('rol_id') == 5) {
-            if ($usuario->empleado->cargo->id == 1) {
-                $pqrs = PQR::all();
-                $pqrs = $pqrs->where("estado_creacion", 1);
-            } else {
-                $pqrs = PQR::where('empleado_id', $usuario->id)->get();
-            }
-        } elseif (session('rol_id') == 4) {
-            $pqrs = PQR::where('empleado_id', session('id_usuario'))->get();
-        } elseif (session('rol_id') == 1) {
-            $pqrs = PQR::get();
-        } elseif (session('rol_id') == 3) {
-            $pqrs = PQR::get();
-        }else{
-            $pqrs = PQR::get();
-        }
-        $peticiones = Peticion::where('empleado_id', session('id_usuario'))->where('estado_id', '<', 11 )->get();
-
-        return view('intranet.index.index', compact('pqrs', 'usuario', 'tipoPQR', 'tareas', 'peticiones'));
+        return view('intranet.index.index', compact('usuario'));
     }
 
     public function restablecer_password(ValidarPassword $request)
