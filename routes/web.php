@@ -91,7 +91,11 @@ Route::group(['middleware' => 'auth'], function () {
             /*RUTAS PERMISO_ROL*/
             Route::get('_permiso-rol', [PermisoRolController::class,'index',])->name('admin-permiso_rol');
             Route::post('_permiso-rol', [PermisoRolController::class,'guardar',])->name('admin-guardar_permiso_rol');
+
             // ------------------------------------------------------------------------------------
+        });
+        // ------------------------------------------------------------------------------------
+        Route::group(['middleware' => 'administrador'], function () {
             // Ruta Administrador del Sistema Usuarios
             Route::get('usuario-index', [UsuarioController::class,'index',])->name('admin-usuario-index');
             Route::get('usuario-crear', [UsuarioController::class,'crear',])->name('admin-usuario-crear');

@@ -27,7 +27,7 @@ class CrearTablaPersonas extends Migration
             $table->string('nombre2', 50)->nullable();
             $table->string('apellido1', 50);
             $table->string('apellido2', 50)->nullable();
-            $table->string('telefono_celu', 80);
+            $table->string('telefono', 80);
             $table->string('direccion', 255);
             $table->string('email', 255)->unique();
             $table->string('foto', 255)->unique();

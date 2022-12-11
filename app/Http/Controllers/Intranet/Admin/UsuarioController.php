@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Intranet\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Imports\ImportUsuario;
+use App\Models\Admin\Area;
+use App\Models\Admin\Facultad;
 use App\Models\Admin\Rol;
 use App\Models\Admin\Tipo_Docu;
 use App\Models\Admin\Usuario;
@@ -68,13 +70,15 @@ class UsuarioController extends Controller
     public function crear()
     {
         $tiposdocu = Tipo_Docu::orderBy('id')->get();
-        $roles = Rol::whereIn('id', [2, 3, 4])
+        $roles = Rol::where('id', '>', '2')
             ->orderBy('id')
             ->pluck('nombre', 'id')
             ->toArray();
+        $areas = Area::get();
+        $facultades = Facultad::get();
         return view(
             'intranet.sistema.usuario.crear',
-            compact('roles', 'tiposdocu')
+            compact('roles', 'tiposdocu','areas','facultades')
         );
     }
 
