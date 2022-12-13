@@ -110,6 +110,14 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('usuario/{id}', [UsuarioController::class,'actualizar',])->name('admin-usuario-actualizar');
             Route::delete('usuario/{id}', [UsuarioController::class,'eliminar',])->name('admin-usuario-eliminar');
             // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Sistema Areas
+            Route::get('areas', [AreaController::class,'index',])->name('admin-areas');
+            Route::get('areas-crear', [AreaController::class,'crear',])->name('admin-areas-crear');
+            Route::post('areas', [AreaController::class, 'guardar'])->name('admin-areas-guardar');
+            Route::get('areas/{id}/editar', [AreaController::class,'editar',])->name('admin-areas-editar');
+            Route::put('areas/{id}', [AreaController::class,'actualizar',])->name('admin-areas-actualizar');
+            Route::delete('areas/{id}', [AreaController::class,'eliminar',])->name('admin-areas-eliminar');
+            // ------------------------------------------------------------------------------------
         });
         // ------------------------------------------------------------------------------------
         Route::group(['middleware' => 'administrador'], function () {

@@ -14,13 +14,13 @@ class Tabla_MenuRol extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 14; $i++) {
+        for ($i = 1; $i <= 18; $i++) {
             DB::table('menu_rol')->insert([
                 'rol_id' => '1',
                 'menu_id' => $i,
             ]);
         }
-        for ($i = 1; $i <= 15; $i++) {
+        for ($i = 1; $i <= 19; $i++) {
             DB::table('menu_rol')->insert([
                 'rol_id' => '2',
                 'menu_id' => $i,

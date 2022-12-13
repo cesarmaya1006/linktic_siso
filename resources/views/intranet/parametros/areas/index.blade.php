@@ -14,8 +14,6 @@
 @endsection
 <!-- ************************************************************* -->
 @section('cuerpo_pagina')
-    @include('intranet.funcionarios.menu.menu')
-    <hr>
     <div class="card">
         @include('includes.error-form')
         @include('includes.mensaje')
@@ -25,7 +23,7 @@
                     <h5>listado de Áreas</h5>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6 text-md-right text-lg-right pl-2 pr-md-5 pr-lg-5">
-                    <a href="{{ route('admin-funcionario-areas-crear') }}"
+                    <a href="{{ route('admin-areas-crear') }}"
                         class="btn btn-success btn-sm text-center pl-3 pr-3" style="font-size: 0.9em;"><i
                             class="fas fa-plus-circle mr-2"></i> Nueva Área</a>
                 </div>
@@ -45,7 +43,7 @@
                                 <tr>
                                     <td class="text-center">{{ $area->area }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin-funcionario-areas-editar', ['id' => $area->id]) }}"
+                                        <a href="{{ route('admin-areas-editar', ['id' => $area->id]) }}"
                                             class="btn-accion-tabla tooltipsC text-info" title="Editar"><i
                                                 class="fa fa-edit" aria-hidden="true"></i></a>
                                     </td>
