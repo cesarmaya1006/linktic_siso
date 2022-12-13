@@ -59,7 +59,7 @@ class ImportUsuario implements ToCollection
             $nuevaPersona['nombre2'] = $row[8];
             $nuevaPersona['apellido1'] = $row[9];
             $nuevaPersona['apellido2'] = $row[10];
-            $nuevaPersona['telefono_celu'] = $row[11];
+            $nuevaPersona['telefono'] = $row[11];
             $nuevaPersona['direccion'] = $row[12];
             $nuevaPersona['email'] = $row[13];
             $nuevaPersona['foto'] = $row[14];

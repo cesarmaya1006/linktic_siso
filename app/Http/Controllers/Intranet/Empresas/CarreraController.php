@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Intranet\Empresas;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Area;
-use App\Models\Admin\Nivel;
+use App\Models\Admin\Carrera;
 use Illuminate\Http\Request;
 
-class NivelController extends Controller
+class CarreraController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,7 @@ class NivelController extends Controller
      */
     public function index()
     {
-        $niveles = Nivel::get();
-        return view('intranet.parametros.niveles.index', compact('niveles'));
+        //
     }
 
     /**
@@ -25,10 +23,9 @@ class NivelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function crear()
+    public function create()
     {
-        $areas = Area::get();
-        return view('intranet.parametros.niveles.crear', compact('areas'));
+        //
     }
 
     /**
@@ -37,10 +34,9 @@ class NivelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function store(Request $request)
     {
-        Nivel::create($request->all());
-        return redirect('admin/funcionario/niveles-index')->with('mensaje', 'Nivel creado con exito');
+        //
     }
 
     /**
@@ -60,11 +56,9 @@ class NivelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editar($id)
+    public function edit($id)
     {
-        $nivel = Nivel::findOrFail($id);
-        $areas = Area::get();
-        return view('intranet.parametros.niveles.editar', compact('nivel', 'areas'));
+        //
     }
 
     /**
@@ -74,10 +68,9 @@ class NivelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        Nivel::findOrFail($id)->update($request->all());
-        return redirect('admin/funcionario/niveles-index')->with('mensaje', 'Nivel actualizado con exito');
+        //
     }
 
     /**
@@ -89,5 +82,12 @@ class NivelController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function cargar_carreras(Request $request)
+    {
+        if ($request->ajax()) {
+            $id = $_GET['id'];
+            return Carrera::where('facultad_id', $id)->get();
+        }
     }
 }

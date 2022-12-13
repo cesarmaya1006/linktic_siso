@@ -12,6 +12,8 @@ use App\Http\Controllers\Intranet\Empresas\AreaController;
 use App\Http\Controllers\Intranet\Admin\PermisoRolController;
 use App\Http\Controllers\Intranet\Admin\IntranetPageCotroller;
 use App\Http\Controllers\Intranet\Carnet\CarnetController as CarnetCarnetController;
+use App\Http\Controllers\Intranet\Empresas\CargoController;
+use App\Http\Controllers\Intranet\Empresas\CarreraController;
 use App\Models\Admin\Usuario;
 
 /*
@@ -50,6 +52,10 @@ Route::post('/parametros-guardar', [ExtranetPageController::class,'parametros_gu
 Route::post('/cargar_tipo_documentos', [ExtranetPageController::class,'cargar_tipo_documentos',])->name('cargar_tipo_documentos');
 //---------------------------------------------------------------------------------
 Route::group(['middleware' => 'auth'], function () {
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //Rutas carfar ajax
+    Route::get('cargar_cargos', [CargoController::class, 'cargar_cargos'])->name('cargar_cargos');
+    Route::get('cargar_carreras', [CarreraController::class, 'cargar_carreras'])->name('cargar_carreras');
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Route::group(['prefix' => 'admin'], function () {
         Route::get('index', [IntranetPageCotroller::class, 'index'])->name('admin-index');

@@ -9,12 +9,12 @@ use App\Models\Admin\Facultad;
 use App\Models\Admin\Rol;
 use App\Models\Admin\Tipo_Docu;
 use App\Models\Admin\Usuario;
-use App\Models\Mgl\Apoderado;
-use App\Models\Mgl\Asistente;
 use App\Models\Personas\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Maatwebsite\Excel\Facades\Excel;
+
+use Intervention\Image\ImageManagerStatic as Image;
 
 class UsuarioController extends Controller
 {
@@ -88,25 +88,50 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function guardar(Request $request)
     {
+        $roles = $request->rol_id;
         //.........................................................................
-        $nuevoUsuario['docutipos_id'] = $request['docutipos_id'];
-        $nuevoUsuario['identificacion'] = $request['identificacion'];
-        $nuevoUsuario['nombres'] = utf8_encode(ucwords($request['nombres']));
-        $nuevoUsuario['apellidos'] = utf8_encode(
-            ucwords($request['apellidos'])
-        );
-        $nuevoUsuario['email'] = strtolower($request['email']);
-        $nuevoUsuario['telefono'] = $request['telefono'];
+        $nuevoUsuario['usuario'] = strtolower($request['email']);
         $nuevoUsuario['password'] = bcrypt(utf8_encode($request['password']));
         $nuevoUsuario['camb_password'] = 0;
-        $roles = $request->rol_id;
         $roles['estado'] = 1;
         $usuario = Usuario::create($nuevoUsuario);
         $usuario->roles()->sync($request->rol_id);
-        //...........................................................................
-        return redirect('admin/usuario-index')->with(
+        //.........................................................................
+        $nuevaPersona['id'] = $usuario->id;
+        $nuevaPersona['docutipos_id'] = $request['docutipos_id'];
+        if ($roles[0]==3) {
+            $nuevaPersona['cargo_id'] = $request['cargo_id'];
+        } else {
+            $nuevaPersona['carrera_id'] = $request['carrera_id'];
+        }
+        $nuevaPersona['identificacion'] = $request['identificacion'];
+        $nuevaPersona['nombre1'] = utf8_encode(ucwords($request['nombre1']));
+        $nuevaPersona['nombre2'] = utf8_encode(ucwords($request['nombre2']));
+        $nuevaPersona['apellido1'] = utf8_encode(ucwords($request['apellido1']));
+        $nuevaPersona['apellido2'] = utf8_encode(ucwords($request['apellido2']));
+        $nuevaPersona['telefono'] = $request['telefono'];
+        $nuevaPersona['direccion'] = $request['direccion'];
+        $nuevaPersona['email'] = strtolower($request['email']);
+        $nuevaPersona['vigencia'] = $request['vigencia'];
+        // - - - - - - - - - - - - - - - - - - - - - - - -
+        if ($request->hasFile('foto')) {
+            $ruta = Config::get('constantes.folder_img_usuarios');
+            $ruta = trim($ruta);
+
+            $foto = $request->foto;
+            $imagen_foto = Image::make($foto);
+            $nombrefoto = time() . $foto->getClientOriginalName();
+            $imagen_foto->resize(400, 500);
+            $imagen_foto->save($ruta . $nombrefoto, 100);
+            $nuevaPersona['foto'] = $nombrefoto;
+        }
+        // - - - - - - - - - - - - - - - - - - - - - - - -
+        $persona = Persona::create($nuevaPersona);
+        //.........................................................................
+        return redirect('admin/usuarios')->with(
             'mensaje',
             'Usuario creado con exito'
         );

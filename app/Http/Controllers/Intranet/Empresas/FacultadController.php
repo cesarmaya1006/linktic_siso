@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Intranet\Empresas;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Area;
-use App\Models\Admin\Cargo;
 use Illuminate\Http\Request;
 
-class CargoController extends Controller
+class FacultadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class CargoController extends Controller
      */
     public function index()
     {
-        $cargos = Cargo::get();
-        return view('intranet.parametros.cargos.index', compact('cargos'));
+        //
     }
 
     /**
@@ -25,10 +22,9 @@ class CargoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function crear()
+    public function create()
     {
-        $areas = Area::get();
-        return view('intranet.parametros.cargos.crear', compact('areas'));
+        //
     }
 
     /**
@@ -37,10 +33,9 @@ class CargoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function store(Request $request)
     {
-        Cargo::create($request->all());
-        return redirect('admin/funcionario/cargos-index')->with('mensaje', 'Cargo creado con exito');
+        //
     }
 
     /**
@@ -60,11 +55,9 @@ class CargoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editar($id)
+    public function edit($id)
     {
-        $cargo = Cargo::findOrFail($id);
-        $areas = Area::get();
-        return view('intranet.parametros.cargos.editar', compact('cargo', 'areas'));
+        //
     }
 
     /**
@@ -74,10 +67,9 @@ class CargoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        Cargo::findOrFail($id)->update($request->all());
-        return redirect('admin/funcionario/cargos-index')->with('mensaje', 'Cargo actualizado con exito');
+        //
     }
 
     /**
@@ -89,13 +81,5 @@ class CargoController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function cargar_cargos(Request $request)
-    {
-        if ($request->ajax()) {
-            $id = $_GET['id'];
-            return Cargo::where('area_id', $id)->get();
-        }
     }
 }

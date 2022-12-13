@@ -20,7 +20,7 @@ return [
     //--------------------------------------------------------------------------------
     "folder_doc_tareas" => public_path() . '/documentos/tareas/ ',
     //--------------------------------------------------------------------------------
-    "folder_img_usuarios" => public_path() . '/documentos/usuarios/ ',
+    "folder_img_usuarios" => public_path() . '/imagenes/usuarios/ ',
     //--------------------------------------------------------------------------------
     "folder_auto_admisorios" => public_path() . '/documentos/autoadmisorios/ ',
     //--------------------------------------------------------------------------------
