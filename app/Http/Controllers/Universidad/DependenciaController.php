@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Universidad;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Facultad;
 use Illuminate\Http\Request;
 
-class FacultadController extends Controller
+class DependenciaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class FacultadController extends Controller
      */
     public function index()
     {
-        $facultades = Facultad::get();
-        return view('intranet.parametros.facultades.index', compact('facultades'));
+        //
     }
 
     /**
@@ -24,9 +22,9 @@ class FacultadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function crear()
+    public function create()
     {
-        return view('intranet.parametros.facultades.crear');
+        //
     }
 
     /**
@@ -35,10 +33,9 @@ class FacultadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function store(Request $request)
     {
-        Facultad::create($request->all());
-        return redirect('admin/facultades')->with('mensaje', 'Facultad creada con exito');
+        //
     }
 
     /**
@@ -58,10 +55,9 @@ class FacultadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editar($id)
+    public function edit($id)
     {
-        $facultad = Facultad::findOrFail($id);
-        return view('intranet.parametros.facultades.editar', compact('facultad'));
+        //
     }
 
     /**
@@ -71,10 +67,9 @@ class FacultadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        Facultad::findOrFail($id)->update($request->all());
-        return redirect('admin/facultades')->with('mensaje', 'Facultad actualizada con exito');
+        //
     }
 
     /**
@@ -83,12 +78,8 @@ class FacultadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function eliminar($id)
+    public function destroy($id)
     {
-        if (Facultad::destroy($id)) {
-            return redirect('admin/facultades')->with('mensaje', 'Facultad eliminada con exito');
-        } else {
-            return redirect('admin/facultades')->with('errores', 'La facultad no puede ser eliminada, existen recursos usando este elemento');
-        }
+        //
     }
 }

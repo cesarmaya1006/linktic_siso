@@ -10,7 +10,7 @@
 @endsection
 <!-- ************************************************************* -->
 @section('tituloHoja')
-    Parametros - Cargos
+    Parametros - Facultades
 @endsection
 <!-- ************************************************************* -->
 @section('cuerpo_pagina')
@@ -20,12 +20,12 @@
         <div class="card-header">
             <div class="row mb-3">
                 <div class="col-12 col-md-6 col-lg-6 text-md-left text-lg-left pl-2">
-                    <h5>Listado de Cargos</h5>
+                    <h5>listado de Facultades</h5>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6 text-md-right text-lg-right pl-2 pr-md-5 pr-lg-5">
-                    <a href="{{ route('admin-cargos-crear') }}"
+                    <a href="{{ route('admin-facultades-crear') }}"
                         class="btn btn-success btn-sm text-center pl-3 pr-3" style="font-size: 0.9em;"><i
-                            class="fas fa-plus-circle mr-2"></i> Nuevo cargo</a>
+                            class="fas fa-plus-circle mr-2"></i> Nueva Facultad</a>
                 </div>
             </div>
             <hr>
@@ -34,18 +34,16 @@
                     <table class="table table-striped table-hover table-sm display">
                         <thead class="thead-inverse">
                             <tr>
-                                <th class="text-center">Área</th>
-                                <th class="text-center">Cargo</th>
+                                <th class="text-center">Facultad</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($cargos as $cargo)
+                            @foreach ($facultades as $facultad)
                                 <tr>
-                                    <td class="text-center">{{ $cargo->area->area }}</td>
-                                    <td class="text-center">{{ $cargo->cargo }}</td>
+                                    <td class="text-center">{{ $facultad->facultad }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin-cargos-editar', ['id' => $cargo->id]) }}"
+                                        <a href="{{ route('admin-facultades-editar', ['id' => $facultad->id]) }}"
                                             class="btn-accion-tabla tooltipsC text-info" title="Editar"><i
                                                 class="fa fa-edit" aria-hidden="true"></i></a>
                                     </td>

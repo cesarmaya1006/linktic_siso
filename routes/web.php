@@ -13,7 +13,8 @@ use App\Http\Controllers\Intranet\Admin\PermisoRolController;
 use App\Http\Controllers\Intranet\Admin\IntranetPageCotroller;
 use App\Http\Controllers\Intranet\Carnet\CarnetController as CarnetCarnetController;
 use App\Http\Controllers\Intranet\Empresas\CargoController;
-use App\Http\Controllers\Intranet\Empresas\CarreraController;
+use App\Http\Controllers\Universidad\CarreraController;
+use App\Http\Controllers\Universidad\FacultadController;
 use App\Models\Admin\Usuario;
 
 /*
@@ -54,6 +55,7 @@ Route::post('/cargar_tipo_documentos', [ExtranetPageController::class,'cargar_ti
 Route::group(['middleware' => 'auth'], function () {
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //Rutas carfar ajax
+    Route::get('cargar_areas', [CargoController::class, 'cargar_areas'])->name('cargar_areas');
     Route::get('cargar_cargos', [CargoController::class, 'cargar_cargos'])->name('cargar_cargos');
     Route::get('cargar_carreras', [CarreraController::class, 'cargar_carreras'])->name('cargar_carreras');
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -118,6 +120,30 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('areas/{id}', [AreaController::class,'actualizar',])->name('admin-areas-actualizar');
             Route::delete('areas/{id}', [AreaController::class,'eliminar',])->name('admin-areas-eliminar');
             // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Sistema Cargos
+            Route::get('cargos', [CargoController::class,'index',])->name('admin-cargos');
+            Route::get('cargos-crear', [CargoController::class,'crear',])->name('admin-cargos-crear');
+            Route::post('cargos', [CargoController::class, 'guardar'])->name('admin-cargos-guardar');
+            Route::get('cargos/{id}/editar', [CargoController::class,'editar',])->name('admin-cargos-editar');
+            Route::put('cargos/{id}', [CargoController::class,'actualizar',])->name('admin-cargos-actualizar');
+            Route::delete('cargos/{id}', [CargoController::class,'eliminar',])->name('admin-cargos-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Sistema Facultades
+            Route::get('facultades', [FacultadController::class,'index',])->name('admin-facultades');
+            Route::get('facultades-crear', [FacultadController::class,'crear',])->name('admin-facultades-crear');
+            Route::post('facultades', [FacultadController::class, 'guardar'])->name('admin-facultades-guardar');
+            Route::get('facultades/{id}/editar', [FacultadController::class,'editar',])->name('admin-facultades-editar');
+            Route::put('facultades/{id}', [FacultadController::class,'actualizar',])->name('admin-facultades-actualizar');
+            Route::delete('facultades/{id}', [FacultadController::class,'eliminar',])->name('admin-facultades-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Sistema Carreras
+            Route::get('carreras', [CarreraController::class,'index',])->name('admin-carreras');
+            Route::get('carreras-crear', [CarreraController::class,'crear',])->name('admin-carreras-crear');
+            Route::post('carreras', [CarreraController::class, 'guardar'])->name('admin-carreras-guardar');
+            Route::get('carreras/{id}/editar', [CarreraController::class,'editar',])->name('admin-carreras-editar');
+            Route::put('carreras/{id}', [CarreraController::class,'actualizar',])->name('admin-carreras-actualizar');
+            Route::delete('carreras/{id}', [CarreraController::class,'eliminar',])->name('admin-carreras-eliminar');
+            // ------------------------------------------------------------------------------------
         });
         // ------------------------------------------------------------------------------------
         Route::group(['middleware' => 'administrador'], function () {
@@ -133,16 +159,6 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::get('usuarios/importar', [UsuarioController::class, 'importar'])->name('usuarios-importar');
                 Route::post('usuarios/import',[UsuarioController::class,'import'])->name('usuarios-import');
                 Route::get('usuarios/cargar/{id}',[UsuarioController::class,'cargar'])->name('usuarios-cargar');
-        });
-        Route::group(['prefix' => 'funcionario'], function () {
-            // Rutas parametrizacion
-            // ------------------------------------------------------------------------------------
-            // Rutas areas
-            Route::get('areas-index', [AreaController::class, 'index'])->name('admin-funcionario-area-index');
-            Route::get('areas-crear', [AreaController::class, 'crear'])->name('admin-funcionario-areas-crear');
-            Route::get('areas-editar/{id}', [AreaController::class,'editar',])->name('admin-funcionario-areas-editar');
-            Route::post('areas-guardar', [AreaController::class,'guardar',])->name('admin-funcionario-areas-guardar');
-            Route::put('areas-actualizar/{id}', [AreaController::class,'actualizar',])->name('admin-funcionario-areas-actualizar');
         });
 
     });

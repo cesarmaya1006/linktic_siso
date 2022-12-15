@@ -40,7 +40,7 @@ class CargoController extends Controller
     public function guardar(Request $request)
     {
         Cargo::create($request->all());
-        return redirect('admin/funcionario/cargos-index')->with('mensaje', 'Cargo creado con exito');
+        return redirect('admin/cargos')->with('mensaje', 'Cargo creado con exito');
     }
 
     /**
@@ -77,7 +77,7 @@ class CargoController extends Controller
     public function actualizar(Request $request, $id)
     {
         Cargo::findOrFail($id)->update($request->all());
-        return redirect('admin/funcionario/cargos-index')->with('mensaje', 'Cargo actualizado con exito');
+        return redirect('admin/cargos')->with('mensaje', 'Cargo actualizado con exito');
     }
 
     /**

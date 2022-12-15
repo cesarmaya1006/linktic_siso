@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Universidad;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Carrera;
+use App\Models\Admin\Facultad;
 use Illuminate\Http\Request;
 
 class CarreraController extends Controller
@@ -14,7 +16,8 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        //
+        $carreras = Carrera::get();
+        return view('intranet.parametros.carreras.index', compact('carreras'));
     }
 
     /**
@@ -22,9 +25,10 @@ class CarreraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
     {
-        //
+        $facultades = Facultad::get();
+        return view('intranet.parametros.carreras.crear', compact('facultades'));
     }
 
     /**
@@ -33,9 +37,10 @@ class CarreraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(Request $request)
     {
-        //
+        Carrera::create($request->all());
+        return redirect('admin/carreras')->with('mensaje', 'Carrera creada con exito');
     }
 
     /**
@@ -55,9 +60,11 @@ class CarreraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editar($id)
     {
-        //
+        $carrera = Carrera::findOrFail($id);
+        $facultades = Facultad::get();
+        return view('intranet.parametros.carreras.editar', compact('carrera', 'facultades'));
     }
 
     /**
@@ -67,9 +74,10 @@ class CarreraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function actualizar(Request $request, $id)
     {
-        //
+        Carrera::findOrFail($id)->update($request->all());
+        return redirect('admin/carreras')->with('mensaje', 'Carrera actualizada con exito');
     }
 
     /**
@@ -81,5 +89,13 @@ class CarreraController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cargar_carreras(Request $request)
+    {
+        if ($request->ajax()) {
+            $id = $_GET['id'];
+            return Carrera::where('facultad_id', $id)->get();
+        }
     }
 }

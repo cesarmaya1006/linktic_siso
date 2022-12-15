@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Intranet\Empresas;
+namespace App\Http\Controllers\Universidad;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Carrera;
 use Illuminate\Http\Request;
 
-class CarreraController extends Controller
+class Inv_EntradaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -82,12 +81,5 @@ class CarreraController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function cargar_carreras(Request $request)
-    {
-        if ($request->ajax()) {
-            $id = $_GET['id'];
-            return Carrera::where('facultad_id', $id)->get();
-        }
     }
 }

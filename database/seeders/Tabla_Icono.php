@@ -1136,6 +1136,7 @@ class Tabla_Icono extends Seeder
             ['nom_icono' => 'respondio', 'clase_icono' => 'fab fa-replyd'],
             ['nom_icono' => 'republicano', 'clase_icono' => 'fas fa-republican'],
             ['nom_icono' => 'puerta de la investigacion', 'clase_icono' => 'fab fa-researchgate'],
+            ['nom_icono' => 'inventario', 'clase_icono' => 'fas fa-inventory'],
             ['nom_icono' => 'resolviendo', 'clase_icono' => 'fab fa-resolving'],
             ['nom_icono' => 'Area de aseo', 'clase_icono' => 'fas fa-restroom'],
             ['nom_icono' => 'retuitear', 'clase_icono' => 'fas fa-retweet'],

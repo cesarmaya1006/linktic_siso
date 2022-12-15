@@ -10,24 +10,22 @@
 @endsection
 <!-- ************************************************************* -->
 @section('tituloHoja')
-    Parametros - Niveles
+    Parametros - Carreras
 @endsection
 <!-- ************************************************************* -->
 @section('cuerpo_pagina')
-    @include('intranet.funcionarios.menu.menu')
-    <hr>
     <div class="card">
         @include('includes.error-form')
         @include('includes.mensaje')
         <div class="card-header">
             <div class="row mb-3">
                 <div class="col-12 col-md-6 col-lg-6 text-md-left text-lg-left pl-2">
-                    <h5>listado de Niveles</h5>
+                    <h5>Listado de Carreras</h5>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6 text-md-right text-lg-right pl-2 pr-md-5 pr-lg-5">
-                    <a href="{{ route('admin-funcionario-niveles-crear') }}"
+                    <a href="{{ route('admin-carreras-crear') }}"
                         class="btn btn-success btn-sm text-center pl-3 pr-3" style="font-size: 0.9em;"><i
-                            class="fas fa-plus-circle mr-2"></i> Nuevo Nivel</a>
+                            class="fas fa-plus-circle mr-2"></i> Nueva carrera</a>
                 </div>
             </div>
             <hr>
@@ -36,18 +34,18 @@
                     <table class="table table-striped table-hover table-sm display">
                         <thead class="thead-inverse">
                             <tr>
-                                <th class="text-center">Área</th>
-                                <th class="text-center">Niveles</th>
+                                <th class="text-center">Facultad</th>
+                                <th class="text-center">Carrera</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($niveles as $nivel)
+                            @foreach ($carreras as $carrera)
                                 <tr>
-                                    <td class="text-center">{{ $nivel->area->area }}</td>
-                                    <td class="text-center">{{ $nivel->nivel }}</td>
+                                    <td class="text-center">{{ $carrera->facultad->facultad }}</td>
+                                    <td class="text-center">{{ $carrera->carrera }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin-funcionario-niveles-editar', ['id' => $nivel->id]) }}"
+                                        <a href="{{ route('admin-carreras-editar', ['id' => $carrera->id]) }}"
                                             class="btn-accion-tabla tooltipsC text-info" title="Editar"><i
                                                 class="fa fa-edit" aria-hidden="true"></i></a>
                                     </td>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Universidad;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class EntidadController extends Controller
+class InventarioController extends Controller
 {
     /**
      * Display a listing of the resource.

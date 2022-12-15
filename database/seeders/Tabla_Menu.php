@@ -28,21 +28,22 @@ class Tabla_Menu extends Seeder
             ['nombre' =>  'Permisos', 'menu_id' => '2', 'url' =>  'admin/permiso-index', 'orden' => '4', 'icono' =>  'fas fa-lock'],
             ['nombre' =>  'Permisos -Rol', 'menu_id' => '2', 'url' =>  'admin/_permiso-rol', 'orden' => '5', 'icono' =>  'fas fa-user-lock'],
             ['nombre' =>  'Usuarios', 'menu_id' => '2', 'url' =>  'admin/usuarios', 'orden' => '6', 'icono' =>  'fas fa-user-friends'],
-            ['nombre' =>  'Areas', 'menu_id' => '2', 'url' =>  'admin/areas', 'orden' => '6', 'icono' =>  'fas fa-user-friends'],
-            ['nombre' =>  'Cargos', 'menu_id' => '2', 'url' =>  'admin/cargos', 'orden' => '6', 'icono' =>  'fas fa-user-friends'],
-            ['nombre' =>  'Facultades', 'menu_id' => '2', 'url' =>  'admin/facultades', 'orden' => '6', 'icono' =>  'fas fa-user-friends'],
-            ['nombre' =>  'Carreras', 'menu_id' => '2', 'url' =>  'admin/carreras', 'orden' => '6', 'icono' =>  'fas fa-user-friends'],
+            ['nombre' =>  'Areas', 'menu_id' => '2', 'url' =>  'admin/areas', 'orden' => '7', 'icono' =>  'fas fa-user-friends'],
+            ['nombre' =>  'Cargos', 'menu_id' => '2', 'url' =>  'admin/cargos', 'orden' => '8', 'icono' =>  'fas fa-user-friends'],
+            ['nombre' =>  'Facultades', 'menu_id' => '2', 'url' =>  'admin/facultades', 'orden' => '9', 'icono' =>  'fas fa-user-friends'],
+            ['nombre' =>  'Carreras', 'menu_id' => '2', 'url' =>  'admin/carreras', 'orden' => '10', 'icono' =>  'fas fa-user-friends'],
+            ['nombre' =>  'Inventarios', 'menu_id' => '2', 'url' =>  'admin/inventarios', 'orden' => '11', 'icono' =>  'fas fa-clipboard-list'],
             //------------------------------------------------------------------------------------------------------------
-            //13
+            //14
             ['nombre' =>  'Otras opciones', 'menu_id' => '0', 'url' =>  '#', 'orden' => '3', 'icono' =>  'fas fa-question-circle'],
-            ['nombre' =>  'Consulte nuestas políticas de datos', 'menu_id' => '13', 'url' =>  'usuario/consulta-politicas', 'orden' => '1', 'icono' =>  'fas fa-question-circle'],
-            ['nombre' =>  'Ayuda', 'menu_id' => '13', 'url' =>  'usuario/ayuda', 'orden' => '2', 'icono' =>  'fas fa-question-circle'],
-            ['nombre' =>  'Actualizar datos', 'menu_id' => '13', 'url' =>  'usuario/actualizar-datos', 'orden' => '3', 'icono' =>  'fas fa-edit'],
-            ['nombre' =>  'Cambiar contraseña', 'menu_id' => '13', 'url' =>  'usuario/cambiar-password', 'orden' => '4', 'icono' =>  'fas fa-key'],
+            ['nombre' =>  'Consulte nuestas políticas de datos', 'menu_id' => '14', 'url' =>  'usuario/consulta-politicas', 'orden' => '1', 'icono' =>  'fas fa-question-circle'],
+            ['nombre' =>  'Ayuda', 'menu_id' => '14', 'url' =>  'usuario/ayuda', 'orden' => '2', 'icono' =>  'fas fa-question-circle'],
+            ['nombre' =>  'Actualizar datos', 'menu_id' => '14', 'url' =>  'usuario/actualizar-datos', 'orden' => '3', 'icono' =>  'fas fa-edit'],
+            ['nombre' =>  'Cambiar contraseña', 'menu_id' => '14', 'url' =>  'usuario/cambiar-password', 'orden' => '4', 'icono' =>  'fas fa-key'],
             //------------------------------------------------------------------------------------------------------------
-            //18
+            //19
             ['nombre' =>  'Parametros', 'menu_id' => '0', 'url' =>  '#', 'orden' => '4', 'icono' =>  'fas fa-cogs'],
-            ['nombre' =>  'Carnets', 'menu_id' => '18', 'url' =>  'admin/parametros/carnets-index', 'orden' => '1', 'icono' =>  'fas fa-id-card'],
+            ['nombre' =>  'Carnets', 'menu_id' => '19', 'url' =>  'admin/parametros/carnets-index', 'orden' => '1', 'icono' =>  'fas fa-id-card'],
 
             //----------------------------------------------------------------------------------------------------------------------
 
