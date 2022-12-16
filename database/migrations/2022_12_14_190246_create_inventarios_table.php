@@ -17,12 +17,9 @@ class CreateInventariosTable extends Migration
             $table->bigIncrements('id')->autoIncrement();
             $table->unsignedBigInteger('dependencia_id');
             $table->foreign('dependencia_id', 'fk_dependencia_inventario')->references('id')->on('dependencias')->onDelete('restrict')->onUpdate('restrict');
-            $table->string('categoria', 250);
-            $table->string('elemento', 250);
-            $table->string('codigo', 250)->nullable();
-            $table->string('descripcion', 250)->nullable();
-            $table->bigInteger('precio')->nullable();
-            $table->bigInteger('stock');
+            $table->unsignedBigInteger('usuario_id');
+            $table->foreign('usuario_id', 'fk_usuario_inventario')->references('id')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
+            $table->string('nom_inventario', 250)->unique();
             $table->boolean('estado')->default('1');
             $table->timestamps();
             $table->charset = 'utf8';

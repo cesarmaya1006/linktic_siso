@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Universidad;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Dependencia;
+use App\Models\Admin\Usuario;
 use Illuminate\Http\Request;
 
 class InventarioController extends Controller
@@ -14,7 +16,20 @@ class InventarioController extends Controller
      */
     public function index()
     {
-        //
+        $usuario = Usuario::findOrFail(session('id_usuario'));
+        if (session('rol_id') < 3) {
+            $dependencias = Dependencia::get();
+        } else {
+            $dependencias = Dependencia::where(
+                'usuario_id',
+                session('id_usuario')
+            )->get();
+        }
+        //dd($usuario->roles[0]->id);
+        return view(
+            'intranet.universidad.inventario.inventario',
+            compact('usuario', 'dependencias')
+        );
     }
 
     /**

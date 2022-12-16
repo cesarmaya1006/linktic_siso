@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <span class="brand-text font-weight-light"
-                        style="color: white;text-shadow: 1px 1px black;font-size: 0.9em;font-weight: bold;">Quiku</span>
+                        style="color: white;text-shadow: 1px 1px black;font-size: 0.9em;font-weight: bold;">UCMC</span>
                 </div>
             </div>
         </a>
@@ -16,14 +16,17 @@
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <!-- <div class="image">
+                <div class="image">
                     <img src="{{ asset('imagenes/usuarios/' . session('foto')) }}" class="img-circle elevation-2" alt="User Image">
-                </div> -->
+                </div>
                 <div class="info">
+                    @if (session('rol_id') < 3)
+                    <h6 class="d-block"><strong>{{session('rol_nombre')}}</strong></h6>
+                    @else
+                    <h6 class="d-block"><strong>{{session('area')}}</strong></h6>
+                    <p class="d-block">{{session('cargo')}}</p>
+                    @endif
 
-                    <a href="#" class="d-block">
-
-                    </a>
                 </div>
             </div>
             <!-- Sidebar Menu -->

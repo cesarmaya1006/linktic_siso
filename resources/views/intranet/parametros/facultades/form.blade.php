@@ -1,4 +1,4 @@
-<div class="row"></div>
+<div class="row">
     <div class="col-12 col-md-3">
         <div class="form-group">
             <label for="facultad">Facultad</label>
@@ -8,4 +8,3 @@
         </div>
     </div>
 </div>
-

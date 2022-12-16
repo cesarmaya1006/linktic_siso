@@ -18,8 +18,8 @@ class CreateDependenciasTable extends Migration
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id', 'fk_usuario_dependencia')->references('id')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
             $table->string('dependencia', 250)->unique();
-            $table->string('telefono', 80);
-            $table->string('direccion', 255);
+            $table->string('telefono', 80)->nullable();
+            $table->string('direccion', 255)->nullable();
             $table->string('email', 255)->unique()->nullable();
             $table->boolean('estado')->default('1');
             $table->timestamps();

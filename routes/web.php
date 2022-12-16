@@ -14,7 +14,9 @@ use App\Http\Controllers\Intranet\Admin\IntranetPageCotroller;
 use App\Http\Controllers\Intranet\Carnet\CarnetController as CarnetCarnetController;
 use App\Http\Controllers\Intranet\Empresas\CargoController;
 use App\Http\Controllers\Universidad\CarreraController;
+use App\Http\Controllers\Universidad\DependenciaController;
 use App\Http\Controllers\Universidad\FacultadController;
+use App\Http\Controllers\Universidad\InventarioController;
 use App\Models\Admin\Usuario;
 
 /*
@@ -160,7 +162,29 @@ Route::group(['middleware' => 'auth'], function () {
                 Route::post('usuarios/import',[UsuarioController::class,'import'])->name('usuarios-import');
                 Route::get('usuarios/cargar/{id}',[UsuarioController::class,'cargar'])->name('usuarios-cargar');
         });
+        //Rutas inventarios
+        Route::get('inventarios', [InventarioController::class, 'index'])->name('inventarios');
+        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        Route::group(['prefix' => 'inventarios','middleware' => ['administrador']], function () {
+            // ------------------------------------------------------------------------------------
+            // Ruta Dependencias
+            Route::get('dependencias', [DependenciaController::class,'index',])->name('dependencias');
+            Route::get('dependencias-crear', [DependenciaController::class,'crear',])->name('dependencias-crear');
+            Route::post('dependencias', [DependenciaController::class, 'guardar'])->name('dependencias-guardar');
+            Route::get('dependencias/{id}/editar', [DependenciaController::class,'editar',])->name('dependencias-editar');
+            Route::put('dependencias/{id}', [DependenciaController::class,'actualizar',])->name('dependencias-actualizar');
+            Route::delete('dependencias/{id}', [DependenciaController::class,'eliminar',])->name('dependencias-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Inventarios expecificos
+            Route::get('dependencias', [DependenciaController::class,'index',])->name('dependencias');
+            Route::get('dependencias-crear', [DependenciaController::class,'crear',])->name('dependencias-crear');
+            Route::post('dependencias', [DependenciaController::class, 'guardar'])->name('dependencias-guardar');
+            Route::get('dependencias/{id}/editar', [DependenciaController::class,'editar',])->name('dependencias-editar');
+            Route::put('dependencias/{id}', [DependenciaController::class,'actualizar',])->name('dependencias-actualizar');
+            Route::delete('dependencias/{id}', [DependenciaController::class,'eliminar',])->name('dependencias-eliminar');
+            // ------------------------------------------------------------------------------------
 
+        });
     });
 });
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -17,8 +17,10 @@ class CreatePrestamosTable extends Migration
             $table->bigIncrements('id')->autoIncrement();
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id', 'fk_usuario_prestamos')->references('id')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedBigInteger('inventario_id');
-            $table->foreign('inventario_id', 'fk_inventario_prestamos')->references('id')->on('inventarios')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('persona_id');
+            $table->foreign('persona_id', 'fk_persona_prestamos')->references('id')->on('personas')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('producto_id');
+            $table->foreign('producto_id', 'fk_producto_prestamos')->references('id')->on('productos')->onDelete('restrict')->onUpdate('restrict');
             $table->date('fec_prestamo');
             $table->time('hor_prestamo');
             $table->date('fec_vencimiento');

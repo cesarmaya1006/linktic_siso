@@ -1,48 +1,38 @@
 <?php
 
-namespace App\Models\Personas;
+namespace App\Models\Admin;
 
-use App\Models\Admin\Cargo;
-use App\Models\Admin\Carrera;
-use App\Models\Admin\Prestamo;
-use App\Models\Admin\Tipo_Docu;
-use App\Models\Admin\Usuario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Persona extends Model
+class Producto extends Model
 {
     use HasFactory, Notifiable;
-    protected $table = 'personas';
+    protected $table = 'productos';
     protected $guarded = [];
-
-    public function tipos_docu()
+    //----------------------------------------------------------------------------------
+    public function inventario()
     {
-        return $this->belongsTo(Tipo_Docu::class, 'docutipos_id', 'id');
+        return $this->belongsTo(Inventario::class, 'inventario_id', 'id');
     }
     //----------------------------------------------------------------------------------
-    public function usuario()
+    //----------------------------------------------------------------------------------
+    public function salidasinv()
     {
-        return $this->hasOne(Usuario::class, 'id');
+        return $this->hasMany(Inv_Salida::class, 'producto_id', 'id');
     }
     //----------------------------------------------------------------------------------
-    public function cargo()
-    {
-        return $this->belongsTo(Cargo::class, 'cargo_id', 'id');
-    }
     //----------------------------------------------------------------------------------
-    public function carrera()
+    public function entradasinv()
     {
-        return $this->belongsTo(Carrera::class, 'carrera_id', 'id');
+        return $this->hasMany(Inv_Entrada::class, 'producto_id', 'id');
     }
     //----------------------------------------------------------------------------------
     //----------------------------------------------------------------------------------
     public function prestamos()
     {
-        return $this->hasMany(Prestamo::class, 'persona_id', 'id');
+        return $this->hasMany(Prestamo::class, 'producto_id', 'id');
     }
     //----------------------------------------------------------------------------------
-
-
 }
