@@ -3,6 +3,12 @@
 namespace App\Http\Controllers\Universidad;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Facultad;
+use App\Models\Admin\Inventario;
+use App\Models\Admin\Prestamo;
+use App\Models\Admin\Producto;
+use App\Models\Admin\Rol;
+use App\Models\Admin\Usuario;
 use Illuminate\Http\Request;
 
 class PrestamoController extends Controller
@@ -12,9 +18,11 @@ class PrestamoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $inventario = Inventario::findOrFail($id);
+        $prestamos = Prestamo::get();
+        return view('intranet.universidad.prestamos.index', compact('prestamos','inventario'));
     }
 
     /**
@@ -22,9 +30,16 @@ class PrestamoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear($id)
     {
-        //
+        $usuario = Usuario::findOrFail(session('id_usuario'));
+        $usuarios = Usuario::whereHas('roles', function ($p) {
+            $p->where('rol_id', 6)->where('rol_id','<>', 5);
+        })->get();
+        $roles = Rol::where('id', '>' , 2)->get();
+        $inventario = Inventario::findOrFail($id);
+        $facultades = Facultad::get();
+        return view('intranet.universidad.prestamos.crear', compact('inventario','usuario','usuarios','roles','facultades'));
     }
 
     /**
@@ -33,9 +48,14 @@ class PrestamoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(Request $request)
     {
-        //
+        unset($request['tipousuario']);
+        $producto = Producto::findOrFail($request['producto_id']);
+        $producoUpdate['stock'] = $producto->stock - $request['cantidad'];
+        Producto::findOrFail($request['producto_id'])->update($producoUpdate);
+        Prestamo::create($request->all());
+        return redirect('admin/inventarios/prestamos/'.$producto->inventario_id)->with('mensaje', 'Prestamo realizado con exito');
     }
 
     /**
@@ -55,9 +75,10 @@ class PrestamoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editar($id)
     {
-        //
+        $facultad = Facultad::findOrFail($id);
+        return view('intranet.parametros.facultades.editar', compact('facultad'));
     }
 
     /**
@@ -67,9 +88,10 @@ class PrestamoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function actualizar(Request $request, $id)
     {
-        //
+        Facultad::findOrFail($id)->update($request->all());
+        return redirect('admin/facultades')->with('mensaje', 'Facultad actualizada con exito');
     }
 
     /**
@@ -78,8 +100,12 @@ class PrestamoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function eliminar($id)
     {
-        //
+        if (Facultad::destroy($id)) {
+            return redirect('admin/facultades')->with('mensaje', 'Facultad eliminada con exito');
+        } else {
+            return redirect('admin/facultades')->with('errores', 'La facultad no puede ser eliminada, existen recursos usando este elemento');
+        }
     }
 }

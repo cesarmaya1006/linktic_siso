@@ -19,7 +19,7 @@ class CreateInvEntradasTable extends Migration
             $table->foreign('usuario_id', 'fk_usuario_entradas')->references('id')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('producto_id');
             $table->foreign('producto_id', 'fk_producto_entradas')->references('id')->on('productos')->onDelete('restrict')->onUpdate('restrict');
-            $table->string('proveedor', 250);
+            $table->string('proveedor', 250)->nullable();
             $table->date('fec_ingreso');
             $table->bigInteger('cantidad');
             $table->bigInteger('costo');

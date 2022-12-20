@@ -91,4 +91,10 @@ class AreaController extends Controller
             return redirect('admin/funcionario/areas-index')->with('errores', 'El area no puede ser eliminada, existen recursos usando este elemento');
         }
     }
+    public function cargar_areas(Request $request)
+    {
+        if ($request->ajax()) {
+            return Area::get();
+        }
+    }
 }

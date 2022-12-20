@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Universidad;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidacionInventarios;
 use App\Models\Admin\Dependencia;
+use App\Models\Admin\Inventario;
+use App\Models\Admin\Producto;
 use App\Models\Admin\Usuario;
 use Illuminate\Http\Request;
 
@@ -17,15 +20,14 @@ class InventarioController extends Controller
     public function index()
     {
         $usuario = Usuario::findOrFail(session('id_usuario'));
+        $id = session('id_usuario');
         if (session('rol_id') < 3) {
             $dependencias = Dependencia::get();
         } else {
-            $dependencias = Dependencia::where(
-                'usuario_id',
-                session('id_usuario')
-            )->get();
+            $dependencias = Dependencia::whereHas('inventarios', function ($p) use($id) {
+                $p->where('usuario_id', $id);
+            })->get();
         }
-        //dd($usuario->roles[0]->id);
         return view(
             'intranet.universidad.inventario.inventario',
             compact('usuario', 'dependencias')
@@ -37,9 +39,15 @@ class InventarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear($id)
     {
-        //
+        $usuario = Usuario::findOrFail(session('id_usuario'));
+        $usuarios = Usuario::whereHas('roles', function ($p) {
+            $p->where('rol_id','>', 2)->where('rol_id','<>', 5);
+        })->get();
+
+        $dependencia = Dependencia:: findOrFail($id);
+        return view('intranet.universidad.inventario.crear',compact('usuario','usuarios', 'dependencia'));
     }
 
     /**
@@ -48,9 +56,10 @@ class InventarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(ValidacionInventarios $request)
     {
-        //
+        Inventario::create($request->all());
+        return redirect('admin/inventarios')->with('mensaje', 'Inventario creado con exito creada con éxito');
     }
 
     /**
@@ -70,9 +79,14 @@ class InventarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editar($id)
     {
-        //
+        $usuario = Usuario::findOrFail(session('id_usuario'));
+        $usuarios = Usuario::whereHas('roles', function ($p) {
+            $p->where('rol_id','>', 2)->where('rol_id','<>', 5);
+        })->get();
+        $inventario = Inventario::findOrFail($id);
+        return view('intranet.universidad.inventario.editar', compact('inventario','usuario','usuarios'));
     }
 
     /**
@@ -82,9 +96,10 @@ class InventarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function actualizar(Request $request, $id)
     {
-        //
+        Inventario::findOrFail($id)->update($request->all());
+        return redirect('admin/inventarios')->with('mensaje', 'Inventario actualizado con éxito');
     }
 
     /**
@@ -93,8 +108,15 @@ class InventarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function producto_crear($id){
+        $inventario = Inventario::findOrFail($id);
+        $usuario = Usuario::findOrFail(session('id_usuario'));
+        return view('intranet.universidad.inventario.elemento', compact('inventario','usuario'));
+    }
+    public function producto_guardar(Request $request)
     {
-        //
+        Producto::create($request->all());
+        return redirect('admin/inventarios/entradas/'. $_POST['inventario_id'])->with('mensaje', 'Producto creado con éxito');
+
     }
 }

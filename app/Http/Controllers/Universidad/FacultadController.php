@@ -91,4 +91,11 @@ class FacultadController extends Controller
             return redirect('admin/facultades')->with('errores', 'La facultad no puede ser eliminada, existen recursos usando este elemento');
         }
     }
+
+    public function cargar_facultades(Request $request)
+    {
+        if ($request->ajax()) {
+            return Facultad::get();
+        }
+    }
 }

@@ -10,7 +10,7 @@
 @endsection
 <!-- ************************************************************* -->
 @section('tituloHoja')
-    Dependencias
+    Inventarios
 @endsection
 <!-- ************************************************************* -->
 @section('cuerpo_pagina')
@@ -21,20 +21,20 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Crear Dependencia</h1>
+                    <h1 class="m-0">Nuevo Elemento de Inventario</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin-index') }}">Home</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('inventarios') }}">Inventarios</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('dependencias') }}">Dependencias</a></li>
-                        <li class="breadcrumb-item active">Dependencias -crear</li>
+                        <li class="breadcrumb-item"><a href="{{ route('entradas-crear',['id' => $inventario->id]) }}">Entradas</a></li>
+                        <li class="breadcrumb-item active">Inventarios - Nuevo Elemento</li>
                     </ol>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-12 text-md-right pl-2 pr-md-5">
-                    <a href="{{ route('dependencias') }}"class="btn btn-success btn-sm text-center pl-3 pr-3" style="font-size: 0.9em;">
+                    <a href="{{ route('entradas-crear',['id' => $inventario->id]) }}"class="btn btn-success btn-sm text-center pl-3 pr-3" style="font-size: 0.9em;">
                         <i class="fas fa-reply mr-2"></i> Volver
                     </a>
                 </div>
@@ -44,12 +44,33 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('dependencias-guardar') }}" class="form-horizontal row"
+                    <form action="{{ route('elementos-guardar') }}" class="form-horizontal row"
                         method="POST" autocomplete="off" enctype="multipart/form-data">
                         @csrf
                         @method('post')
                         <div class="card-body">
-                            @include('intranet.universidad.dependencias.form')
+                            <div class="row">
+                                <input type="hidden" name="inventario_id" value="{{ $inventario->id }}">
+                                <div class="col-12 col-md-6 form-group">
+                                    <label for="elemento" class="requerido">Nombre del Elemento</label>
+                                    <input type="text" class="form-control form-control-sm" name="elemento" id="elemento"
+                                        aria-describedby="helpId" value="{{ old('proveedor') }}"
+                                        placeholder="Nombre del elemento" required>
+                                    <small id="helpId" class="form-text text-muted">Nombre del Elemento</small>
+                                </div>
+                                <div class="col-12 col-md-6 form-group">
+                                    <label for="codigo">Codigo ó referencia</label>
+                                    <input type="text" class="form-control form-control-sm" name="codigo" id="codigo"
+                                        aria-describedby="helpId" value="{{ old('codigo') }}">
+                                    <small id="helpId" class="form-text text-muted">Codigo ó referencia</small>
+                                </div>
+                                <div class="col-12 col-md-12 form-group">
+                                    <label for="descripcion">Descripción</label>
+                                    <input type="text" class="form-control form-control-sm" name="descripcion" id="descripcion"
+                                        aria-describedby="helpId" value="{{ old('descripcion') }}">
+                                    <small id="helpId" class="form-text text-muted">Descripción</small>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">

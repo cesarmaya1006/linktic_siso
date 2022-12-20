@@ -23,7 +23,7 @@ class Prestamo extends Model
         return $this->belongsTo(Persona::class, 'persona_id', 'id');
     }
     //----------------------------------------------------------------------------------
-    public function productos()
+    public function producto()
     {
         return $this->belongsTo(Producto::class, 'producto_id', 'id');
     }

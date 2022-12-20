@@ -206,4 +206,31 @@ class UsuarioController extends Controller
     {
         //
     }
+
+    public function cargar_usuarios_carreras(Request $request){
+        if ($request->ajax()) {
+            $id = $_GET['id'];
+            $rol_id = $_GET['rol_id'];
+                return Persona::with('carrera')->
+            whereHas('usuario.roles', function ($p) use($rol_id) {
+                $p->where('rol_id',$rol_id);
+            })
+            ->whereHas('carrera', function ($p) use($id) {
+                $p->where('carrera_id', $id);
+            })->get();
+        }
+
+    }
+
+
+    public function cargar_usuarios_cargos(Request $request){
+        if ($request->ajax()) {
+            $id = $_GET['id'];
+            return Persona::whereHas('cargo', function ($p) use($id) {
+                $p->where('cargo_id', $id);
+            })->get();
+        }
+
+    }
+
 }

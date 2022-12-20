@@ -25,8 +25,11 @@ class CreatePrestamosTable extends Migration
             $table->time('hor_prestamo');
             $table->date('fec_vencimiento');
             $table->time('hor_vencimiento');
+            $table->date('fec_entrega')->nullable();
+            $table->time('hor_entrega')->nullable();
             $table->bigInteger('cantidad');
             $table->longText('observaciones')->nullable();
+            $table->longText('estado_entrega')->nullable();
             $table->bigInteger('estado')->default('1');
             $table->timestamps();
             $table->charset = 'utf8';

@@ -17,6 +17,9 @@ use App\Http\Controllers\Universidad\CarreraController;
 use App\Http\Controllers\Universidad\DependenciaController;
 use App\Http\Controllers\Universidad\FacultadController;
 use App\Http\Controllers\Universidad\InventarioController;
+use App\Http\Controllers\Universidad\InvEntradaController;
+use App\Http\Controllers\Universidad\InvSalidaController;
+use App\Http\Controllers\Universidad\PrestamoController;
 use App\Models\Admin\Usuario;
 
 /*
@@ -57,9 +60,13 @@ Route::post('/cargar_tipo_documentos', [ExtranetPageController::class,'cargar_ti
 Route::group(['middleware' => 'auth'], function () {
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //Rutas carfar ajax
-    Route::get('cargar_areas', [CargoController::class, 'cargar_areas'])->name('cargar_areas');
+    Route::get('cargar_areas', [AreaController::class, 'cargar_areas'])->name('cargar_areas');
+    Route::get('cargar_facultades', [FacultadController::class, 'cargar_facultades'])->name('cargar_facultades');
     Route::get('cargar_cargos', [CargoController::class, 'cargar_cargos'])->name('cargar_cargos');
     Route::get('cargar_carreras', [CarreraController::class, 'cargar_carreras'])->name('cargar_carreras');
+    Route::get('cargar_usuarios_carreras', [UsuarioController::class, 'cargar_usuarios_carreras'])->name('cargar_usuarios_carreras');
+    Route::get('cargar_usuarios_cargos', [UsuarioController::class, 'cargar_usuarios_cargos'])->name('cargar_usuarios_cargos');
+    Route::get('cargar_max_prod', [InvSalidaController::class, 'cargar_max_prod'])->name('cargar_max_prod');
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Route::group(['prefix' => 'admin'], function () {
         Route::get('index', [IntranetPageCotroller::class, 'index'])->name('admin-index');
@@ -176,12 +183,32 @@ Route::group(['middleware' => 'auth'], function () {
             Route::delete('dependencias/{id}', [DependenciaController::class,'eliminar',])->name('dependencias-eliminar');
             // ------------------------------------------------------------------------------------
             // Ruta Inventarios expecificos
-            Route::get('dependencias', [DependenciaController::class,'index',])->name('dependencias');
-            Route::get('dependencias-crear', [DependenciaController::class,'crear',])->name('dependencias-crear');
-            Route::post('dependencias', [DependenciaController::class, 'guardar'])->name('dependencias-guardar');
-            Route::get('dependencias/{id}/editar', [DependenciaController::class,'editar',])->name('dependencias-editar');
-            Route::put('dependencias/{id}', [DependenciaController::class,'actualizar',])->name('dependencias-actualizar');
-            Route::delete('dependencias/{id}', [DependenciaController::class,'eliminar',])->name('dependencias-eliminar');
+            Route::get('inventarios-crear/{id}', [InventarioController::class,'crear',])->name('inventarios-crear');
+            Route::post('inventarios', [InventarioController::class, 'guardar'])->name('inventarios-guardar');
+            Route::get('inventarios/{id}/editar', [InventarioController::class,'editar',])->name('inventarios-editar');
+            Route::put('inventarios/{id}', [InventarioController::class,'actualizar',])->name('inventarios-actualizar');
+            Route::delete('inventarios/{id}', [InventarioController::class,'eliminar',])->name('inventarios-eliminar');
+            // ------------------------------------------------------------------------------------
+            Route::get('entradas/{id}', [InvEntradaController::class,'crear',])->name('entradas-crear');
+            Route::post('entradas', [InvEntradaController::class, 'guardar'])->name('entradas-guardar');
+            // ------------------------------------------------------------------------------------
+            Route::get('salidas/{id}', [InvSalidaController::class,'crear',])->name('salidas-crear');
+            Route::post('salidas', [InvSalidaController::class, 'guardar'])->name('salidas-guardar');
+            // ------------------------------------------------------------------------------------
+            // ------------------------------------------------------------------------------------
+            Route::get('elementos-crear/{id}', [InventarioController::class,'producto_crear',])->name('elementos-crear');
+            Route::post('elementos', [InventarioController::class, 'producto_guardar'])->name('elementos-guardar');
+            Route::get('elementos/{id}/editar', [InventarioController::class,'producto_editar',])->name('elementos-editar');
+            Route::put('elementos/{id}', [InventarioController::class,'producto_actualizar',])->name('elementos-actualizar');
+            Route::delete('elementos/{id}', [InventarioController::class,'producto_eliminar',])->name('elementos-eliminar');
+            // ------------------------------------------------------------------------------------
+            // ------------------------------------------------------------------------------------
+            Route::get('prestamos/{id}', [PrestamoController::class,'index',])->name('prestamos');
+            Route::get('prestamos-crear/{id}', [PrestamoController::class,'crear',])->name('prestamos-crear');
+            Route::post('prestamos', [PrestamoController::class, 'guardar'])->name('prestamos-guardar');
+            Route::get('prestamos/{id}/editar', [PrestamoController::class,'editar',])->name('prestamos-editar');
+            Route::put('prestamos/{id}', [PrestamoController::class,'actualizar',])->name('prestamos-actualizar');
+            Route::delete('prestamos/{id}', [PrestamoController::class,'eliminar',])->name('prestamos-eliminar');
             // ------------------------------------------------------------------------------------
 
         });
