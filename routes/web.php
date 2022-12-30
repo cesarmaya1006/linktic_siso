@@ -181,6 +181,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('dependencias/{id}/editar', [DependenciaController::class,'editar',])->name('dependencias-editar');
             Route::put('dependencias/{id}', [DependenciaController::class,'actualizar',])->name('dependencias-actualizar');
             Route::delete('dependencias/{id}', [DependenciaController::class,'eliminar',])->name('dependencias-eliminar');
+
+        });
+        Route::group(['prefix' => 'inventarios'], function () {
             // ------------------------------------------------------------------------------------
             // Ruta Inventarios expecificos
             Route::get('inventarios-crear/{id}', [InventarioController::class,'crear',])->name('inventarios-crear');
@@ -206,7 +209,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('prestamos/{id}', [PrestamoController::class,'index',])->name('prestamos');
             Route::get('prestamos-crear/{id}', [PrestamoController::class,'crear',])->name('prestamos-crear');
             Route::post('prestamos', [PrestamoController::class, 'guardar'])->name('prestamos-guardar');
-            Route::get('prestamos/{id}/editar', [PrestamoController::class,'editar',])->name('prestamos-editar');
+            Route::get('prestamos/{id}/devolucion', [PrestamoController::class,'editar',])->name('prestamos-devolucion');
             Route::put('prestamos/{id}', [PrestamoController::class,'actualizar',])->name('prestamos-actualizar');
             Route::delete('prestamos/{id}', [PrestamoController::class,'eliminar',])->name('prestamos-eliminar');
             // ------------------------------------------------------------------------------------

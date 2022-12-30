@@ -77,8 +77,8 @@ class PrestamoController extends Controller
      */
     public function editar($id)
     {
-        $facultad = Facultad::findOrFail($id);
-        return view('intranet.parametros.facultades.editar', compact('facultad'));
+        $prestamo = Prestamo::findOrFail($id);
+        return view('intranet.universidad.prestamos.editar', compact('prestamo'));
     }
 
     /**
@@ -90,8 +90,8 @@ class PrestamoController extends Controller
      */
     public function actualizar(Request $request, $id)
     {
-        Facultad::findOrFail($id)->update($request->all());
-        return redirect('admin/facultades')->with('mensaje', 'Facultad actualizada con exito');
+        Prestamo::findOrFail($id)->update($request->all());
+        return redirect('admin/facultades')->with('mensaje', 'Entrega registrada con exito');
     }
 
     /**

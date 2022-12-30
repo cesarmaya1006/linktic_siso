@@ -62,7 +62,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($prestamos as $prestamo)
-                                    <tr>
+                                    <tr class="{{ $prestamo->estado == 1 ? 'bg-success bg-gradient': 'bg-danger bg-gradient'}}">
                                         <td class="text-center">{{ $prestamo->id }}</td>
                                         <td class="text-center">{{ $prestamo->persona->nombre1 . ' ' . $prestamo->persona->nombre2 . ' ' . $prestamo->persona->apellido1 . ' ' . $prestamo->persona->apellido2 }}</td>
                                         <td class="text-center text-capitalize">{{ $prestamo->persona->usuario->roles[0]->nombre}}</td>
@@ -73,13 +73,13 @@
                                         <td class="text-center">{{ $prestamo->fec_prestamo ." - " . $prestamo->hor_prestamo }}</td>
                                         <td class="text-center">{{ $prestamo->fec_vencimiento ." - " . $prestamo->hor_vencimiento }}</td>
                                         <td class="text-center">{{ $prestamo->observaciones }}</td>
-                                        <td class="text-center {{ $prestamo->estado == 1 ? 'bg-peligro bg-gradiente': 'bg-éxito bg-gradiente'}}">{{ $prestamo->estado == 1 ? 'Vigente': 'Vencida'}}</td>
+                                        <td class="text-center">{{ $prestamo->estado == 1 ? 'Vigente': 'Vencida'}}</td>
                                         <td class="text-center">{{ $prestamo->id }}</td>
-                                        <td class="text-center">
-                                            <a  href="#"
+                                        <td class="text-center bg-white">
+                                            <a  href="{{route('prestamos-devolucion',['id' => $prestamo->id])}}"
                                                 class="btn-accion-tabla tooltipsC text-info"
-                                                title="Editar">
-                                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                                title="Hacer devolución">
+                                                <i class="fas fa-share-square" aria-hidden="true"></i>
                                             </a>
                                         </td>
                                     </tr>
