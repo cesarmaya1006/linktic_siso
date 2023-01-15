@@ -9,7 +9,9 @@ use App\Models\Admin\Facultad;
 use App\Models\Admin\Rol;
 use App\Models\Admin\Tipo_Docu;
 use App\Models\Admin\Usuario;
+use App\Models\Admin\UsuarioApi;
 use App\Models\Personas\Persona;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Maatwebsite\Excel\Facades\Excel;
@@ -100,6 +102,12 @@ class UsuarioController extends Controller
         $usuario = Usuario::create($nuevoUsuario);
         $usuario->roles()->sync($request->rol_id);
         //.........................................................................
+        $newUser['id'] = $usuario->id;
+        $newUser['name'] = strtolower($request['email']);
+        $newUser['password'] = bcrypt(utf8_encode($request['password']));
+        $newUser['email'] = strtolower($request['email']);
+        $usuario2 = UsuarioApi::create($newUser);
+        //.........................................................................
         $nuevaPersona['id'] = $usuario->id;
         $nuevaPersona['docutipos_id'] = $request['docutipos_id'];
         if ($roles[0]==3) {
@@ -185,9 +193,9 @@ class UsuarioController extends Controller
         $actualizar_usuario['telefono'] = $request['telefono'];
         $roles = $request->rol_id;
         $roles['estado'] = 1;
-        $usuario = Usuario::findOrFail($id);
+        $usuario = Persona::findOrFail($id);
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        Usuario::findOrFail($id)->update($actualizar_usuario);
+        Persona::findOrFail($id)->update($actualizar_usuario);
         $usuario->update($actualizar_usuario);
         //-------------------------------------------
         return redirect('admin/usuario-index')->with(

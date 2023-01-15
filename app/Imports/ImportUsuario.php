@@ -7,7 +7,9 @@ use App\Models\Admin\Carrera;
 use App\Models\Admin\Rol;
 use App\Models\Admin\Tipo_Docu;
 use App\Models\Admin\Usuario;
+use App\Models\Admin\UsuarioApi;
 use App\Models\Personas\Persona;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
@@ -30,6 +32,14 @@ class ImportUsuario implements ToCollection
             $nuevoUsuario['password'] = bcrypt($row[4]);
             $nuevoUsuario['camb_password'] = '0';
             $usuario = Usuario::create($nuevoUsuario);
+            //-----------------------------------------------------------------------
+            $newUser['id'] = $usuario ->id;
+            $newUser['name'] = $row[13];
+            $newUser['password'] = bcrypt($row[4]);
+            $newUser['email'] = $row[13];
+            $newUser['created_at']  = Carbon::now()->format('Y-m-d H:i:s');
+            $usuario2 = UsuarioApi::create($newUser);
+            //-----------------------------------------------------------------------
             $usuario->roles()->sync($rol_id);
 
             $docuTipos = Tipo_Docu::where('abreb_id',$row[5])->get();

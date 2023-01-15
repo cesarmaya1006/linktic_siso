@@ -38,7 +38,7 @@ class AreaController extends Controller
     public function guardar(Request $request)
     {
         Area::create($request->all());
-        return redirect('admin/funcionario/areas-index')->with('mensaje', 'Área creada con exito');
+        return redirect('admin/areas')->with('mensaje', 'Área creada con exito');
     }
 
     /**
@@ -74,7 +74,7 @@ class AreaController extends Controller
     public function actualizar(Request $request, $id)
     {
         Area::findOrFail($id)->update($request->all());
-        return redirect('admin/funcionario/areas-index')->with('mensaje', 'Área actualizada con exito');
+        return redirect('admin/areas')->with('mensaje', 'Área actualizada con exito');
     }
 
     /**
@@ -86,9 +86,9 @@ class AreaController extends Controller
     public function eliminar($id)
     {
         if (Area::destroy($id)) {
-            return redirect('admin/funcionario/areas-index')->with('mensaje', 'Área eliminada con exito');
+            return redirect('admin/areas')->with('mensaje', 'Área eliminada con exito');
         } else {
-            return redirect('admin/funcionario/areas-index')->with('errores', 'El area no puede ser eliminada, existen recursos usando este elemento');
+            return redirect('admin/areas')->with('errores', 'El area no puede ser eliminada, existen recursos usando este elemento');
         }
     }
     public function cargar_areas(Request $request)

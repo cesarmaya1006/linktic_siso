@@ -21,6 +21,12 @@ class Tabla_Usuarios extends Seeder
             'camb_password' => '0',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+        DB::table('users')->insert([
+            'name' => 'adminsis@gmail.com',
+            'email' => 'adminsis@gmail.com',
+            'password' => bcrypt('adminsis'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
         DB::table('usuario_rol')->insert([
             'rol_id' => 1,
             'usuario_id' => 1,
@@ -34,6 +40,13 @@ class Tabla_Usuarios extends Seeder
             'camb_password' => '0',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+        DB::table('users')->insert([
+            'name' => 'admin@gmail.com',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
         DB::table('usuario_rol')->insert([
             'rol_id' => 2,
             'usuario_id' => 2,

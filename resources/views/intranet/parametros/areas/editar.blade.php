@@ -23,7 +23,7 @@
                     <h5>Editar Área</h5>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6 text-md-right text-lg-right pl-2 pr-md-5 pr-lg-5">
-                    <a href="{{ route('admin-funcionario-area-index') }}"
+                    <a href="{{ route('admin-areas') }}"
                         class="btn btn-success btn-sm text-center pl-3 pr-3" style="font-size: 0.9em;"><i
                             class="fas fa-reply mr-2"></i> Volver</a>
                 </div>
@@ -31,7 +31,7 @@
             <hr>
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('admin-funcionario-areas-actualizar', ['id' => $area->id]) }}"
+                    <form action="{{ route('admin-areas-actualizar', ['id' => $area->id]) }}"
                         class="form-horizontal row" method="POST" autocomplete="off" enctype="multipart/form-data">
                         @csrf
                         @method('put')
