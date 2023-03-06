@@ -18,10 +18,6 @@ class CrearTablaPersonas extends Migration
             $table->foreign('id')->references('id')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('docutipos_id');
             $table->foreign('docutipos_id', 'fk_persona_docutipos')->references('id')->on('docutipos')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedBigInteger('cargo_id')->nullable();
-            $table->foreign('cargo_id', 'fk_persona_cargos')->references('id')->on('cargos')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedBigInteger('carrera_id')->nullable();
-            $table->foreign('carrera_id', 'fk_persona_carrera')->references('id')->on('carreras')->onDelete('restrict')->onUpdate('restrict');
             $table->string('identificacion', 100)->unique();
             $table->string('nombre1', 50);
             $table->string('nombre2', 50)->nullable();
@@ -31,7 +27,6 @@ class CrearTablaPersonas extends Migration
             $table->string('direccion', 255);
             $table->string('email', 255)->unique();
             $table->string('foto', 255)->unique();
-            $table->date('vigencia');
             $table->boolean('estado')->default('1');
             $table->timestamps();
             $table->charset = 'utf8';

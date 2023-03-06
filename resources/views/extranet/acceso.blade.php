@@ -13,10 +13,10 @@
                 </div>
             </div>
             <div class="row justify-content-center" style="font-size: 0.8em;">
-                <div class="col-10 col-sm-8 col-md-4 mt-5">
+                <div class="col-10 col-sm-8 col-md-6 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <img src="{{ asset('imagenes/sistema/img-logo.png') }}" class="rounded mx-auto d-block" alt="...">
+                            <img src="{{ asset('imagenes/sistema/logofull.png') }}" class="rounded mx-auto d-block" alt="...">
                             <div class="card-text mt-3">
                                 <form action="{{ route('login') }}" method="post" autocomplete="off">
                                     @method('post')

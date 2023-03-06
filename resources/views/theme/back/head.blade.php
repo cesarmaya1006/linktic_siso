@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('imagenes/sistema/icono_sistema.png') }}"
+<link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('imagenes/sistema/logo.png') }}"
     sizes="500x500">
 <!-- Bootstrap CSS -->
 <!-- Bootstrap CSS -->
