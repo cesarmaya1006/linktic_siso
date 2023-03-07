@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('imagenes/sistema/icono_sistema.png') }}"
+    <link rel="icon" type="image/vnd.microsoft.icon" href="{{ asset('imagenes/sistema/logo.png') }}"
         sizes="64x64">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="{{ asset('css/extranet/general.css') }}">
     <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css') }}">
-    <title>Quiku</title>
+    <title>LinkTic Siso</title>
     @yield('css_pagina')
     <style>
         body {
-            background-image: linear-gradient(to bottom right, #f9cc5d, #f38782, #3359fa 85%);
+            background-image: linear-gradient(to bottom right, #1DD600, #00E1FF, #009CFF 85%);
             /* background-image: linear-gradient(to right, {{ $parametro->fondo1 }}, {{ $parametro->fondo2 }}); */
             /* background-image: url({{ asset('imagenes/img-inicio/img-principal-inicio4.jpg') }});
             background-size: cover; */
