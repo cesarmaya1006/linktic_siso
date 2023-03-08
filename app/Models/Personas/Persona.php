@@ -27,22 +27,6 @@ class Persona extends Model
         return $this->hasOne(Usuario::class, 'id');
     }
     //----------------------------------------------------------------------------------
-    public function cargo()
-    {
-        return $this->belongsTo(Cargo::class, 'cargo_id', 'id');
-    }
-    //----------------------------------------------------------------------------------
-    public function carrera()
-    {
-        return $this->belongsTo(Carrera::class, 'carrera_id', 'id');
-    }
-    //----------------------------------------------------------------------------------
-    //----------------------------------------------------------------------------------
-    public function prestamos()
-    {
-        return $this->hasMany(Prestamo::class, 'persona_id', 'id');
-    }
-    //----------------------------------------------------------------------------------
 
 
 }
