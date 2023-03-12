@@ -44,8 +44,18 @@ class Tabla_MenuRol extends Seeder
             ['rol_id' => '2', 'menu_id' => '13'],
             ['rol_id' => '2', 'menu_id' => '14'],
         ];
+        for ($i=1; $i <23; $i++) {
+            DB::table('menu_rol')->insert([
+                'rol_id' => '1',
+                'menu_id' => $i,
+            ]);
+            DB::table('menu_rol')->insert([
+                'rol_id' => '2',
+                'menu_id' => $i,
+            ]);
+        }
 
-        foreach ($tipos as $tipo) {
+        /*foreach ($tipos as $tipo) {
             DB::table('menu_rol')->insert([
                 'rol_id' => $tipo['rol_id'],
                 'menu_id' => $tipo['menu_id'],

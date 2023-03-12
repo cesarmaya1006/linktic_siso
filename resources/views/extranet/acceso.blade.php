@@ -17,6 +17,11 @@
                     <div class="card">
                         <div class="card-body">
                             <img src="{{ asset('imagenes/sistema/logofull.png') }}" class="rounded mx-auto d-block" alt="...">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <h2><strong style="font-size: 1.2em">SISO</strong> linkTic</h2>
+                                </div>
+                            </div>
                             <div class="card-text mt-3">
                                 <form action="{{ route('login') }}" method="post" autocomplete="off">
                                     @method('post')
@@ -34,9 +39,6 @@
                                     <div class="d-flex justify-content-around">
                                         <div class="centrar-items">
                                             <button class="mt-2 btn btn-primary" type="submit">Iniciar sesiónes</button>
-                                        </div>
-                                        <div class="centrar-items">
-                                            <a href="{{ route('registro_ini') }}" class="mt-2 btn btn-primary">Registrarse</a>
                                         </div>
                                     </div>
                                     <div class="centrar-items mt-4">

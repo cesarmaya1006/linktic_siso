@@ -35,9 +35,6 @@
                     data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                    <li class="nav-header">
-                        <h6 style="color: #00E1FF; font-weight: 700;">MEN&Uacute; PRINCIPAL</h6>
-                    </li>
                     @foreach ($menusComposer as $key => $item)
                         @if ($item['menu_id'] != 0)
                         @break

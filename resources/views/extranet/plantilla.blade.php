@@ -17,7 +17,7 @@
     @yield('css_pagina')
     <style>
         body {
-            background-image: linear-gradient(to bottom right, #f9cc5d, #f38782, #3359fa 85%);
+            background-image: linear-gradient(to bottom right, #00E1FF, #009CFF, #008500 80%);
             /* background-image: linear-gradient(to right, {{ $parametro->fondo1 }}, {{ $parametro->fondo2 }}); */
             /* background-image: url({{ asset('imagenes/img-inicio/img-principal-inicio4.jpg') }});
             background-size: cover; */
@@ -72,13 +72,9 @@
     </div> --}}
     @yield('cuerpo_pagina')
     <!-- Optional JavaScript; choose one of the two! -->
-    <a href="{{ route('preguntas_frecuentes') }}">
-        <img src="{{ asset('imagenes/sistema/preguntas_frecuentes.png') }}"
-            class="rounded d-block preguntas-frecuentes" alt="...">
-    </a>
     <div class="row fixed-bottom p-3 mt-5" style="background-color: rgba(26, 26, 26, 0.4)">
         <div class="col-12 text-center text-white">
-            <strong>Copyright &copy; 2021 <a href="http://www.mglasociados.com/" style="color: white">MGL</a>.</strong>
+            <strong>Copyright &copy; 2023 <a href="http://www.mglasociados.com/" style="color: white">LINKTIC</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.0.0

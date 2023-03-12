@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Intranet\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Admin\Permiso;
 use App\Models\Admin\Rol;
+use App\Models\Empresa\Area;
+use App\Models\Empresa\Cargo;
 use Illuminate\Http\Request;
 
 class PermisoRolController extends Controller
@@ -16,10 +19,9 @@ class PermisoRolController extends Controller
      */
     public function index()
     {
-        $rols = Rol::orderBy('id')->pluck('nombre', 'id')->toArray();
-        $permisos = Permiso::get();
-        $permisosRols = Permiso::with('roles')->get()->pluck('roles', 'id')->toArray();
-        return view('intranet.sistema.permiso-rol.index', compact('rols', 'permisos', 'permisosRols'));
+        $areas = Area::with('cargos')->with('cargos.menus')->with('cargos.permisos_cargo')->get();
+        $menus = Menu::where('menu_id','>',2)->get();
+        return view('intranet.sistema.permiso-rol.index', compact('areas', 'menus'));
     }
 
     public function guardar(Request $request)

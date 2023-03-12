@@ -18,9 +18,4 @@ class Rol extends Model
         return $this->belongsToMany(Usuario::class, 'usuario_rol');
     }
     //----------------------------------------------------------------------------------
-    public function carnets()
-    {
-        return $this->hasMany(Carnet::class, 'rol_id', 'id');
-    }
-    //----------------------------------------------------------------------------------
 }
