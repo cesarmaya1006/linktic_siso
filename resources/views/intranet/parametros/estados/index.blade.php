@@ -10,7 +10,7 @@
 @endsection
 <!-- ************************************************************* -->
 @section('tituloHoja')
-    Parametros - Facultades
+    Parametros - Estados
 @endsection
 <!-- ************************************************************* -->
 @section('cuerpo_pagina')
@@ -20,32 +20,40 @@
         <div class="card-header">
             <div class="row mb-3">
                 <div class="col-12 col-md-6 col-lg-6 text-md-left text-lg-left pl-2">
-                    <h5>listado de Facultades</h5>
+                    <h5>listado de Estados</h5>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6 text-md-right text-lg-right pl-2 pr-md-5 pr-lg-5">
-                    <a href="{{ route('admin-facultades-crear') }}"
+                    <a href="{{ route('admin-estados-crear') }}"
                         class="btn btn-success btn-sm text-center pl-3 pr-3" style="font-size: 0.9em;"><i
-                            class="fas fa-plus-circle mr-2"></i> Nueva Facultad</a>
+                            class="fas fa-plus-circle mr-2"></i> Nuevo Estado</a>
                 </div>
             </div>
             <hr>
             <div class="row  d-flex justify-content-around">
                 <div class="col-10 col-md-7 table-responsive">
-                    <table class="table table-striped table-hover table-sm display">
+                    <table class="table table-striped table-hover table-sm display tabla-borrando" id="tabla-data">
                         <thead class="thead-inverse">
                             <tr>
-                                <th class="text-center">Facultad</th>
+                                <th class="text-center">Estado</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($facultades as $facultad)
+                            @foreach ($estados as $estado)
                                 <tr>
-                                    <td class="text-center">{{ $facultad->facultad }}</td>
+                                    <td class="text-center">{{ $estado->estado }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin-facultades-editar', ['id' => $facultad->id]) }}"
+                                        <a href="{{ route('admin-estados-editar', ['id' => $estado->id]) }}"
                                             class="btn-accion-tabla tooltipsC text-info" title="Editar"><i
                                                 class="fa fa-edit" aria-hidden="true"></i></a>
+                                        <form action="{{ route('admin-estados-eliminar', ['id' => $estado->id]) }}"
+                                            class="d-inline form-eliminar" method="POST">
+                                            @csrf @method("delete")
+                                            <button type="submit" class="btn-accion-tabla eliminar tooltipsC"
+                                                title="Eliminar este registro">
+                                                <i class="fa fa-fw fa-trash text-danger"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -59,6 +67,6 @@
 <!-- ************************************************************* -->
 <!-- script hoja -->
 @section('scripts_pagina')
-
+<script src="{{ asset('js/intranet/estados_costo/estados.js') }}"></script>
 @endsection
 <!-- ************************************************************* -->

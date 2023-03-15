@@ -23,7 +23,6 @@ class CreateEquiposTable extends Migration
             $table->text('proveedor', 255)->nullable();
             $table->text('fabricante', 255)->nullable();
             $table->text('serial', 255)->nullable();
-            $table->text('tipo', 255)->nullable();
             $table->text('modelo', 255)->nullable();
             $table->text('sistema_op', 255)->nullable();
             $table->text('ult_actualizacion', 255)->nullable();

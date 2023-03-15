@@ -9,18 +9,14 @@ use App\Http\Controllers\Intranet\Admin\AjaxController;
 use App\Http\Controllers\Intranet\Admin\MenuRolController;
 use App\Http\Controllers\Intranet\Admin\PermisoController;
 use App\Http\Controllers\Intranet\Admin\UsuarioController;
-use App\Http\Controllers\Intranet\Empresas\AreaController;
 use App\Http\Controllers\Intranet\Admin\PermisoRolController;
 use App\Http\Controllers\Intranet\Admin\IntranetPageCotroller;
-use App\Http\Controllers\Intranet\Carnet\CarnetController as CarnetCarnetController;
-use App\Http\Controllers\Intranet\Empresas\CargoController;
-use App\Http\Controllers\Universidad\CarreraController;
-use App\Http\Controllers\Universidad\DependenciaController;
-use App\Http\Controllers\Universidad\FacultadController;
-use App\Http\Controllers\Universidad\InventarioController;
-use App\Http\Controllers\Universidad\InvEntradaController;
-use App\Http\Controllers\Universidad\InvSalidaController;
-use App\Http\Controllers\Universidad\PrestamoController;
+use App\Http\Controllers\Intranet\Admin\CargoController;
+use App\Http\Controllers\Intranet\Admin\AreaController;
+use App\Http\Controllers\Intranet\Admin\CategoriaController;
+use App\Http\Controllers\Intranet\Admin\CentroController;
+use App\Http\Controllers\Intranet\Admin\ContratoController;
+use App\Http\Controllers\Intranet\Admin\EstadoController;
 use App\Models\Admin\Usuario;
 
 /*
@@ -129,15 +125,54 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('cargos/{id}', [CargoController::class,'actualizar',])->name('admin-cargos-actualizar');
             Route::delete('cargos/{id}', [CargoController::class,'eliminar',])->name('admin-cargos-eliminar');
             // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Sistema Contratos
+            Route::get('contratos', [ContratoController::class,'index',])->name('admin-contratos');
+            Route::get('contratos-crear', [ContratoController::class,'crear',])->name('admin-contratos-crear');
+            Route::post('contratos', [ContratoController::class, 'guardar'])->name('admin-contratos-guardar');
+            Route::get('contratos/{id}/editar', [ContratoController::class,'editar',])->name('admin-contratos-editar');
+            Route::put('contratos/{id}', [ContratoController::class,'actualizar',])->name('admin-contratos-actualizar');
+            Route::delete('contratos/{id}', [ContratoController::class,'eliminar',])->name('admin-contratos-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Sistema Centros de costo
+            Route::get('centros', [CentroController::class,'index',])->name('admin-centros');
+            Route::get('centros-crear', [CentroController::class,'crear',])->name('admin-centros-crear');
+            Route::post('centros', [CentroController::class, 'guardar'])->name('admin-centros-guardar');
+            Route::get('centros/{id}/editar', [CentroController::class,'editar',])->name('admin-centros-editar');
+            Route::put('centros/{id}', [CentroController::class,'actualizar',])->name('admin-centros-actualizar');
+            Route::delete('centros/{id}', [CentroController::class,'eliminar',])->name('admin-centros-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Sistema Estado Elementos
+            Route::get('estados', [EstadoController::class,'index',])->name('admin-estados');
+            Route::get('estados-crear', [EstadoController::class,'crear',])->name('admin-estados-crear');
+            Route::post('estados', [EstadoController::class, 'guardar'])->name('admin-estados-guardar');
+            Route::get('estados/{id}/editar', [EstadoController::class,'editar',])->name('admin-estados-editar');
+            Route::put('estados/{id}', [EstadoController::class,'actualizar',])->name('admin-estados-actualizar');
+            Route::delete('estados/{id}', [EstadoController::class,'eliminar',])->name('admin-estados-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Rutas usuarios
+            Route::get('usuarios', [UsuarioController::class, 'index'])->name('usuarios-index');
+            Route::get('usuarios/importar', [UsuarioController::class, 'importar'])->name('usuarios-importar');
+            Route::post('usuarios/import',[UsuarioController::class,'import'])->name('usuarios-import');
+            Route::get('usuarios/cargar/{id}',[UsuarioController::class,'cargar'])->name('usuarios-cargar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Sistema Categorias
+            Route::get('categorias', [CategoriaController::class,'index',])->name('admin-categorias');
+            Route::get('categorias-crear', [CategoriaController::class,'crear',])->name('admin-categorias-crear');
+            Route::post('categorias', [CategoriaController::class, 'guardar'])->name('admin-categorias-guardar');
+            Route::get('categorias/{id}/editar', [CategoriaController::class,'editar',])->name('admin-categorias-editar');
+            Route::put('categorias/{id}', [CategoriaController::class,'actualizar',])->name('admin-categorias-actualizar');
+            Route::delete('categorias/{id}', [CategoriaController::class,'eliminar',])->name('admin-categorias-eliminar');
+            // ------------------------------------------------------------------------------------
         });
         // ------------------------------------------------------------------------------------
-        Route::group(['middleware' => 'administrador'], function () {
-                // Rutas usuarios
-                Route::get('usuarios', [UsuarioController::class, 'index'])->name('usuarios-index');
-                Route::get('usuarios/importar', [UsuarioController::class, 'importar'])->name('usuarios-importar');
-                Route::post('usuarios/import',[UsuarioController::class,'import'])->name('usuarios-import');
-                Route::get('usuarios/cargar/{id}',[UsuarioController::class,'cargar'])->name('usuarios-cargar');
-        });
+        // Ruta Administrador del Sistema Categorias
+        Route::get('categorias', [CategoriaController::class,'index',])->name('admin-categorias');
+        Route::get('categorias-crear', [CategoriaController::class,'crear',])->name('admin-categorias-crear');
+        Route::post('categorias', [CategoriaController::class, 'guardar'])->name('admin-categorias-guardar');
+        Route::get('categorias/{id}/editar', [CategoriaController::class,'editar',])->name('admin-categorias-editar');
+        Route::put('categorias/{id}', [CategoriaController::class,'actualizar',])->name('admin-categorias-actualizar');
+        Route::delete('categorias/{id}', [CategoriaController::class,'eliminar',])->name('admin-categorias-eliminar');
+        // ------------------------------------------------------------------------------------
     });
 });
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

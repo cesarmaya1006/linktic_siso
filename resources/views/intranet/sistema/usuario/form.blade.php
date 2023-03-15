@@ -4,27 +4,49 @@
         <select name="rol_id[]" id="rol_id_form" class="form-control" required {{ isset($data) ? 'disabled' : '' }}>
             <option value="">Elija un Rol</option>
             @foreach ($roles as $id => $nombre)
-                <option value="{{ $id }}"
-                    {{ is_array(old('rol_id')) ? (in_array($id, old('rol_id')) ? 'selected' : '') : (isset($data) ? ($data->roles->firstWhere('id', $id) ? 'selected' : '') : '') }}>
-                    {{ $nombre }}</option>
+                <option value="{{ $id }}" {{ is_array(old('rol_id')) ? (in_array($id, old('rol_id')) ? 'selected' : '') : (isset($data) ? ($data->roles->firstWhere('id', $id) ? 'selected' : '') : '') }}>{{ $nombre }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="col-10 col-md-2 form-group">
+        <label for="contrato_id" class="requerido">Tipo de Contrato</label>
+        <select name="contrato_id" id="contrato_id" class="form-control" required>
+            <option value="">Elija un tipo de contrato</option>
+            @foreach ($contratos as $contrato)
+            <option value="{{ $contrato->id }}"
+                {{ is_array(old('contrato_id')) ? (in_array($id, old('contrato_id')) ? 'selected' : '') : (isset($data) ? ($data->persona->contrato->firstWhere('id', $id) ? 'selected' : '') : '') }}>
+                {{ $contrato->tipo }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="col-10 col-md-2 form-group">
+        <label for="centro_id" class="requerido">Centro de costo</label>
+        <select name="centro_id" id="centro_id" class="form-control" required>
+            <option value="">Elija un centro de costo</option>
+            @foreach ($centros as $centro)
+            <option value="{{ $centro->id }}"
+                {{ is_array(old('centro_id')) ? (in_array($id, old('centro_id')) ? 'selected' : '') : (isset($data) ? ($data->persona->centro->firstWhere('id', $id) ? 'selected' : '') : '') }}>
+                {{ $centro->centro_costo }}</option>
             @endforeach
         </select>
     </div>
     <!--  ------------------------------------------------------------------------------------  -->
-    <div class="col-10 col-md-2 form-group cajasAreas">
+    <div class="col-10 col-md-2 form-group">
         <label for="area_id" class="requerido">Área de trabajo</label>
-        <select name="area_id" id="area_id" class="form-control"  data_url="{{route('cargar_cargos')}}">
+        <select name="area_id" id="area_id" class="form-control"  data_url="{{route('admin-cargar_cargos')}}">
             <option value="">Elija un Area</option>
             @foreach ($areas as $area)
-                <option value="{{ $area->id }}"
-                    {{ is_array(old('area_id')) ? (in_array($id, old('area_id')) ? 'selected' : '') : (isset($data) ? ($data->area->firstWhere('id', $id) ? 'selected' : '') : '') }}>
-                    {{ $area->area }}</option>
+            @if ($area->cargos->count() > 0)
+            <option value="{{ $area->id }}"
+                {{ is_array(old('area_id')) ? (in_array($id, old('area_id')) ? 'selected' : '') : (isset($data) ? ($data->area->firstWhere('id', $id) ? 'selected' : '') : '') }}>
+                {{ $area->area }}</option>
+            @endif
             @endforeach
         </select>
     </div>
-    <div class="col-10 col-md-2 form-group cajasAreas">
+    <div class="col-10 col-md-2 form-group">
         <label for="cargo_id" class="requerido">Cargo Laboral</label>
-        <select name="cargo_id" id="cargo_id" class="form-control" >
+        <select name="cargo_id" id="cargo_id" class="form-control" required>
             <option value="">Elija primero un Area</option>
             @if (isset($data))
             @foreach ($data->cargos as $cargo)
@@ -36,32 +58,36 @@
         </select>
     </div>
     <!--  ------------------------------------------------------------------------------------  -->
-    <div class="col-10 col-md-2 form-group cajasFacultades">
-        <label for="facultad_id" class="requerido">Facultad</label>
-        <select name="facultad_id" id="facultad_id" class="form-control"   data_url="{{route('cargar_carreras')}}">
-            <option value="">Elija una facultad</option>
-            @foreach ($facultades as $facultad)
-                <option value="{{ $facultad->id }}"
-                    {{ is_array(old('facultad_id')) ? (in_array($id, old('facultad_id')) ? 'selected' : '') : (isset($data) ? ($data->facultad->firstWhere('id', $id) ? 'selected' : '') : '') }}>
-                    {{ $facultad->facultad }}</option>
-            @endforeach
-        </select>
+</div>
+<hr>
+<div class="row d-flex justify-content-evenly">
+    <div class="col-10 col-md-2 form-group">
+        <label for="asignacion" class="requerido">Asignación Salarial</label>
+        <input type="number" class="form-control text-right" id="asignacion" name="asignacion" step="500" placeholder="Nombre de Usuario"
+            value="{{ old('asignacion', $data->asignacion ?? '0') }}" min="0"  required>
+        <small id="helpId" class="form-text text-muted">Asignacion salarial</small>
     </div>
-    <div class="col-10 col-md-2 form-group cajasFacultades">
-        <label for="carrera_id" class="requerido">Carrera</label>
-        <select name="carrera_id" id="carrera_id" class="form-control"  >
-            <option value="">Elija primero una Facultad</option>
-            @if (isset($data))
-            @foreach ($data->carreras as $carrera)
-                <option value="{{ $carrera->id }}"
-                    {{ is_array(old('carrera_id')) ? (in_array($id, old('carrera_id')) ? 'selected' : '') : (isset($data) ? ($data->carrera->firstWhere('id', $id) ? 'selected' : '') : '') }}>
-                    {{ $carrera->carrera }}</option>
-            @endforeach
-            @endif
-        </select>
+    <div class="col-10 col-md-2 form-group">
+        <label for="tiket">Num Tikect</label>
+        <input type="text" class="form-control" id="tiket" name="tiket" placeholder="Nombre de Usuario"
+            value="{{ old('tiket', $data->tiket ?? '') }}">
+        <small id="helpId" class="form-text text-muted">Tikect</small>
+    </div>
+    <div class="col-10 col-md-2 form-group">
+        <label for="fecha_inicio" class="requerido">Fecha Inicio</label>
+        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" placeholder="Nombre de Usuario"
+            value="{{ old('fecha_inicio', $data->fecha_inicio ?? '') }}" required>
+        <small id="helpId" class="form-text text-muted">fecha inicio</small>
+    </div>
+    <div class="col-10 col-md-2 form-group">
+        <label for="fecha_retiro">Fecha Retiro</label>
+        <input type="date" class="form-control" id="fecha_retiro" name="fecha_retiro" placeholder="Nombre de Usuario"
+            value="{{ old('fecha_retiro', $data->fecha_retiro ?? '') }}">
+        <small id="helpId" class="form-text text-muted">fecha retiroo</small>
     </div>
     <!--  ------------------------------------------------------------------------------------  -->
 </div>
+<hr>
 <div class="row d-flex justify-content-evenly">
     <div class="col-10 col-md-2 form-group">
         <label for="nombre1" class="requerido">Primer Nombre</label>
@@ -129,35 +155,13 @@
             required>
         <small id="helpId" class="form-text text-muted">Dirección</small>
     </div>
-    <div class="col-10 col-md-2 form-group">
-        <label for="vigencia" class="requerido">Vigencia</label>
-        <div class="input-group date" data-provide="datepicker">
-            <input type="date" class="form-control" name="vigencia" id="vigencia">
-            <div class="input-group-addon">
-                <span class="glyphicon glyphicon-th"></span>
-            </div>
-        </div>
-        <small id="helpId" class="form-text text-muted">Fotografía</small>
-    </div>
 </div>
 <div class="row d-flex justify-content-evenly">
     <div class="col-10 col-md-2 form-group">
         <label for="foto" class="requerido">Fotografía</label>
-        <input type="file" class="form-control" id="foto" name="foto" placeholder="Foto del usuario"  accept="image/png,image/jpeg" onchange="mostrar()" required>
+        <input type="file" class="form-control" id="foto" name="foto" placeholder="Foto del usuario"  accept="image/png,image/jpeg" onchange="mostrar()">
         <small id="helpId" class="form-text text-muted">Fotografía</small>
     </div>
-    @if (!isset($data))
-    <div class="col-10 col-md-2 form-group float-none">
-        <label for="password" class="requerido">Contrase&ntilde;a</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-        <small id="helpId" class="form-text text-muted">Contrase&ntilde;a</small>
-    </div>
-    <div class="col-10 col-md-2 form-group float-left">
-        <label for="re_password" class="requerido">Confirmaci&oacute;n Contrase&ntilde;a</label>
-        <input type="password" class="form-control" id="re_password" name="re_password" required>
-        <small id="helpId" class="form-text text-muted">Confirmaci&oacute;n Contrase&ntilde;a</small>
-    </div>
-    @endif
     <div class="col-12">
         <div class="row d-flex justify-content-evenly">
             <div class="col-10 col-md-2">

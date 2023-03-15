@@ -1,6 +1,6 @@
 <div class="col-12 col-md-6 form-group">
     <label for="area_id">Área</label>
-    <select class="form-control form-control-sm" id="area_id">
+    <select class="form-control form-control-sm" name="area_id" id="area_id">
         <option value="">---Seleccione---</option>
         @foreach ($areas as $area)
             <option value="{{ $area->id }}"

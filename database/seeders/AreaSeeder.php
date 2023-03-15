@@ -16,19 +16,23 @@ class AreaSeeder extends Seeder
     public function run()
     {
         $areas = [
-            'Gestión de Proyectos',
-            'Gestión de Marketing',
-            'Gestión Administrativa y Contable',
-            'Gestión de Mejoramiento Continuo (Calidad)',
-            'Gestion Financiera',
-            'Gestión de Soporte TI',
-            'PENDIENTE',
-            'Gestión de Comunicaciones',
-            'Gestión de auditoria y control interno',
-            'Gestion de soporte TI',
-            'Gestión de Fábrica de Software',
-            'Gestión de Contratación Pública',
-            'Gestion de Comercial',
+                    'Dirección De Operaciones',
+                    'Gestión Administrativa Y Contable',
+                    'Gestión Comercial',
+                    'Gestión De Auditoria Y Control Interno',
+                    'Gestion De Comercial',
+                    'Gestión De Comunicaciones',
+                    'Gestión De Contratación Pública',
+                    'Gestión De Fábrica De Software',
+                    'Gestión De Gerencia',
+                    'Gestión De Marketing',
+                    'Gestión De Mejoramiento Continuo (Calidad)',
+                    'Gestión De Proyectos',
+                    'Gestión De Soporte Ti',
+                    'Gestión De Talento Humano',
+                    'Gestión Financiera'
+
+
         ];
 
         foreach ($areas as $key => $value) {

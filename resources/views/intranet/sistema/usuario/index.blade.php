@@ -61,7 +61,7 @@
                                         <th class="text-center" scope="col">Telefono</th>
                                         <th class="text-center" scope="col">Dirección</th>
                                         <th class="text-center" scope="col">Email</th>
-                                        <th class="text-center" scope="col">Vigencia</th>
+                                        <th class="text-center" scope="col">Fecha de ingreso</th>
                                         <th class="text-center" scope="col">Estado</th>
                                         <th class="text-center" scope="col">Opciones</th>
                                     </tr>
@@ -76,23 +76,12 @@
                                                 <td class="text-left text-nowrap">{{$rol->id==3?$usuario->persona->cargo->cargo:$usuario->persona->carrera->carrera}}</td>
                                                 <td class="text-left text-nowrap">{{$usuario->persona->identificacion}}</td>
                                                 <td class="text-left text-nowrap">{{$usuario->persona->nombre1 . ' ' . $usuario->persona->nombre2 . ' ' . $usuario->persona->apellido1 . ' ' . $usuario->persona->apellido2}}</td>
-                                                <td class="text-right text-nowrap">{{$usuario->persona->telefono_celu}}</td>
+                                                <td class="text-right text-nowrap">{{$usuario->persona->telefono}}</td>
                                                 <td class="text-left text-nowrap">{{$usuario->persona->direccion}}</td>
                                                 <td class="text-left text-nowrap">{{$usuario->persona->email}}</td>
-                                                <td class="text-center text-nowrap">{{$usuario->persona->vigencia}}</td>
+                                                <td class="text-center text-nowrap">{{$usuario->persona->fecha_inicio}}</td>
                                                 <td class="text-center text-nowrap">{{$usuario->persona->estado==1?'Activo':'Inactivo'}}</td>
-                                                <td class="text-center text-nowrap">
-                                                    <button
-                                                        type="button"
-                                                        class="btn-accion-tabla cargarUsuarios tooltipsC"
-                                                        title="Ver el Carnet"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#modalCarnet"
-                                                        data_id="{{$usuario->persona->id}}"
-                                                        data_url="{{route('usuarios-cargar',['id'=>$usuario->persona->id])}}"
-                                                        data_foto={{ asset('imagenes/usuarios/1.jpg') }}>
-                                                        <i class="fa fa-id-card text-success"></i>
-                                                    </button>
+                                                <td class="text-center text-nowrap"></td>
                                             </tr>
                                         @endforeach
                                     </tbody>

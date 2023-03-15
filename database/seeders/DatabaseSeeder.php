@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->truncateTablas([
-            'docutipos', 'roles', 'menu', 'menu_rol', 'icono', 'parametros', 'areas', 'cargos', 'usuarios','permiso_cargos']);
+            'docutipos', 'roles', 'menu', 'menu_rol', 'icono', 'parametros', 'areas', 'cargos','contratos','centros',
+            'dominio_empresas', 'usuarios','permiso_cargos','categorias']);
         // --------------------------------------------------------------------------------------------------
         $this->call(Tabla_DocuTipos::class);
         $this->call(Tabla_Roles::class);
@@ -29,7 +30,10 @@ class DatabaseSeeder extends Seeder
         $this->call(AreaSeeder::class);
         $this->call(Tabla_Cargo::class);
         $this->call(Tabla_PermisoCargoMenu::class);
-
+        $this->call(Tabla_Categorias::class);
+        $this->call(DominioEmpresaSeeder::class);
+        $this->call(Tabla_Contratos::class);
+        $this->call(Tabla_Centros::class);
     }
 
     protected function truncateTablas(array $tablas)

@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Intranet\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Imports\ImportUsuario;
-use App\Models\Admin\Area;
-use App\Models\Admin\Facultad;
 use App\Models\Admin\Rol;
 use App\Models\Admin\Tipo_Docu;
 use App\Models\Admin\Usuario;
 use App\Models\Admin\UsuarioApi;
+use App\Models\Empresa\Area;
+use App\Models\Empresa\Centro;
+use App\Models\Empresa\Contrato;
 use App\Models\Personas\Persona;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -77,10 +78,18 @@ class UsuarioController extends Controller
             ->pluck('nombre', 'id')
             ->toArray();
         $areas = Area::get();
-        $facultades = Facultad::get();
+        $contratos = Contrato::get();
+        if ($contratos->isEmpty($contratos)) {
+            return redirect('admin/contratos-crear')->with('errores', 'Debe crear un tipo de contrato primero antes de crear un usuario');
+        }
+        $centros = Centro::get();
+        if ($centros->isEmpty($centros)) {
+            return redirect('admin/centros-crear')->with('errores', 'Debe crear un centro de costo primero antes de crear un usuario');
+        }
         return view(
             'intranet.sistema.usuario.crear',
-            compact('roles', 'tiposdocu','areas','facultades')
+            compact('roles', 'tiposdocu','areas','contratos','centros')
+
         );
     }
 
@@ -93,28 +102,24 @@ class UsuarioController extends Controller
 
     public function guardar(Request $request)
     {
+        //dd($request->all());
         $roles = $request->rol_id;
         //.........................................................................
-        $nuevoUsuario['usuario'] = strtolower($request['email']);
-        $nuevoUsuario['password'] = bcrypt(utf8_encode($request['password']));
-        $nuevoUsuario['camb_password'] = 0;
+        $nuevoUsuario['usuario'] = strtolower($request['nombre1'] . '.'. $request['apellido1'] );
+        $nuevoUsuario['password'] = bcrypt(utf8_encode($request['identificacion']));
+        $nuevoUsuario['camb_password'] = 1;
         $roles['estado'] = 1;
         $usuario = Usuario::create($nuevoUsuario);
         $usuario->roles()->sync($request->rol_id);
         //.........................................................................
         $newUser['id'] = $usuario->id;
-        $newUser['name'] = strtolower($request['email']);
-        $newUser['password'] = bcrypt(utf8_encode($request['password']));
+        $newUser['name'] = strtolower($request['nombre1'] . '.'. $request['apellido1'] );
+        $newUser['password'] = bcrypt(utf8_encode($request['identificacion']));
         $newUser['email'] = strtolower($request['email']);
         $usuario2 = UsuarioApi::create($newUser);
         //.........................................................................
         $nuevaPersona['id'] = $usuario->id;
         $nuevaPersona['docutipos_id'] = $request['docutipos_id'];
-        if ($roles[0]==3) {
-            $nuevaPersona['cargo_id'] = $request['cargo_id'];
-        } else {
-            $nuevaPersona['carrera_id'] = $request['carrera_id'];
-        }
         $nuevaPersona['identificacion'] = $request['identificacion'];
         $nuevaPersona['nombre1'] = utf8_encode(ucwords($request['nombre1']));
         $nuevaPersona['nombre2'] = utf8_encode(ucwords($request['nombre2']));
@@ -123,7 +128,13 @@ class UsuarioController extends Controller
         $nuevaPersona['telefono'] = $request['telefono'];
         $nuevaPersona['direccion'] = $request['direccion'];
         $nuevaPersona['email'] = strtolower($request['email']);
-        $nuevaPersona['vigencia'] = $request['vigencia'];
+        $nuevaPersona['contrato_id'] = $request['contrato_id'];
+        $nuevaPersona['centro_id'] = $request['centro_id'];
+        $nuevaPersona['cargo_id'] = $request['cargo_id'];
+        $nuevaPersona['asignacion'] = $request['asignacion'];
+        $nuevaPersona['fecha_inicio'] = $request['fecha_inicio'];
+        $nuevaPersona['fecha_retiro'] = $request['fecha_retiro'];
+        $nuevaPersona['tiket'] = $request['tiket'];
         // - - - - - - - - - - - - - - - - - - - - - - - -
         if ($request->hasFile('foto')) {
             $ruta = Config::get('constantes.folder_img_usuarios');
@@ -135,6 +146,8 @@ class UsuarioController extends Controller
             $imagen_foto->resize(400, 500);
             $imagen_foto->save($ruta . $nombrefoto, 100);
             $nuevaPersona['foto'] = $nombrefoto;
+        }else{
+            $nuevaPersona['foto'] = 'usuario-inicial.jpg';
         }
         // - - - - - - - - - - - - - - - - - - - - - - - -
         $persona = Persona::create($nuevaPersona);

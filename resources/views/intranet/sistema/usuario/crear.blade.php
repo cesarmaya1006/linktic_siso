@@ -18,9 +18,16 @@
         @include('includes.error-form')
         @include('includes.mensaje')
         <div class="card-header">
-            <h3 class="card-title">
-                <font style="vertical-align: inherit;">Nuevo Usuario (datos b&aacute;sicos)</font>
-            </h3>
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 col-lg-6 text-md-left text-lg-left pl-2">
+                    <h5>Nuevo Usuario (datos básicos)</h5>
+                </div>
+                <div class="col-12 col-md-6 col-lg-6 text-md-right text-lg-right pl-2 pr-md-5 pr-lg-5">
+                    <a href="{{ route('usuarios-index') }}"
+                        class="btn btn-success btn-sm text-center pl-3 pr-3" style="font-size: 0.9em;"><i
+                            class="fas fa-reply mr-2"></i> Volver</a>
+                </div>
+            </div>
         </div>
         <!-- /.card-header -->
         <!-- form start -->

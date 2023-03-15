@@ -2,10 +2,6 @@ $(document).ready(function () {
     //----------------------------------------------------------------------
     $("#area_id").prop('required',false);
     $("#cargo_id").prop('required',false);
-    $("#facultad_id").prop('required',false);
-    $("#carrera_id").prop('required',false);
-    $(".cajasAreas").addClass("d-none");
-    $(".cajasFacultades").addClass("d-none");
     //==========================================================================
     $("#rol_id_form").on("change", function (event) {
         const id = $(this).val();

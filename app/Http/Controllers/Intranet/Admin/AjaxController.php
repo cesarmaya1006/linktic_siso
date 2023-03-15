@@ -28,15 +28,15 @@ class AjaxController extends Controller
     }
     public function modificar_menu_permisos(Request $request)
     {
-        if ($request->ajax()) {            
+        if ($request->ajax()) {
             if ($request->input('estado') == 1) {
                 $permiso[$_POST['opcion']] = 1;
                 $permiso_fin = PermisoCargo::findOrFail($_POST['id'])->update($permiso);
-                return response()->json(['respuesta' => 'El rol se asigno correctamente']);
+                return response()->json(['respuesta' => 'El permiso se asigno correctamente']);
             } else {
                 $permiso[$_POST['opcion']] = 0;
                 $permiso_fin = PermisoCargo::findOrFail($_POST['id'])->update($permiso);
-                return response()->json(['respuesta' => 'El rol se elimino correctamente']);
+                return response()->json(['respuesta' => 'El permiso se elimino correctamente']);
             }
         } else {
             abort(404);

@@ -10,7 +10,7 @@
 @endsection
 <!-- ************************************************************* -->
 @section('tituloHoja')
-    Parametros - Cargos
+    Parametros - Categorías
 @endsection
 <!-- ************************************************************* -->
 @section('cuerpo_pagina')
@@ -20,35 +20,33 @@
         <div class="card-header">
             <div class="row mb-3">
                 <div class="col-12 col-md-6 col-lg-6 text-md-left text-lg-left pl-2">
-                    <h5>Listado de Cargos</h5>
+                    <h5>Listado de Categorías</h5>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6 text-md-right text-lg-right pl-2 pr-md-5 pr-lg-5">
-                    <a href="{{ route('admin-cargos-crear') }}"
+                    <a href="{{ route('admin-categorias-crear') }}"
                         class="btn btn-success btn-sm text-center pl-3 pr-3" style="font-size: 0.9em;"><i
-                            class="fas fa-plus-circle mr-2"></i> Nuevo cargo</a>
+                            class="fas fa-plus-circle mr-2"></i> Nueva Categoría</a>
                 </div>
             </div>
             <hr>
             <div class="row  d-flex justify-content-around">
                 <div class="col-10 col-md-7 table-responsive">
-                    <table class="table table-striped table-hover table-sm tabla-borrando display">
+                    <table class="table table-striped table-hover table-sm display tabla-borrando" id="tabla-data">
                         <thead class="thead-inverse">
                             <tr>
-                                <th class="text-center">Área</th>
-                                <th class="text-center">Cargo</th>
+                                <th class="text-center">Categoría</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($cargos as $cargo)
+                            @foreach ($categorias as $categoria)
                                 <tr>
-                                    <td class="text-center">{{ $cargo->area->area }}</td>
-                                    <td class="text-center">{{ $cargo->cargo }}</td>
+                                    <td class="text-center">{{ $categoria->categoria }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin-cargos-editar', ['id' => $cargo->id]) }}"
+                                        <a href="{{ route('admin-categorias-editar', ['id' => $categoria->id]) }}"
                                             class="btn-accion-tabla tooltipsC text-info" title="Editar"><i
                                                 class="fa fa-edit" aria-hidden="true"></i></a>
-                                        <form action="{{ route('admin-cargos-eliminar', ['id' => $cargo->id]) }}"
+                                        <form action="{{ route('admin-categorias-eliminar', ['id' => $categoria->id]) }}"
                                             class="d-inline form-eliminar" method="POST">
                                             @csrf @method("delete")
                                             <button type="submit" class="btn-accion-tabla eliminar tooltipsC"
@@ -69,6 +67,6 @@
 <!-- ************************************************************* -->
 <!-- script hoja -->
 @section('scripts_pagina')
-
+<script src="{{ asset('js/intranet/categorias_costo/categorias.js') }}"></script>
 @endsection
 <!-- ************************************************************* -->

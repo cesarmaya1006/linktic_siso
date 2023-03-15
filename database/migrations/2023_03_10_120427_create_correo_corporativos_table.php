@@ -19,8 +19,9 @@ class CreateCorreoCorporativosTable extends Migration
             $table->foreign('persona_id', 'fk_personas_correo')->references('id')->on('personas')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('centro_id');
             $table->foreign('centro_id', 'fk_centros_correo')->references('id')->on('centros')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('dominio_empresa_id');
+            $table->foreign('dominio_empresa_id', 'fk_dominio_empresas_correo')->references('id')->on('dominio_empresas')->onDelete('restrict')->onUpdate('restrict');
             $table->string('correo', 255);
-            $table->string('dominio', 50);
             $table->string('estado', 30);
             $table->bigInteger('tiket');
             $table->date('fec_creacion');

@@ -18,7 +18,7 @@ class Tabla_PermisoCargoMenu extends Seeder
     public function run()
     {
         $cargos = Cargo::get();
-        $menus = Menu::get();
+        $menus = Menu::where('menu_id','>',2)->get();
         foreach ($cargos as $cargo) {
             foreach ($menus as $menu) {
                 DB::table('permiso_cargos')->insert([
