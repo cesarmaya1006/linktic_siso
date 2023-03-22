@@ -17,6 +17,7 @@ use App\Http\Controllers\Intranet\Admin\CategoriaController;
 use App\Http\Controllers\Intranet\Admin\CentroController;
 use App\Http\Controllers\Intranet\Admin\ContratoController;
 use App\Http\Controllers\Intranet\Admin\EstadoController;
+use App\Http\Controllers\Intranet\Empresa\EquipoController;
 use App\Models\Admin\Usuario;
 
 /*
@@ -163,16 +164,16 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('categorias/{id}', [CategoriaController::class,'actualizar',])->name('admin-categorias-actualizar');
             Route::delete('categorias/{id}', [CategoriaController::class,'eliminar',])->name('admin-categorias-eliminar');
             // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Sistema Equipos
+            Route::get('equipos', [EquipoController::class,'index',])->name('admin-equipos');
+            Route::get('equipos-crear', [EquipoController::class,'crear',])->name('admin-equipos-crear');
+            Route::post('equipos', [EquipoController::class, 'guardar'])->name('admin-equipos-guardar');
+            Route::get('equipos/{id}/editar', [EquipoController::class,'editar',])->name('admin-equipos-editar');
+            Route::put('equipos/{id}', [EquipoController::class,'actualizar',])->name('admin-equipos-actualizar');
+            Route::delete('equipos/{id}', [EquipoController::class,'eliminar',])->name('admin-equipos-eliminar');
+            // ------------------------------------------------------------------------------------
         });
-        // ------------------------------------------------------------------------------------
-        // Ruta Administrador del Sistema Categorias
-        Route::get('categorias', [CategoriaController::class,'index',])->name('admin-categorias');
-        Route::get('categorias-crear', [CategoriaController::class,'crear',])->name('admin-categorias-crear');
-        Route::post('categorias', [CategoriaController::class, 'guardar'])->name('admin-categorias-guardar');
-        Route::get('categorias/{id}/editar', [CategoriaController::class,'editar',])->name('admin-categorias-editar');
-        Route::put('categorias/{id}', [CategoriaController::class,'actualizar',])->name('admin-categorias-actualizar');
-        Route::delete('categorias/{id}', [CategoriaController::class,'eliminar',])->name('admin-categorias-eliminar');
-        // ------------------------------------------------------------------------------------
+
     });
 });
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
