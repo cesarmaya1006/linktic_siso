@@ -18,6 +18,11 @@ class GlpiGroups extends Model
         return $this->hasMany(Equipo2::class, 'groups_id', 'id');
     }
     //----------------------------------------------------------------------------------
+    public function impresoras()
+    {
+        return $this->hasMany(GlpiPrinter::class, 'groups_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
     public function entidad()
     {
         return $this->belongsTo(GlpiEntidad::class, 'entities_id', 'id');

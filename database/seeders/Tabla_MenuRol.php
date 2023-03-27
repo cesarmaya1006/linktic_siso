@@ -44,7 +44,7 @@ class Tabla_MenuRol extends Seeder
             ['rol_id' => '2', 'menu_id' => '13'],
             ['rol_id' => '2', 'menu_id' => '14'],
         ];
-        for ($i=1; $i <23; $i++) {
+        for ($i=1; $i <25; $i++) {
             DB::table('menu_rol')->insert([
                 'rol_id' => '1',
                 'menu_id' => $i,

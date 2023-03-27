@@ -18,6 +18,8 @@ use App\Http\Controllers\Intranet\Admin\CentroController;
 use App\Http\Controllers\Intranet\Admin\ContratoController;
 use App\Http\Controllers\Intranet\Admin\EstadoController;
 use App\Http\Controllers\Intranet\Empresa\EquipoController;
+use App\Http\Controllers\Intranet\Empresa\ImpresoraController;
+use App\Http\Controllers\Intranet\Empresa\MonitorController;
 use App\Models\Admin\Usuario;
 
 /*
@@ -163,6 +165,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('categorias/{id}/editar', [CategoriaController::class,'editar',])->name('admin-categorias-editar');
             Route::put('categorias/{id}', [CategoriaController::class,'actualizar',])->name('admin-categorias-actualizar');
             Route::delete('categorias/{id}', [CategoriaController::class,'eliminar',])->name('admin-categorias-eliminar');
+
+        });
             // ------------------------------------------------------------------------------------
             // Ruta Administrador del Sistema Equipos
             Route::get('equipos', [EquipoController::class,'index',])->name('admin-equipos');
@@ -172,7 +176,23 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('equipos/{id}', [EquipoController::class,'actualizar',])->name('admin-equipos-actualizar');
             Route::delete('equipos/{id}', [EquipoController::class,'eliminar',])->name('admin-equipos-eliminar');
             // ------------------------------------------------------------------------------------
-        });
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Sistema Equipos
+            Route::get('monitores', [MonitorController::class,'index',])->name('admin-monitores');
+            Route::get('monitores-crear', [MonitorController::class,'crear',])->name('admin-monitores-crear');
+            Route::post('monitores', [MonitorController::class, 'guardar'])->name('admin-monitores-guardar');
+            Route::get('monitores/{id}/editar', [MonitorController::class,'editar',])->name('admin-monitores-editar');
+            Route::put('monitores/{id}', [MonitorController::class,'actualizar',])->name('admin-monitores-actualizar');
+            Route::delete('monitores/{id}', [MonitorController::class,'eliminar',])->name('admin-monitores-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Sistema Impresora
+            Route::get('impresoras', [ImpresoraController::class,'index',])->name('admin-impresoras');
+            Route::get('impresoras-crear', [ImpresoraController::class,'crear',])->name('admin-impresoras-crear');
+            Route::post('impresoras', [ImpresoraController::class, 'guardar'])->name('admin-impresoras-guardar');
+            Route::get('impresoras/{id}/editar', [ImpresoraController::class,'editar',])->name('admin-impresoras-editar');
+            Route::put('impresoras/{id}', [ImpresoraController::class,'actualizar',])->name('admin-impresoras-actualizar');
+            Route::delete('impresoras/{id}', [ImpresoraController::class,'eliminar',])->name('admin-impresoras-eliminar');
+            // ------------------------------------------------------------------------------------
 
     });
 });

@@ -19,8 +19,8 @@ class Tabla_Menu extends Seeder
         $menu_linea_1 =1;
         $menu_linea_2 =2;
         $menu_linea_3 =8;
-        $menu_linea_4 =17;
-        $menu_linea_5 =22;
+        $menu_linea_4 =19;
+        $menu_linea_5 =24;
         $menus = [
             // Menus padre
             //1
@@ -43,17 +43,19 @@ class Tabla_Menu extends Seeder
             ['nombre' =>  'Centros de Costo', 'menu_id' => $menu_linea_3, 'url' =>  'admin/centros', 'orden' => '4', 'icono' =>  'fas fa-closed-captioning'],
             ['nombre' =>  'Estados', 'menu_id' => $menu_linea_3, 'url' =>  'admin/estados', 'orden' => '5', 'icono' =>  'fas fa-spell-check'],
             ['nombre' =>  'Categorias', 'menu_id' => $menu_linea_3, 'url' =>  'admin/categorias', 'orden' => '6', 'icono' =>  'fas fa-layer-group'],
-            ['nombre' =>  'Equipos', 'menu_id' => $menu_linea_3, 'url' =>  'admin/equipos', 'orden' => '7', 'icono' =>  'fas fa-desktop'],
-            ['nombre' =>  'Licencias', 'menu_id' => $menu_linea_3, 'url' =>  'admin/licencias', 'orden' => '8', 'icono' =>  'fa fa-language'],
+            ['nombre' =>  'Equipos', 'menu_id' => $menu_linea_3, 'url' =>  'admin/equipos', 'orden' => '7', 'icono' =>  'fas fa-laptop'],
+            ['nombre' =>  'Monitores', 'menu_id' => $menu_linea_3, 'url' =>  'admin/monitores', 'orden' => '8', 'icono' =>  'fas fa-tv'],
+            ['nombre' =>  'Impresoras', 'menu_id' => $menu_linea_3, 'url' =>  'admin/impresoras', 'orden' => '9', 'icono' =>  'fas fa-print'],
+            ['nombre' =>  'Licencias', 'menu_id' => $menu_linea_3, 'url' =>  'admin/licencias', 'orden' => '10', 'icono' =>  'fa fa-language'],
             //------------------------------------------------------------------------------------------------------------
-            //17
+            //19
             ['nombre' =>  'Otras opciones', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '4', 'icono' =>  'fas fa-question-circle'],
             ['nombre' =>  'Nuestas políticas de datos', 'menu_id' => $menu_linea_4, 'url' =>  'usuario/consulta-politicas', 'orden' => '1', 'icono' =>  'fas fa-question-circle'],
             ['nombre' =>  'Ayuda', 'menu_id' => $menu_linea_4, 'url' =>  'usuario/ayuda', 'orden' => '2', 'icono' =>  'fas fa-question-circle'],
             ['nombre' =>  'Actualizar datos', 'menu_id' => $menu_linea_4, 'url' =>  'usuario/actualizar-datos', 'orden' => '3', 'icono' =>  'fas fa-edit'],
             ['nombre' =>  'Cambiar contraseña', 'menu_id' => $menu_linea_4, 'url' =>  'usuario/cambiar-password', 'orden' => '4', 'icono' =>  'fas fa-key'],
             //------------------------------------------------------------------------------------------------------------
-            //22
+            //24
             ['nombre' =>  'Parametros', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '5', 'icono' =>  'fas fa-cog'],
 
             //----------------------------------------------------------------------------------------------------------------------

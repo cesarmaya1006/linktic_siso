@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Intranet\Empresa;
 use App\Http\Controllers\Controller;
 use App\Models\Empresa\Equipo;
 use App\Models\Empresa\Equipo2;
+use App\Models\Empresa\GlpiInfocom;
+use DateInterval;
+use DateTime;
 use Illuminate\Http\Request;
 
 class EquipoController extends Controller
@@ -18,6 +21,19 @@ class EquipoController extends Controller
     {
         $equipos = Equipo::get();
         $equiposGLPI = Equipo2::with('entidad')->with('usuario')->get();
+        $infoComps = GlpiInfocom::where('itemtype','Computer')->get();
+        foreach ($equiposGLPI as $equipo) {
+            foreach ($infoComps as $infoComp) {
+                if ($equipo->id == $infoComp->items_id) {
+                    $equipo['fec_compra'] = $infoComp->buy_date;
+                    $meses = $this->verMeses(array($infoComp->buy_date,date('Y-m-d')));
+                    $equipo['meses_uso'] = $meses;
+                    $equipo['porcentaje'] = round((($meses*100)/60),2);
+                    break;
+                }
+            }
+        }
+        //dd($equiposGLPI->toArray());
         return view('intranet.empresa.equipos.index', compact('equipos','equiposGLPI'));
     }
 
@@ -85,5 +101,14 @@ class EquipoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function verMeses($a){
+
+        $f1 = new DateTime( $a[0] );
+        $f2 = new DateTime( $a[1] );
+       // obtener la diferencia de fechas
+       $d = $f1->diff($f2);
+       return  ( $d->y * 12 ) + $d->m;
     }
 }

@@ -18,4 +18,9 @@ class GlpiState extends Model
         return $this->hasMany(Equipo2::class, 'states_id', 'id');
     }
     //----------------------------------------------------------------------------------
+    public function impresoras()
+    {
+        return $this->hasMany(GlpiPrinter::class, 'states_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
 }

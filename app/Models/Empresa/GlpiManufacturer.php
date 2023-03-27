@@ -18,4 +18,9 @@ class GlpiManufacturer extends Model
         return $this->hasMany(Equipo2::class, 'manufacturers_id', 'id');
     }
     //----------------------------------------------------------------------------------
+    public function impresoras()
+    {
+        return $this->hasMany(GlpiPrinter::class, 'manufacturers_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
 }
