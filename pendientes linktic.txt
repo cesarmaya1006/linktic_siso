@@ -1,0 +1,26 @@
+MOdulo o menu inventarios
+ - Equipos propios
+ 		mas las tres columnas de tiempo de uso  
+
+MOnitores  traer info de glpi
+impresoras traer info de glpi
+ 
+ -equipos rentados
+	como esta en el siso
+	Editatable todo....
+
+Caracteristiscas equipos completa tal cual com esta en el excel
+
+
+En Equipos que las columnas esten oredenadas igual que en el excel de siso
+cargo seria el grupo..
+
+Equipos propios equipos rentados Monitores impresoras deben ir dntro de un menu que se llame inventario..
+
+
+en monitores agregar la columna comentarios
+
+
+
+
+
