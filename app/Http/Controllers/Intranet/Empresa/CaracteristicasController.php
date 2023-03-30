@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Empresa\GlpiOperatingSystem;
 use App\Models\Empresa\MatrizCaracteristica;
 use Illuminate\Http\Request;
 
@@ -24,9 +25,10 @@ class CaracteristicasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
     {
-        //
+        $sistemas_operativos = GlpiOperatingSystem::get();
+        return view('intranet.empresa.caracteristicas.crear' ,compact('sistemas_operativos'));
     }
 
     /**
@@ -35,9 +37,10 @@ class CaracteristicasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(Request $request)
     {
-        //
+        MatrizCaracteristica::create($request->all());
+        return Redirect('admin/matriz_caracteristicas')->with('mensaje', 'Característica creada con exito');
     }
 
     /**
@@ -46,9 +49,11 @@ class CaracteristicasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function editar($id)
     {
-        //
+        $sistemas_operativos = GlpiOperatingSystem::get();
+        $caracteristica = MatrizCaracteristica::findOrFail($id);
+        return view('intranet.empresa.caracteristicas.editar' ,compact('sistemas_operativos','caracteristica'));
     }
 
     /**
@@ -57,9 +62,10 @@ class CaracteristicasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function actualizar(Request $request, $id)
     {
-        //
+        MatrizCaracteristica::findOrFail($id)->update($request->all());
+        return redirect('admin/matriz_caracteristicas')->with('mensaje', 'Característica actualizada con exito');
     }
 
     /**
@@ -69,19 +75,18 @@ class CaracteristicasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function eliminar(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            if (MatrizCaracteristica::destroy($id)) {
+                return response()->json(['mensaje' => 'ok']);
+            } else {
+                return response()->json(['mensaje' => 'ng']);
+            }
+        } else {
+            abort(404);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+
 }

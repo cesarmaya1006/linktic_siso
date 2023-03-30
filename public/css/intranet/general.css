@@ -23,6 +23,9 @@ label.requerido:after {
     margin-right: 20px;
     margin-bottom: 30px;
     border-radius: 5px;
+
+    border-top: 8px solid;
+    border-image: linear-gradient(to right,  #009CFF 0%, #1DD600 100%) 1;
 }
 
 .card-mini-sombra {
@@ -35,7 +38,7 @@ label.requerido:after {
     border-radius: 2px;
 }
 
-.sobra {
+.sombra {
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
@@ -107,6 +110,8 @@ label.requerido:after {
 
 .btn-sombra {
     box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .form-control:disabled,

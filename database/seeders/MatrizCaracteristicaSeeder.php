@@ -33,7 +33,7 @@ class MatrizCaracteristicaSeeder extends Seeder
             ['area' => 'INFRAESCTUCTURA','sis_operativo' => 'WINDOWS 10 PRO','disco_duro' => '512 GB ','ram' => '16 GB DDR4','procesador' => 'INTEL CORE I7 DE 11VA O 10MA GENERECION RYZEN 7','tarj_video' => 'N/A','puertos' => 'USB - HDMI'],
             ['area' => 'DESARROLLO','sis_operativo' => 'WINDOWS 10 PRO','disco_duro' => '512 GB ','ram' => '16 GB DDR4','procesador' => 'INTEL CORE I7 DE 11VA O 10MA GENERECION RYZEN 7','tarj_video' => 'N/A','puertos' => 'USB - HDMI'],
             ['area' => 'FABRICA DE SOFTWARE','sis_operativo' => 'WINDOWS 10 PRO','disco_duro' => '512 GB ','ram' => '16 GB DDR4','procesador' => 'INTEL CORE I7 DE 11VA O 10MA GENERECION RYZEN 7','tarj_video' => 'N/A','puertos' => 'USB - HDMI'],
-            ['area' => 'EQUIPOS MAC','sis_operativo' => 'MacOS Big Sur','disco_duro' => '245.12 Gb SSD','ram' => '8GB DDR4','procesador' => 'CHIP APPLE M1','tarj_video' => '7C GPU','puertos' => 'ADAPTADOR HUB TIPO C']
+            ['area' => 'EQUIPOS MAC','sis_operativo' => 'macOS','disco_duro' => '245.12 Gb SSD','ram' => '8GB DDR4','procesador' => 'CHIP APPLE M1','tarj_video' => '7C GPU','puertos' => 'ADAPTADOR HUB TIPO C']
 
         ];
         foreach ($caracteristicas as $item) {

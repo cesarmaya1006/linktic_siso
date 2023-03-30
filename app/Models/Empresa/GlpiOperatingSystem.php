@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class MatrizCaracteristica extends Model
+class GlpiOperatingSystem extends Model
 {
     use HasFactory,Notifiable;
-    protected $table = "matriz_caracteristicas";
+    protected $table = "glpi_operatingsystems";
     protected $guarded = ['id'];
-
+    protected $connection = 'mysql_connect_2';
 }
