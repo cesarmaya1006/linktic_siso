@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Empresa\Equipo;
 use App\Models\Empresa\Equipo2;
 use App\Models\Empresa\GlpiInfocom;
+use App\Models\Empresa\GlpiNotepads;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
@@ -21,16 +22,24 @@ class EquipoController extends Controller
     {
         $equipos = Equipo::get();
         $equiposGLPI = Equipo2::with('entidad')->with('usuario')->get();
-        $infoComps = GlpiInfocom::where('itemtype','Computer')->get();
+
         foreach ($equiposGLPI as $equipo) {
+            $infoComps = GlpiInfocom::where('itemtype','Computer')->where('items_id',$equipo->id)->get();
+            $notepads = GlpiNotepads::where('itemtype','Computer')->where('items_id',$equipo->id)->get();
             foreach ($infoComps as $infoComp) {
                 if ($equipo->id == $infoComp->items_id) {
                     $equipo['fec_compra'] = $infoComp->buy_date;
                     $meses = $this->verMeses(array($infoComp->buy_date,date('Y-m-d')));
                     $equipo['meses_uso'] = $meses;
                     $equipo['porcentaje'] = round((($meses*100)/60),2);
+                    $equipo['suppliers_id'] = $infoComp->suppliers_id;
+                    $equipo['proveedor'] = $infoComp->proveedor->name??'N/A';
                     break;
                 }
+            }
+            foreach ($notepads as $item) {
+                $equipo['centro_costo'] = $item->content??'N/A';
+                break;
             }
         }
         //dd($equiposGLPI->toArray());

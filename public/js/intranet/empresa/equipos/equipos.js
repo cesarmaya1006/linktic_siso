@@ -1,30 +1,17 @@
 $(document).ready(function() {
-    $('#tablaEquipos').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [{
+    $('#tablaEquipos').DataTable({
+        "lengthMenu": [ 10, 15, 25, 50, 75, 100 ],
+        "pageLength": 15,
+        dom: 'lBfrtip',
+        buttons: [ {
             extend: 'excelHtml5',
-            customize: function(xlsx) {
+            customize: function( xlsx ) {
                 var sheet = xlsx.xl.worksheets['sheet1.xml'];
 
-                // Loop over the cells in column `C`
-                $('row c[r^="C"]', sheet).each( function () {
-                    // Get the value
-                    if ( $('is t', this).text() == 'New York' ) {
-                        $(this).attr( 's', '20' );
-                    }
-                });
+                $('row c[r^="C"]', sheet).attr( 's', '2' );
             }
-        }],
-        responsive: {
-            details: {
-                type: 'column'
-            }
-        },
-        columnDefs: [ {
-            className: 'dtr-control',
-            orderable: false,
-            targets:   0
-        } ],language: {
+        } ],
+        language: {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ resultados",
             "sZeroRecords": "No se encontraron resultados",
@@ -40,7 +27,6 @@ $(document).ready(function() {
                 "sNext": "Siguiente",
                 "sPrevious": "Anterior"
             },
-        },
-        order: [ 1, 'asc' ]
-    } );
+        }
+    });
 } );

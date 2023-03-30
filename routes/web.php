@@ -17,6 +17,7 @@ use App\Http\Controllers\Intranet\Admin\CategoriaController;
 use App\Http\Controllers\Intranet\Admin\CentroController;
 use App\Http\Controllers\Intranet\Admin\ContratoController;
 use App\Http\Controllers\Intranet\Admin\EstadoController;
+use App\Http\Controllers\Intranet\Empresa\CaracteristicasController;
 use App\Http\Controllers\Intranet\Empresa\EquipoController;
 use App\Http\Controllers\Intranet\Empresa\ImpresoraController;
 use App\Http\Controllers\Intranet\Empresa\MonitorController;
@@ -192,6 +193,15 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('impresoras/{id}/editar', [ImpresoraController::class,'editar',])->name('admin-impresoras-editar');
             Route::put('impresoras/{id}', [ImpresoraController::class,'actualizar',])->name('admin-impresoras-actualizar');
             Route::delete('impresoras/{id}', [ImpresoraController::class,'eliminar',])->name('admin-impresoras-eliminar');
+            // ------------------------------------------------------------------------------------
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Sistema Impresora
+            Route::get('matriz_caracteristicas', [CaracteristicasController::class,'index',])->name('admin-matriz_caracteristicas');
+            Route::get('matriz_caracteristicas-crear', [CaracteristicasController::class,'crear',])->name('admin-matriz_caracteristicas-crear');
+            Route::post('matriz_caracteristicas', [CaracteristicasController::class, 'guardar'])->name('admin-matriz_caracteristicas-guardar');
+            Route::get('matriz_caracteristicas/{id}/editar', [CaracteristicasController::class,'editar',])->name('admin-matriz_caracteristicas-editar');
+            Route::put('matriz_caracteristicas/{id}', [CaracteristicasController::class,'actualizar',])->name('admin-matriz_caracteristicas-actualizar');
+            Route::delete('matriz_caracteristicas/{id}', [CaracteristicasController::class,'eliminar',])->name('admin-matriz_caracteristicas-eliminar');
             // ------------------------------------------------------------------------------------
 
     });

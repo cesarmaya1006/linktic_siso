@@ -18,4 +18,10 @@ class GlpiInfocom extends Model
         return $this->belongsTo(Equipo2::class, 'items_id', 'id');
     }
     //----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
+    public function proveedor()
+    {
+        return $this->belongsTo(GlpiSuppliers::class, 'suppliers_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
 }
