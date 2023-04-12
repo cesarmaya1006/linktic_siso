@@ -33,7 +33,7 @@
             <hr>
             <div class="row  d-flex justify-content-around">
                 <div class="col-12 table-responsive">
-                    <table class="table table-striped table-hover table-sm tabla-borrando nowrap" id="tablaEquipos">
+                    <table class="table table-striped table-hover table-sm tabla-borrando nowrap tabla_data_table" id="tablaEquipos">
                         <thead class="thead-inverse">
                             <tr>
                                 <th class="text-center" style="white-space:nowrap;">Asigando</th>
@@ -124,11 +124,5 @@
 <!-- script hoja -->
 @section('scripts_pagina')
 <script src="{{ asset('js/intranet/empresa/equipos/equipos.js') }}"></script>
-<script src="{{asset('DataTables/Responsive-2.4.1/js/responsive.bootstrap5.min.js')}}"></script>
-<script src="{{asset('DataTables/Buttons-2.3.6/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('DataTables/JSZip-2.5.0/jszip.min.js')}}"></script>
-<script src="{{asset('DataTables/Buttons-2.3.6/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('DataTables/Buttons-2.3.6/js/buttons.bootstrap5.min.js')}}"></script>
-
 @endsection
 <!-- ************************************************************* -->

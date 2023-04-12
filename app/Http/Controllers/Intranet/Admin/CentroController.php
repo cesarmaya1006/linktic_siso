@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Empresa\Centro;
+use App\Models\Empresa\CentroCosto;
 use Illuminate\Http\Request;
 
 class CentroController extends Controller
@@ -16,7 +17,7 @@ class CentroController extends Controller
     public function index()
     {   //$usurio = Usuario::findOrFail(session('id_usuario'));
         //dd($usurio->roles[0]->toArray());
-        $centros = Centro::get();
+        $centros = CentroCosto::get();
         return view('intranet.parametros.centros.index', compact('centros'));
     }
 
@@ -38,7 +39,7 @@ class CentroController extends Controller
      */
     public function guardar(Request $request)
     {
-        Centro::create($request->all());
+        CentroCosto::create($request->all());
         return redirect('admin/centros')->with('mensaje', 'Centro de costo creado con exito');
     }
 
@@ -61,7 +62,7 @@ class CentroController extends Controller
      */
     public function editar($id)
     {
-        $centro = Centro::findOrFail($id);
+        $centro = CentroCosto::findOrFail($id);
         return view('intranet.parametros.centros.editar', compact('centro'));
     }
 
@@ -74,7 +75,7 @@ class CentroController extends Controller
      */
     public function actualizar(Request $request, $id)
     {
-        Centro::findOrFail($id)->update($request->all());
+        CentroCosto::findOrFail($id)->update($request->all());
         return redirect('admin/centros')->with('mensaje', 'Centro de costo actualizado con exito');
     }
 
@@ -87,7 +88,7 @@ class CentroController extends Controller
     public function eliminar(Request $request, $id)
     {
         if ($request->ajax()) {
-            if (Centro::destroy($id)) {
+            if (CentroCosto::destroy($id)) {
                 return response()->json(['mensaje' => 'ok']);
             } else {
                 return response()->json(['mensaje' => 'ng']);

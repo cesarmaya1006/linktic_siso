@@ -31,7 +31,7 @@
             <hr>
             <div class="row  d-flex justify-content-around">
                 <div class="col-10 col-md-7 table-responsive">
-                    <table class="table table-striped table-hover table-sm display">
+                    <table class="table table-striped table-hover table-sm tabla_data_table">
                         <thead class="thead-inverse">
                             <tr>
                                 <th class="text-center">Áreas</th>

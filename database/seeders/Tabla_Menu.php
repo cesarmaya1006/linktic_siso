@@ -19,8 +19,8 @@ class Tabla_Menu extends Seeder
         $menu_linea_1 =1;
         $menu_linea_2 =2;
         $menu_linea_3 =8;
-        $menu_linea_4 =15;
-        $menu_linea_5 =20;
+        $menu_linea_4 =20;
+        $menu_linea_5 =27;
         $menus = [
             // Menus padre
             //1
@@ -43,23 +43,30 @@ class Tabla_Menu extends Seeder
             ['nombre' =>  'Centros de Costo', 'menu_id' => $menu_linea_3, 'url' =>  'admin/centros', 'orden' => '4', 'icono' =>  'fas fa-closed-captioning'],
             ['nombre' =>  'Estados', 'menu_id' => $menu_linea_3, 'url' =>  'admin/estados', 'orden' => '5', 'icono' =>  'fas fa-spell-check'],
             ['nombre' =>  'Categorias', 'menu_id' => $menu_linea_3, 'url' =>  'admin/categorias', 'orden' => '6', 'icono' =>  'fas fa-layer-group'],
+            ['nombre' =>  'Proveedores Rentados', 'menu_id' => $menu_linea_3, 'url' =>  'admin/proveedores_rentados', 'orden' => '7', 'icono' =>  'fas fa-user-friends'],
+            ['nombre' =>  'Sub - Centros de Costo', 'menu_id' => $menu_linea_3, 'url' =>  'admin/sub_centros_costo', 'orden' => '8', 'icono' =>  'fas fa-hand-holding-usd'],
+            ['nombre' =>  'Responsables Rentados PC', 'menu_id' => $menu_linea_3, 'url' =>  'admin/responsables', 'orden' => '9', 'icono' =>  'fas fa-user-shield'],
+            ['nombre' =>  'Tipos PC Rentados', 'menu_id' => $menu_linea_3, 'url' =>  'admin/tipos_rentados', 'orden' => '10', 'icono' =>  'fas fa-server'],
+            ['nombre' =>  'Estados PC Rentados', 'menu_id' => $menu_linea_3, 'url' =>  'admin/rentados_estados', 'orden' => '11', 'icono' =>  'fas fa-spell-check'],
             //------------------------------------------------------------------------------------------------------------
-            //15
+            //20
             ['nombre' =>  'Inventarios', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '4', 'icono' =>  'fas fa-bezier-curve'],
             ['nombre' =>  'Equipos Propios', 'menu_id' => $menu_linea_4, 'url' =>  'admin/equipos', 'orden' => '1', 'icono' =>  'fas fa-laptop'],
             ['nombre' =>  'Monitores', 'menu_id' => $menu_linea_4, 'url' =>  'admin/monitores', 'orden' => '2', 'icono' =>  'fas fa-tv'],
             ['nombre' =>  'Impresoras', 'menu_id' => $menu_linea_4, 'url' =>  'admin/impresoras', 'orden' => '3', 'icono' =>  'fas fa-print'],
             ['nombre' =>  'Matriz Caracteristicas PC', 'menu_id' => $menu_linea_4, 'url' =>  'admin/matriz_caracteristicas', 'orden' => '4', 'icono' =>  'fas fa-check-double'],
+            ['nombre' =>  'Equipos rentados', 'menu_id' => $menu_linea_4, 'url' =>  'admin/equipos_rentados', 'orden' => '5', 'icono' =>  'fas fa-laptop-house'],
+            //['nombre' =>  'Rentados - Asignación', 'menu_id' => $menu_linea_4, 'url' =>  'admin/asignacion_equipos_rentados', 'orden' => '6', 'icono' =>  'fas fa-user-check'],
 
             //------------------------------------------------------------------------------------------------------------
-            //20
+            //26
             ['nombre' =>  'Otras opciones', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '5', 'icono' =>  'fas fa-question-circle'],
             ['nombre' =>  'Nuestas políticas de datos', 'menu_id' => $menu_linea_5, 'url' =>  'usuario/consulta-politicas', 'orden' => '1', 'icono' =>  'fas fa-question-circle'],
             ['nombre' =>  'Ayuda', 'menu_id' => $menu_linea_5, 'url' =>  'usuario/ayuda', 'orden' => '2', 'icono' =>  'fas fa-question-circle'],
             ['nombre' =>  'Actualizar datos', 'menu_id' => $menu_linea_5, 'url' =>  'usuario/actualizar-datos', 'orden' => '3', 'icono' =>  'fas fa-edit'],
             ['nombre' =>  'Cambiar contraseña', 'menu_id' => $menu_linea_5, 'url' =>  'usuario/cambiar-password', 'orden' => '4', 'icono' =>  'fas fa-key'],
             //------------------------------------------------------------------------------------------------------------
-            //25
+            //31
             ['nombre' =>  'Parametros', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '5', 'icono' =>  'fas fa-cog'],
 
             //----------------------------------------------------------------------------------------------------------------------

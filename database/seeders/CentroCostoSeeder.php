@@ -1,0 +1,138 @@
+<?php
+
+namespace Database\Seeders;
+
+use Carbon\Carbon;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class CentroCostoSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $centros = [
+            ['centro' => '0-01H','proyecto' => '001 - Plataforma Hicome Hotel Berdez','gerente' => 'PMO','estado' => 'ACTIVO','empresa' => 'HICOME'],
+            ['centro' => '0-01W','proyecto' => '001 - WIMBU "RED HOSPITALARÍA"','gerente' => 'KATHERINE DAZA','estado' => 'LIQUIDADO','empresa' => 'WIMBU'],
+            ['centro' => '0-02W','proyecto' => '002 - WIMBU "PLASTICOS OJARA S.A"','gerente' => 'KATHERINE DAZA','estado' => 'LIQUIDADO','empresa' => 'WIMBU'],
+            ['centro' => '0-04H','proyecto' => '004 - PROYECTO ZONA ROSA','gerente' => 'SILVIA GALLEGO','estado' => 'LIQUIDADO','empresa' => 'HICOME'],
+            ['centro' => '0-05H','proyecto' => '005 - PROYECTO EXPODEFENSA 2021','gerente' => 'SILVIA GALLEGO','estado' => 'LIQUIDADO','empresa' => 'HICOME'],
+            ['centro' => '121','proyecto' => '121 - FONTUR GOBERNANZA','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '132','proyecto' => '132 - (ARCHIVO GRAL) SISTEMA GESTIÓN DOCUMENTAL','gerente' => 'IVAN PABON','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '142','proyecto' => '142 - LAWYERS ENTERPRISE','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '151','proyecto' => '151 - LOPEZ QUINTERO','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '216','proyecto' => '216 - PLATAFORMA DUBRANDS','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => ''],
+            ['centro' => '219','proyecto' => '219 - PNUD','gerente' => 'IVAN PABON','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '235','proyecto' => '235 - HOTEL BERDEZ','gerente' => 'IVAN PABON','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '240','proyecto' => '240 - FONTIC','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '244','proyecto' => '244 - FAC-COMANDOS-2035306','gerente' => 'DEIZITH DIAZ','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '247','proyecto' => '247 - MINISTERIO DEL INTERIOR','gerente' => 'PMO','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '254','proyecto' => '254 - IDIGER','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '255','proyecto' => '255 - PROYECTO 605','gerente' => 'KATHERINE ABELLA','estado' => 'LIQUIDADO','empresa' => 'DU BRANDS'],
+            ['centro' => '261','proyecto' => '261 - PROYECTO 593','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'DU BRANDS'],
+            ['centro' => '262','proyecto' => '262 - PROYECTO PÁGINA WEB CONSTRUCTORA BERDEZ','gerente' => 'IVAN PABON','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '265','proyecto' => '265 - FONDO EN PAZ FASE 2','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '269','proyecto' => '269 - CANCILLERÍA CONTRATO 089 - 2020','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '270','proyecto' => '270 - PROYECTO SERT SOACHA','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '272','proyecto' => '272 - RECAUDOS MASIVOS DE COLOMBIA S.A.S','gerente' => 'SANDRA MUÑOZ','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '273','proyecto' => '273 - UNIVERSIDAD DE PAMPLONA','gerente' => 'PMO','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '275','proyecto' => '275 - ARTESANÍAS DE COLOMBIA','gerente' => 'ALEJANDRO QUITIAN','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '277','proyecto' => '277 - ANALÍTICA DE DATOS - FINDETER','gerente' => 'ALAM GONZÁLEZ','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '280','proyecto' => '280 - COMERCIO ELECTRÓNICO - DUBRANDS','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'DU BRANDS'],
+            ['centro' => '281','proyecto' => '281 - ICETEX','gerente' => 'JENNIFER GÜIZA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '282','proyecto' => '282 - FINCAR','gerente' => 'KATHERINE DAZA','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '283','proyecto' => '283 - Proyecto Interno Iniciativa T&C 4','gerente' => 'MABEL PALACIOS','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '284','proyecto' => '284 - THANOS Y CRONOS 472 040-2021','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '285','proyecto' => '285 - ACUEDUCTO (SISTEMA WEB PARA REGISTRO DE OBRAS Y DISEÑOS.)','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '286','proyecto' => '286 - ACUEDUCTO (SISTEMA DE INFORMACIÓN HÍDRICO)','gerente' => 'HENRY CHICA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '288','proyecto' => '288 - Cyclops 472 orden 085-2021','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '289','proyecto' => '289 - MIGRACIÓN CIAT','gerente' => 'IVAN PABON','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '290','proyecto' => '290 - CANCILLERÍA CONTRATO 089 - 2021','gerente' => 'DIANA BERMUDEZ','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '291','proyecto' => '291 - PROYECTO RAMA JUDICIAL','gerente' => 'OSCAR SALAZAR','estado' => 'ACTIVO','empresa' => 'MUSCOGEE'],
+            ['centro' => '292','proyecto' => '292 - PROYECTO SENA INNOVA - SEMDO','gerente' => 'PMO','estado' => 'ACTIVO','empresa' => 'SEMDO'],
+            ['centro' => '293','proyecto' => '293 - PROYECTO INTERNO EL DORADO','gerente' => 'IVAN PABON','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '294','proyecto' => '294 - COMPUTADORES PARA EDUCAR CONTRATO No. 54-21','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '295-1','proyecto' => '295-1 - REGISTRADURIA VERIFICACION DE FIRMAS','gerente' => 'MARCELA BELTRAN','estado' => 'LIQUIDADO','empresa' => 'TRES T'],
+            ['centro' => '296','proyecto' => '296 - CONTRATO CPE N° 64 - 21','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '297','proyecto' => '297 - COLOMBIA PRODUCTIVA N° 033 - 2021','gerente' => 'DIANA BERMUDEZ','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '298','proyecto' => '298 - UNIVERSIDAD DE PEREIRA','gerente' => 'FABIAN ECHEVERRIA','estado' => 'LIQUIDADO','empresa' => 'UNIVERSIDAD TECNOLÓGICA DE PEREIRA,'],
+            ['centro' => '299','proyecto' => '299 - FINDETER CONTRATO No.0058 DE 2021','gerente' => 'DEIZITH DIAZ','estado' => 'ACTIVO','empresa' => 'RSN'],
+            ['centro' => '303','proyecto' => '303 - PROYECTO 472 CONTRATO N° 239-2021','gerente' => 'HENRY CHICA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '305','proyecto' => '305 - UNIPAMPLONA KITS STEM','gerente' => 'FABIAN ECHEVERRIA','estado' => 'ACTIVO','empresa' => 'YAKTIL'],
+            ['centro' => '306','proyecto' => '306 - PROYECTO INTERNO TICTUR FNTP-082-2020','gerente' => 'PMO','estado' => 'ACTIVO','empresa' => 'TICTUR'],
+            ['centro' => '307','proyecto' => '307 - PROYECTO CMMI NIVEL 5','gerente' => 'JUAN GUARIN','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '308','proyecto' => '308 - PROYECTO INTERNO PLAN B (RAMA JUDICIAL)','gerente' => 'LUIS VILLARREAL','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '295-2','proyecto' => '295-2 - REGISTRADURIA DIGITALIZACION E11','gerente' => 'MARCELA BELTRAN','estado' => 'LIQUIDADO','empresa' => 'TRES T'],
+            ['centro' => '295-3','proyecto' => '295-3 - REGISTRADURIA TPS (Jurados, testigos y delegados)','gerente' => 'MARCELA BELTRAN','estado' => 'ACTIVO','empresa' => 'TRES T'],
+            ['centro' => '295-4','proyecto' => '295-4 - REGISTRADURIA CALL CENTER','gerente' => 'MARCELA BELTRAN','estado' => 'LIQUIDADO','empresa' => 'TRES T'],
+            ['centro' => '309','proyecto' => '309 - PROYECTO UTP PERIRA FORMACION2022','gerente' => 'FABIAN ECHEVERRIA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '310','proyecto' => '310 - CNE - CONSEJO NACIONAL ELECTORAL','gerente' => 'HENRY CHICA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '311','proyecto' => '311 - COMPUTADORES PARA EDUCAR No. 24 -22','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '312','proyecto' => '312 - LICENCIAS MICROSOFT','gerente' => 'ANA GUERRA','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '313','proyecto' => '313 - PROYECTO FINDETER - ARCHIVO','gerente' => 'ALEXANDER DELGADO','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '314','proyecto' => '314 - PROYECTO VENDE DIGITAL 2022','gerente' => 'FABIAN ECHEVERRIA','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '315','proyecto' => '315 - PROYECTO TIENDAS VIRTUALES 3.0 2022','gerente' => 'VICTOR QUINTERO','estado' => 'ACTIVO','empresa' => 'DU BRANDS'],
+            ['centro' => '316','proyecto' => '316 - PROYECTO VENDE DIGITAL CYMETRIA 2022','gerente' => 'FABIAN ECHEVERRIA','estado' => 'LIQUIDADO','empresa' => 'CYMETRIA'],
+            ['centro' => '317','proyecto' => '317 - HOTEL BERDEZ MARKETING Y SOPORTE','gerente' => 'JENNIFER GÜIZA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '318','proyecto' => '318 - PROYECTO FABRICA DE SOFTWARE 2022-FISCALIA','gerente' => 'DEIZITH DIAZ','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '319','proyecto' => '319 - CANCILLERÍA CONTRATO 136 de 2022','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '320','proyecto' => '320 - PROYECTO OPERADORA DISTRITAL DE TRANSPORTE SA','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '321','proyecto' => '321 - PROYECTO CPE MONITOREO Y EVALUACIÓN FASE II','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '322','proyecto' => '322 - PROYECTO UGPP - ADMON PLATAFORMA DE SOFTWARE AG 2022','gerente' => 'HENRY CHICA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '323','proyecto' => '323 - PROYECTO UTP EDUKLAB 2022','gerente' => 'FABIAN ECHEVERRIA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '324','proyecto' => '324 - PROYECTO ADRES','gerente' => 'LORENA MENDEZ','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '325','proyecto' => '325 - PROYECTO VILLA NAZARETH','gerente' => 'JENNIFER GÜIZA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '326','proyecto' => '326 - PROYECTO TELEMEDICINA','gerente' => 'MARCELA BELTRAN','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '327','proyecto' => '327 - PROYECTO RECARGAS URI','gerente' => 'MARCELA BELTRAN','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '328','proyecto' => '328 - PROYECTO MINISTERIO DE COMERCIO,INDUSTRIA, TURISMO','gerente' => 'DEIZITH DIAZ','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '329','proyecto' => '329 - PROYECTO INTERNO ERP LINKTIC','gerente' => 'SANTIAGO SUAREZ','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '331','proyecto' => '331 - PROYECTO INTERNO INICIATIVA IT MARK','gerente' => 'JUAN GUARIN','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '332','proyecto' => '332 - PROYECTO CESOF - CENTRO SOCIAL DE OFICIALES','gerente' => 'ANDREA RIOS','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '333','proyecto' => '333 - PROYECTO CYCLOPS 472 - CONTRATO 197-2022','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '334','proyecto' => '334 - PROYECTO THANOS Y CRONOS 472 - CONTRATO 198 -2022','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '335','proyecto' => '335 - PROYECTO FABRICA DE SOFTWARE SECRETARÍA DE EDUCACIÓN - SED','gerente' => 'DEIZITH DIAZ','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '295-6','proyecto' => '295-6 PROYECTO REGISTRADURIA','gerente' => 'MARCELA BELTRAN','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '7','proyecto' => '007 - PROYECTO UNIPAMPLONA INNOVAPP','gerente' => 'FABIAN ECHEVERRIA','estado' => 'LIQUIDADO','empresa' => 'HICOME'],
+            ['centro' => '337','proyecto' => '337- PROYECTO INTERNO SELECCIÓN, FORMACIÓN TH','gerente' => 'SANTIAGO SUAREZ','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '338','proyecto' => '338- Proyecto interno BPM LinkTIC y Filiales','gerente' => 'PMO','estado' => 'LIQUIDADO','empresa' => 'LINKTIC'],
+            ['centro' => '336','proyecto' => '336 - PROYECTO INTERNO NEGOS LINKTIC','gerente' => 'JENNIFER GÜIZA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '339','proyecto' => '339- PROLINKTIC','gerente' => 'GERARDO LOPEZ','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '8','proyecto' => '008-PROYECTO BANCO - HICOME','gerente' => 'MARCELA BELTRAN','estado' => 'ACTIVO','empresa' => 'HICOME'],
+            ['centro' => '340','proyecto' => '340- GESTION DE PREVENTA','gerente' => 'MIGUEL CORREA','estado' => 'LIQUIDADO','empresa' => ''],
+            ['centro' => '341','proyecto' => '341- UT ANTICIPACION Y RESULTADOS','gerente' => 'PMO','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '342','proyecto' => '342- MINMINAS ORFEO','gerente' => 'LORENA MENDEZ','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '343','proyecto' => '343- CONTROL INTERNO','gerente' => 'XIMENA MOTTA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '345','proyecto' => '345 - PORTALES DIGITALES - LA EQUIDAD','gerente' => 'JENNIFER GÜIZA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '348','proyecto' => '348 - SGDEA ACUEDUCTO','gerente' => 'JUAN PABLO ORTIZ','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '349','proyecto' => '349 - FABRICA DE SOFTWARE - SUPERFINANCIERA','gerente' => 'DEIZITH DIAZ','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '350','proyecto' => '350 - ADMINISTRACION PLATAFORMA AG BPM - UGPP','gerente' => 'HENRY CHICA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '353','proyecto' => '353 - ICETEX L&H','gerente' => 'JENNIFER GÜIZA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '4','proyecto' => '004 - PROYECTO BLANCO','gerente' => 'KATHERINE ABELLA','estado' => 'ACTIVO','empresa' => 'WIMBU'],
+            ['centro' => '5','proyecto' => '005 - PROYECTO GOLD BASICO','gerente' => 'KATHERINE ABELLA','estado' => 'ACTIVO','empresa' => 'WIMBU'],
+            ['centro' => '355','proyecto' => '355 - POSITIVA CORE','gerente' => 'GERMAN GONZALEZ','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '6','proyecto' => '006 - POSITIVA ANALITICA Y CRM','gerente' => 'VICTOR QUINTERO','estado' => 'ACTIVO','empresa' => 'WIMBU'],
+            ['centro' => '1','proyecto' => '001 - POSITIVA SGDEA','gerente' => 'ANDRES FELIPE RINCON VALENCIA','estado' => 'ACTIVO','empresa' => 'TRES T'],
+            ['centro' => '356','proyecto' => '356 - CONSTRUCTORA BERDEZ','gerente' => 'JENNIFER GÜIZA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '357','proyecto' => '357 - CENTRO DE SERVICIOS COMPARTIDOS','gerente' => 'DANIEL SALINAS','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '358','proyecto' => '358 - CPE No. 20-23 - COMPUTADORES PARA EDUCAR','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '359','proyecto' => '359 - PÁGINA WEB - POSITIVA - CYMETRIA','gerente' => 'CAROLINA BETANCOURT','estado' => 'ACTIVO','empresa' => 'CYMETRIA'],
+            ['centro' => '360','proyecto' => '360 - MESA DE AYUDA - EQUIDAD - LINKTIC','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
+            ['centro' => '9','proyecto' => '009 - BUS INTEGRACIÓN - POSITIVA - HICOME','gerente' => 'LUZ FORERO','estado' => 'ACTIVO','empresa' => 'HICOME'],
+
+        ];
+        foreach ($centros as $item) {
+            DB::table('centro_costos')->insert([
+                'centro' => $item['centro'],
+                'proyecto' => $item['proyecto'],
+                'gerente' => $item['gerente'],
+                'estado' => $item['estado'],
+                'empresa' => $item['empresa'],
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+        }
+    }
+}

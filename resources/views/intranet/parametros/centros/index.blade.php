@@ -30,18 +30,26 @@
             </div>
             <hr>
             <div class="row  d-flex justify-content-around">
-                <div class="col-10 col-md-7 table-responsive">
-                    <table class="table table-striped table-hover table-sm display tabla-borrando" id="tabla-data">
+                <div class="col-10 col-md-11 table-responsive">
+                    <table class="table table-striped table-hover table-sm tabla_data_table tabla-borrando" id="tabla-data">
                         <thead class="thead-inverse">
                             <tr>
                                 <th class="text-center">Centro de Costo</th>
+                                <th class="text-center">Proyecto</th>
+                                <th class="text-center">Gerente</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center">Empresa</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($centros as $centro)
                                 <tr>
-                                    <td class="text-center">{{ $centro->centro_costo }}</td>
+                                    <td class="text-center">{{ $centro->centro }}</td>
+                                    <td class="text-left">{{ $centro->proyecto }}</td>
+                                    <td class="text-left">{{ $centro->gerente }}</td>
+                                    <td class="text-center">{{ $centro->estado }}</td>
+                                    <td class="text-left">{{ $centro->empresa }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('admin-centros-editar', ['id' => $centro->id]) }}"
                                             class="btn-accion-tabla tooltipsC text-info" title="Editar"><i

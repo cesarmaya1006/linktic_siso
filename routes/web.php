@@ -18,9 +18,17 @@ use App\Http\Controllers\Intranet\Admin\CentroController;
 use App\Http\Controllers\Intranet\Admin\ContratoController;
 use App\Http\Controllers\Intranet\Admin\EstadoController;
 use App\Http\Controllers\Intranet\Empresa\CaracteristicasController;
+use App\Http\Controllers\Intranet\Empresa\CentrosCostosController;
 use App\Http\Controllers\Intranet\Empresa\EquipoController;
+use App\Http\Controllers\Intranet\Empresa\EquiposRentadosAsignacionController;
+use App\Http\Controllers\Intranet\Empresa\EquiposRentadosController;
+use App\Http\Controllers\Intranet\Empresa\EquiposRentadosEstadosController;
+use App\Http\Controllers\Intranet\Empresa\EquiposRentadosResponsableController;
+use App\Http\Controllers\Intranet\Empresa\EquiposRentadosTiposController;
 use App\Http\Controllers\Intranet\Empresa\ImpresoraController;
 use App\Http\Controllers\Intranet\Empresa\MonitorController;
+use App\Http\Controllers\Intranet\Empresa\ProveedoresRentadosController;
+use App\Http\Controllers\Intranet\Empresa\SubCentrosCostosController;
 use App\Models\Admin\Usuario;
 
 /*
@@ -195,13 +203,89 @@ Route::group(['middleware' => 'auth'], function () {
             Route::delete('impresoras/{id}', [ImpresoraController::class,'eliminar',])->name('admin-impresoras-eliminar');
             // ------------------------------------------------------------------------------------
             // ------------------------------------------------------------------------------------
-            // Ruta Administrador del Sistema Impresora
+            // Ruta Administrador del Caracteristicas
             Route::get('matriz_caracteristicas', [CaracteristicasController::class,'index',])->name('admin-matriz_caracteristicas');
             Route::get('matriz_caracteristicas-crear', [CaracteristicasController::class,'crear',])->name('admin-matriz_caracteristicas-crear');
             Route::post('matriz_caracteristicas', [CaracteristicasController::class, 'guardar'])->name('admin-matriz_caracteristicas-guardar');
             Route::get('matriz_caracteristicas/{id}/editar', [CaracteristicasController::class,'editar',])->name('admin-matriz_caracteristicas-editar');
             Route::put('matriz_caracteristicas/{id}', [CaracteristicasController::class,'actualizar',])->name('admin-matriz_caracteristicas-actualizar');
             Route::delete('matriz_caracteristicas/{id}', [CaracteristicasController::class,'eliminar',])->name('admin-matriz_caracteristicas-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador de proveedores equipos rentados
+            Route::get('proveedores_rentados', [ProveedoresRentadosController::class,'index',])->name('admin-proveedores_rentados');
+            Route::get('proveedores_rentados-crear', [ProveedoresRentadosController::class,'crear',])->name('admin-proveedores_rentados-crear');
+            Route::post('proveedores_rentados', [ProveedoresRentadosController::class, 'guardar'])->name('admin-proveedores_rentados-guardar');
+            Route::get('proveedores_rentados/{id}/editar', [ProveedoresRentadosController::class,'editar',])->name('admin-proveedores_rentados-editar');
+            Route::put('proveedores_rentados/{id}', [ProveedoresRentadosController::class,'actualizar',])->name('admin-proveedores_rentados-actualizar');
+            Route::delete('proveedores_rentados/{id}', [ProveedoresRentadosController::class,'eliminar',])->name('admin-proveedores_rentados-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador de proveedores centros de costo
+            Route::get('centros_costo', [CentrosCostosController::class,'index',])->name('admin-centros_costo');
+            Route::get('centros_costo-crear', [CentrosCostosController::class,'crear',])->name('admin-centros_costo-crear');
+            Route::post('centros_costo', [CentrosCostosController::class, 'guardar'])->name('admin-centros_costo-guardar');
+            Route::get('centros_costo/{id}/editar', [CentrosCostosController::class,'editar',])->name('admin-centros_costo-editar');
+            Route::put('centros_costo/{id}', [CentrosCostosController::class,'actualizar',])->name('admin-centros_costo-actualizar');
+            Route::delete('centros_costo/{id}', [CentrosCostosController::class,'eliminar',])->name('admin-centros_costo-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador de proveedores sub centros de costo
+            Route::get('sub_centros_costo', [SubCentrosCostosController::class,'index',])->name('admin-sub_centros_costo');
+            Route::get('sub_centros_costo-crear', [SubCentrosCostosController::class,'crear',])->name('admin-sub_centros_costo-crear');
+            Route::post('sub_centros_costo', [SubCentrosCostosController::class, 'guardar'])->name('admin-sub_centros_costo-guardar');
+            Route::get('sub_centros_costo/{id}/editar', [SubCentrosCostosController::class,'editar',])->name('admin-sub_centros_costo-editar');
+            Route::put('sub_centros_costo/{id}', [SubCentrosCostosController::class,'actualizar',])->name('admin-sub_centros_costo-actualizar');
+            Route::delete('sub_centros_costo/{id}', [SubCentrosCostosController::class,'eliminar',])->name('admin-sub_centros_costo-eliminar');
+            Route::get('sub_centros_costo_consecutivo', [SubCentrosCostosController::class,'cargar_concecutivo',])->name('sub_centros_costo_consecutivo');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador de rentados sub responsables
+            Route::get('responsables', [EquiposRentadosResponsableController::class,'index',])->name('admin-responsables');
+            Route::get('responsables-crear', [EquiposRentadosResponsableController::class,'crear',])->name('admin-responsables-crear');
+            Route::post('responsables', [EquiposRentadosResponsableController::class, 'guardar'])->name('admin-responsables-guardar');
+            Route::get('responsables/{id}/editar', [EquiposRentadosResponsableController::class,'editar',])->name('admin-responsables-editar');
+            Route::put('responsables/{id}', [EquiposRentadosResponsableController::class,'actualizar',])->name('admin-responsables-actualizar');
+            Route::delete('responsables/{id}', [EquiposRentadosResponsableController::class,'eliminar',])->name('admin-responsables-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador de rentados estados
+            Route::get('tipos_rentados', [EquiposRentadosTiposController::class,'index',])->name('admin-tipos_rentados');
+            Route::get('tipos_rentados-crear', [EquiposRentadosTiposController::class,'crear',])->name('admin-tipos_rentados-crear');
+            Route::post('tipos_rentados', [EquiposRentadosTiposController::class, 'guardar'])->name('admin-tipos_rentados-guardar');
+            Route::get('tipos_rentados/{id}/editar', [EquiposRentadosTiposController::class,'editar',])->name('admin-tipos_rentados-editar');
+            Route::put('tipos_rentados/{id}', [EquiposRentadosTiposController::class,'actualizar',])->name('admin-tipos_rentados-actualizar');
+            Route::delete('tipos_rentados/{id}', [EquiposRentadosTiposController::class,'eliminar',])->name('admin-tipos_rentados-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador de rentados tipos
+            Route::get('rentados_estados', [EquiposRentadosEstadosController::class,'index',])->name('admin-rentados_estados');
+            Route::get('rentados_estados-crear', [EquiposRentadosEstadosController::class,'crear',])->name('admin-rentados_estados-crear');
+            Route::post('rentados_estados', [EquiposRentadosEstadosController::class, 'guardar'])->name('admin-rentados_estados-guardar');
+            Route::get('rentados_estados/{id}/editar', [EquiposRentadosEstadosController::class,'editar',])->name('admin-rentados_estados-editar');
+            Route::put('rentados_estados/{id}', [EquiposRentadosEstadosController::class,'actualizar',])->name('admin-rentados_estados-actualizar');
+            Route::delete('rentados_estados/{id}', [EquiposRentadosEstadosController::class,'eliminar',])->name('admin-rentados_estados-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador del equipos rentados
+            Route::get('equipos_rentados', [EquiposRentadosController::class,'index',])->name('admin-equipos_rentados');
+            Route::get('equipos_rentados-crear', [EquiposRentadosController::class,'crear',])->name('admin-equipos_rentados-crear');
+            Route::post('equipos_rentados', [EquiposRentadosController::class, 'guardar'])->name('admin-equipos_rentados-guardar');
+            Route::get('equipos_rentados/{id}/editar', [EquiposRentadosController::class,'editar',])->name('admin-equipos_rentados-editar');
+            Route::put('equipos_rentados/{id}', [EquiposRentadosController::class,'actualizar',])->name('admin-equipos_rentados-actualizar');
+            Route::delete('equipos_rentados/{id}', [EquiposRentadosController::class,'eliminar',])->name('admin-equipos_rentados-eliminar');
+            Route::post('equipos_rentados_proveedor', [EquiposRentadosController::class, 'guardar_proveedor'])->name('equipos_rentados_guardar_proveedor');
+            Route::post('equipos_rentados_centro', [EquiposRentadosController::class, 'guardar_centro'])->name('equipos_rentados_guardar_centro');
+            Route::post('equipos_rentados_sub_centro', [EquiposRentadosController::class, 'guardar_sub_centro'])->name('equipos_rentados_guardar_sub_centro');
+            Route::get('equipos_rentados_cargar_subcentro', [EquiposRentadosController::class,'cargar_subcentro',])->name('cargar_subcentro');
+            Route::post('equipos_rentados_responsable', [EquiposRentadosController::class, 'guardar_responsable'])->name('equipos_rentados_guardar_responsable');
+            Route::post('equipos_rentados_tipo', [EquiposRentadosController::class, 'guardar_tipo'])->name('equipos_rentados_guardar_tipo');
+            Route::get('devolver_asignado_proveedor/{id}', [EquiposRentadosAsignacionController::class,'devolver_asignado_proveedor',])->name('devolver_asignado_proveedor');
+            Route::post('devolver_asignado_bodega/{id}', [EquiposRentadosAsignacionController::class,'devolver_asignadobodega',])->name('devolver_asignado_bodega');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador del equipos rentados - asignacion
+            Route::get('asignacion_equipos_rentados', [EquiposRentadosAsignacionController::class,'index',])->name('admin-equipos_rentados_asignacion');
+            Route::get('asignacion_equipos_rentados-crear', [EquiposRentadosAsignacionController::class,'crear',])->name('admin-equipos_rentados_asignacion-crear');
+            Route::get('asignacion_equipos_rentados/{id}/asignar', [EquiposRentadosAsignacionController::class,'asignar',])->name('admin-equipos_rentados_asignacion-asignar');
+            Route::post('asignacion_equipos_rentados_asignado', [EquiposRentadosAsignacionController::class, 'guardar_asignado'])->name('equipos_rentados_asignacion_guardar_asignado');
+            Route::post('asignacion_equipos_rentados/asignar_guardar', [EquiposRentadosAsignacionController::class, 'asignar_guardar'])->name('admin-equipos_rentados_asignacion-guardar');
+
+            Route::get('asignacion_equipos_rentados/{id}/devolver', [EquiposRentadosAsignacionController::class,'devolver',])->name('admin-equipos_rentados_asignacion-devolver');
+            Route::put('asignacion_equipos_rentados/{id}', [EquiposRentadosAsignacionController::class,'actualizar',])->name('admin-equipos_rentados_asignacion-actualizar');
+            Route::delete('asignacion_equipos_rentados/{id}', [EquiposRentadosAsignacionController::class,'eliminar',])->name('admin-equipos_rentados_asignacion-eliminar');
             // ------------------------------------------------------------------------------------
 
     });

@@ -27,7 +27,15 @@ label.requerido:after {
     border-top: 8px solid;
     border-image: linear-gradient(to right,  #009CFF 0%, #1DD600 100%) 1;
 }
+.modal-dialog{
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
 
+    border-top: 8px solid;
+    border-image: linear-gradient(to right,  #009CFF 0%, #1DD600 100%) 1;
+}
 .card-mini-sombra {
     -webkit-box-shadow: 3px 3px 1px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 3px 3px 1px 0px rgba(0, 0, 0, 0.75);
