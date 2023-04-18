@@ -99,22 +99,56 @@ class EquiposRentadosAsignacionController extends Controller
        return  ( $d->y * 12 ) + $d->m;
     }
     public function devolver_asignado_proveedor(Request $request,$id){
-        $equipo_update['rentado_estado_id'] = 2;
-        $equipo_update['fecha_devolucion'] = date('Y-m-d');
+        $equipo = EquipoRentado::findOrFail($id);
+        $fechaUso = date('Y-m-d');
+        $meses = $this->verMeses(array($equipo->fecha_entrega,$fechaUso));
+        $equipo['meses_uso'] = $meses;
+        return view('intranet.empresa.rentados.devolver',compact('equipo'));
+    }
+    public function devolver_asignado_proveedor_devolver(Request $request,$id){
+        $equipo = EquipoRentado::findOrFail($id);
+        $equipo_update['rentado_estado_id'] = $request['rentado_estado_id'];
+        $equipo_update['fecha_devolucion'] = $request['fecha_devolucion'];
+        if ($request['observaciones']!=null) {
+            $observaciones= $equipo->observaciones . ' - Observaciones de devolucion: ' .  $request['observaciones'] ;
+        } else {
+            $observaciones= $equipo->observaciones . ' - Observaciones de devolucion: Sin observaciones';
+        }
+        $equipo_update['observaciones'] = $observaciones;
         EquipoRentado::findOrFail($id)->update($equipo_update);
-        return redirect('admin/equipos_rentados')->with('mensaje', 'Devolucion de equipo registrada exito');
+        return redirect('admin/equipos_rentados')->with('mensaje', 'Equipo devuelto a proveedor con exito');
     }
 
     public function devolver_asignadobodega(Request $request,$id){
-        $asignacion = AsignacionRentado::findOrFail($id);
-        $equipo = EquipoRentado::findOrFail($asignacion->equipo_rentado_id);
-        $asignacion_update['fecha_devolucion'] = $request['fecha_devolucion'];
-        AsignacionRentado::findOrFail($id)->update($asignacion_update);
-        $equipo_update['rentado_estado_id'] = 1;
-        if ($request['observaciones']!='N/A') {
-            $equipo_update['observaciones'] = $equipo->observaciones .' - ' . $request['observaciones'];
+        $equipo = EquipoRentado::findOrFail($id);
+        $fechaUso = date('Y-m-d');
+        $meses = $this->verMeses(array($equipo->fecha_entrega,$fechaUso));
+        $equipo['meses_uso'] = $meses;
+
+        $meses_asignado = $this->verMeses(array($equipo->asignaciones->last()->fecha_asignacion,$fechaUso));
+        $equipo['meses_uso_asignado'] = $meses_asignado;
+
+        return view('intranet.empresa.rentados.devolver_bodega',compact('equipo'));
+    }
+
+    public function devolver_asignadobodega_devolver(Request $request,$id){
+        $equipo = EquipoRentado::findOrFail($id);
+        if ($request['observaciones']!=null) {
+            $observaciones= $equipo->observaciones . ' - ' .  $request['observaciones'] ;
+            $observaciones_rentado = $request['observaciones'] ;
         }
-        EquipoRentado::findOrFail($asignacion->equipo_rentado_id)->update($equipo_update);
+         else {
+            $observaciones= $equipo->observaciones;
+            $observaciones_rentado = 'Sin Observacionde de entrega';
+        }
+        $equipo_update['rentado_estado_id'] = 1;
+        $equipo_update['observaciones'] = $observaciones;
+        $equipo_rentado_update['fecha_devolucion'] = $request['fecha_devolucion'];
+        $equipo_rentado_update['observaciones_devolucion'] = $observaciones_rentado;
+        EquipoRentado::findOrFail($id)->update($equipo_update);
+        $equipo_rentado_array =AsignacionRentado::where('equipo_rentado_id',$id)->get();
+        $equipo_rentado = $equipo_rentado_array->last();
+        AsignacionRentado::findOrFail($equipo_rentado->id)->update($equipo_rentado_update);
         return redirect('admin/equipos_rentados')->with('mensaje', 'Equipo devuelto a bodega con exito');
     }
 

@@ -47,7 +47,6 @@
                         <thead class="thead-inverse">
                             <tr>
                                 <th class="text-center" style="white-space:nowrap;">Id</th>
-                                <th>Asignacion</th>
                                 <th class="text-center" style="white-space:nowrap;">Asignado</th>
                                 <th class="text-center" style="white-space:nowrap;">Fecha de Asignación</th>
                                 <th class="text-center" style="white-space:nowrap;">Meses de asignación</th>
@@ -72,19 +71,6 @@
                             @foreach ($rentados as $equipo)
                             <tr>
                                 <td>{{$equipo->id}}</td>
-                                <td class="text-center">
-                                    @if ($equipo->rentado_estado_id==3)
-                                    <button onclick="btnDevolverBodega('{{ route('devolver_asignado_bodega',['id' => $equipo->asignaciones->last()->id]) }}');" id="btn_devolver" class="btn">
-                                        <span class="badge bg-info bg-gradient"> Devolver </span>
-                                    </button>
-                                    @else
-                                    @if ($equipo->rentado_estado_id===2)
-                                    <span class="badge bg-secondary">Devuelto al proveedor</span>
-                                    @else
-                                    <a href="{{route('admin-equipos_rentados_asignacion-asignar',['id' => $equipo->id])}}" class="btn btn-primary btn-xs bg-gradient">Asignar</a>
-                                    @endif
-                                    @endif
-                                </td>
                                 <td class="text-left">{{$equipo->rentado_estado_id==3? ($equipo->asignaciones->last()->asignado->asignado?? '---'):'---'}}</td>
                                 <td class="text-center">{{$equipo->rentado_estado_id==3? ($equipo->fecha_asignacion?? '---'):'---'}}</td>
                                 <td class="text-center">{{$equipo->rentado_estado_id==3? ($equipo->meses_uso_renta?? '---'):'---'}}</td>
@@ -103,6 +89,7 @@
                                 <td class="text-center">{{$equipo->fecha_devolucion??'---'}}</td>
                                 <td class="text-left">{{$equipo->observaciones??''}}</td>
                                 <td class="text-center">
+                                    @if ($equipo->rentado_estado_id !=2)
                                     <a href="{{ route('admin-equipos_rentados-editar', ['id' => $equipo->id]) }}"
                                         class="btn-accion-tabla tooltipsC" title="Editar este registro">
                                         <i class="fas fa-pen-square"></i>
@@ -115,6 +102,7 @@
                                             <i class="fa fa-fw fa-trash text-danger"></i>
                                         </button>
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

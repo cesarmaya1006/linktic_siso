@@ -274,7 +274,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('equipos_rentados_responsable', [EquiposRentadosController::class, 'guardar_responsable'])->name('equipos_rentados_guardar_responsable');
             Route::post('equipos_rentados_tipo', [EquiposRentadosController::class, 'guardar_tipo'])->name('equipos_rentados_guardar_tipo');
             Route::get('devolver_asignado_proveedor/{id}', [EquiposRentadosAsignacionController::class,'devolver_asignado_proveedor',])->name('devolver_asignado_proveedor');
-            Route::post('devolver_asignado_bodega/{id}', [EquiposRentadosAsignacionController::class,'devolver_asignadobodega',])->name('devolver_asignado_bodega');
+            Route::post('devolver_asignado_proveedor/{id}/devolver', [EquiposRentadosAsignacionController::class,'devolver_asignado_proveedor_devolver',])->name('devolver_asignado_proveedor_devolver');
+            Route::get('devolver_asignado_bodega/{id}', [EquiposRentadosAsignacionController::class,'devolver_asignadobodega',])->name('devolver_asignado_bodega');
+            Route::post('devolver_asignado_bodega/{id}/devolver', [EquiposRentadosAsignacionController::class,'devolver_asignadobodega_devolver',])->name('devolver_asignado_bodega_devolver');
             // ------------------------------------------------------------------------------------
             // Ruta Administrador del equipos rentados - asignacion
             Route::get('asignacion_equipos_rentados', [EquiposRentadosAsignacionController::class,'index',])->name('admin-equipos_rentados_asignacion');
@@ -283,7 +285,6 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('asignacion_equipos_rentados_asignado', [EquiposRentadosAsignacionController::class, 'guardar_asignado'])->name('equipos_rentados_asignacion_guardar_asignado');
             Route::post('asignacion_equipos_rentados/asignar_guardar', [EquiposRentadosAsignacionController::class, 'asignar_guardar'])->name('admin-equipos_rentados_asignacion-guardar');
 
-            Route::get('asignacion_equipos_rentados/{id}/devolver', [EquiposRentadosAsignacionController::class,'devolver',])->name('admin-equipos_rentados_asignacion-devolver');
             Route::put('asignacion_equipos_rentados/{id}', [EquiposRentadosAsignacionController::class,'actualizar',])->name('admin-equipos_rentados_asignacion-actualizar');
             Route::delete('asignacion_equipos_rentados/{id}', [EquiposRentadosAsignacionController::class,'eliminar',])->name('admin-equipos_rentados_asignacion-eliminar');
             // ------------------------------------------------------------------------------------

@@ -35,7 +35,7 @@
             @if ($equipos->count()>0)
             <div class="row">
                 <div class="col-12">
-                    <h5>Equipos disponibles par asignación</h5>
+                    <h5>Equipos disponibles para asignación</h5>
                 </div>
             </div>
             <div class="row  d-flex justify-content-around">
@@ -59,7 +59,7 @@
                             @foreach ($equipos as $equipo)
                             <tr>
                                 <td class="text-center"><a href="{{route('admin-equipos_rentados_asignacion-asignar',['id' => $equipo->id])}}" class="btn btn-primary btn-xs bg-gradient">Asignar</a></td>
-                                <td class="text-center"><a href="{{route('devolver_asignado_proveedor',['id' => $equipo->id])}}" class="btn btn-info btn-xs bg-gradient" id="btn_devolver">Devolver</a></td>
+                                <td class="text-center"><a class="btn btn-info btn-xs" href="{{route('devolver_asignado_proveedor',['id' => $equipo->id])}}">Devolver al proveedor</a></td>
                                 <td>{{$equipo->id}}</td>
                                 <td class="text-left">{{$equipo->proveedor->proveedor}}</td>
                                 <td class="text-left">{{$equipo->responsable->responsable}}</td>
