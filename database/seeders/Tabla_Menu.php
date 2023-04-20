@@ -19,8 +19,9 @@ class Tabla_Menu extends Seeder
         $menu_linea_1 =1;
         $menu_linea_2 =2;
         $menu_linea_3 =8;
-        $menu_linea_4 =20;
-        $menu_linea_5 =27;
+        $menu_linea_4 =22;
+        $menu_linea_5 =28;
+        $menu_linea_6 =31;
         $menus = [
             // Menus padre
             //1
@@ -48,8 +49,10 @@ class Tabla_Menu extends Seeder
             ['nombre' =>  'Responsables Rentados PC', 'menu_id' => $menu_linea_3, 'url' =>  'admin/responsables', 'orden' => '9', 'icono' =>  'fas fa-user-shield'],
             ['nombre' =>  'Tipos PC Rentados', 'menu_id' => $menu_linea_3, 'url' =>  'admin/tipos_rentados', 'orden' => '10', 'icono' =>  'fas fa-server'],
             ['nombre' =>  'Estados PC Rentados', 'menu_id' => $menu_linea_3, 'url' =>  'admin/rentados_estados', 'orden' => '11', 'icono' =>  'fas fa-spell-check'],
+            ['nombre' =>  'Empresas', 'menu_id' => $menu_linea_3, 'url' =>  'admin/empresas', 'orden' => '12', 'icono' =>  'fas fa-industry'],
+            ['nombre' =>  'Gestion', 'menu_id' => $menu_linea_3, 'url' =>  'admin/gestion', 'orden' => '13', 'icono' =>  'fas fa-chart-pie'],
             //------------------------------------------------------------------------------------------------------------
-            //20
+            //22
             ['nombre' =>  'Inventarios', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '4', 'icono' =>  'fas fa-bezier-curve'],
             ['nombre' =>  'Equipos Propios', 'menu_id' => $menu_linea_4, 'url' =>  'admin/equipos', 'orden' => '1', 'icono' =>  'fas fa-laptop'],
             ['nombre' =>  'Monitores', 'menu_id' => $menu_linea_4, 'url' =>  'admin/monitores', 'orden' => '2', 'icono' =>  'fas fa-tv'],
@@ -59,15 +62,20 @@ class Tabla_Menu extends Seeder
             //['nombre' =>  'Rentados - Asignación', 'menu_id' => $menu_linea_4, 'url' =>  'admin/asignacion_equipos_rentados', 'orden' => '6', 'icono' =>  'fas fa-user-check'],
 
             //------------------------------------------------------------------------------------------------------------
-            //26
-            ['nombre' =>  'Otras opciones', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '5', 'icono' =>  'fas fa-question-circle'],
-            ['nombre' =>  'Nuestas políticas de datos', 'menu_id' => $menu_linea_5, 'url' =>  'usuario/consulta-politicas', 'orden' => '1', 'icono' =>  'fas fa-question-circle'],
-            ['nombre' =>  'Ayuda', 'menu_id' => $menu_linea_5, 'url' =>  'usuario/ayuda', 'orden' => '2', 'icono' =>  'fas fa-question-circle'],
-            ['nombre' =>  'Actualizar datos', 'menu_id' => $menu_linea_5, 'url' =>  'usuario/actualizar-datos', 'orden' => '3', 'icono' =>  'fas fa-edit'],
-            ['nombre' =>  'Cambiar contraseña', 'menu_id' => $menu_linea_5, 'url' =>  'usuario/cambiar-password', 'orden' => '4', 'icono' =>  'fas fa-key'],
+            //28
+            ['nombre' =>  'Empleados', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '5', 'icono' =>  'fas fa-bezier-curve'],
+            ['nombre' =>  'Matriz Empleados', 'menu_id' => $menu_linea_5, 'url' =>  'admin/empleados', 'orden' => '1', 'icono' =>  'fas fa-user-tie'],
+            ['nombre' =>  'Matriz de Retiros', 'menu_id' => $menu_linea_5, 'url' =>  'admin/retiros', 'orden' => '2', 'icono' =>  'fas fa-user-alt-slash'],
             //------------------------------------------------------------------------------------------------------------
             //31
-            ['nombre' =>  'Parametros', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '5', 'icono' =>  'fas fa-cog'],
+            ['nombre' =>  'Otras opciones', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '6', 'icono' =>  'fas fa-question-circle'],
+            ['nombre' =>  'Nuestas políticas de datos', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/consulta-politicas', 'orden' => '1', 'icono' =>  'fas fa-question-circle'],
+            ['nombre' =>  'Ayuda', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/ayuda', 'orden' => '2', 'icono' =>  'fas fa-question-circle'],
+            ['nombre' =>  'Actualizar datos', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/actualizar-datos', 'orden' => '3', 'icono' =>  'fas fa-edit'],
+            ['nombre' =>  'Cambiar contraseña', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/cambiar-password', 'orden' => '4', 'icono' =>  'fas fa-key'],
+            //------------------------------------------------------------------------------------------------------------
+            //36
+            ['nombre' =>  'Parametros', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '7', 'icono' =>  'fas fa-cog'],
 
             //----------------------------------------------------------------------------------------------------------------------
 

@@ -29,6 +29,8 @@ use App\Http\Controllers\Intranet\Empresa\ImpresoraController;
 use App\Http\Controllers\Intranet\Empresa\MonitorController;
 use App\Http\Controllers\Intranet\Empresa\ProveedoresRentadosController;
 use App\Http\Controllers\Intranet\Empresa\SubCentrosCostosController;
+use App\Http\Controllers\Intranet\Empresa\EmpresaController;
+use App\Http\Controllers\Intranet\Empresa\GestionaController;
 use App\Models\Admin\Usuario;
 
 /*
@@ -174,6 +176,22 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('categorias/{id}/editar', [CategoriaController::class,'editar',])->name('admin-categorias-editar');
             Route::put('categorias/{id}', [CategoriaController::class,'actualizar',])->name('admin-categorias-actualizar');
             Route::delete('categorias/{id}', [CategoriaController::class,'eliminar',])->name('admin-categorias-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Empresas
+            Route::get('empresas', [EmpresaController::class,'index',])->name('admin-empresas');
+            Route::get('empresas-crear', [EmpresaController::class,'crear',])->name('admin-empresas-crear');
+            Route::post('empresas', [EmpresaController::class, 'guardar'])->name('admin-empresas-guardar');
+            Route::get('empresas/{id}/editar', [EmpresaController::class,'editar',])->name('admin-empresas-editar');
+            Route::put('empresas/{id}', [EmpresaController::class,'actualizar',])->name('admin-empresas-actualizar');
+            Route::delete('empresas/{id}', [EmpresaController::class,'eliminar',])->name('admin-empresas-eliminar');
+            // ------------------------------------------------------------------------------------
+            // Ruta Administrador del Gestion
+            Route::get('gestion', [GestionaController::class,'index',])->name('admin-gestion');
+            Route::get('gestion-crear', [GestionaController::class,'crear',])->name('admin-gestion-crear');
+            Route::post('gestion', [GestionaController::class, 'guardar'])->name('admin-gestion-guardar');
+            Route::get('gestion/{id}/editar', [GestionaController::class,'editar',])->name('admin-gestion-editar');
+            Route::put('gestion/{id}', [GestionaController::class,'actualizar',])->name('admin-gestion-actualizar');
+            Route::delete('gestion/{id}', [GestionaController::class,'eliminar',])->name('admin-gestion-eliminar');
 
         });
             // ------------------------------------------------------------------------------------

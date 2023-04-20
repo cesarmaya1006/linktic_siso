@@ -27,7 +27,8 @@
             @if ($equipo->rentado_estado_id == 1)
             <div class="row mb-4">
                 <div class="col-12">
-                    <a class="btn btn-info btn-xs btn-sombra pl-5 pr-5" href="{{route('devolver_asignado_proveedor',['id' => $equipo->id])}}">Devolver al proveedor</a>
+                    <a class="btn btn-info btn-xs btn-sombra pl-5 pr-5 mr-3" href="{{route('devolver_asignado_proveedor',['id' => $equipo->id])}}">Devolver al proveedor</a>
+                    <a class="btn btn-success btn-xs btn-sombra pl-5 pr-5" href="{{route('admin-equipos_rentados_asignacion-asignar',['id' => $equipo->id])}}">Asignar a Usuario</a>
                 </div>
             </div>
             <hr>
