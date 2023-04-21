@@ -22,7 +22,6 @@ class GestionaSeeder extends Seeder
             'Gestión Administrativa y Contable',
             'Gestión Comercial',
             'Gestión de auditoria y control interno',
-            'Gestion de Comercial',
             'Gestión de Comunicaciones',
             'Gestión de Contratación Pública',
             'Gestión de Fábrica de Software',
@@ -33,6 +32,7 @@ class GestionaSeeder extends Seeder
             'Gestión de Soporte TI',
             'Gestión de Talento Humano',
             'Gestion Financiera',
+            'N/A',
         ];
 
         foreach ($gestiones as $key => $value) {

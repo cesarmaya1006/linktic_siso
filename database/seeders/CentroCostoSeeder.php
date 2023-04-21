@@ -122,6 +122,7 @@ class CentroCostoSeeder extends Seeder
             ['centro' => '359','proyecto' => '359 - PÁGINA WEB - POSITIVA - CYMETRIA','gerente' => 'CAROLINA BETANCOURT','estado' => 'ACTIVO','empresa' => 'CYMETRIA'],
             ['centro' => '360','proyecto' => '360 - MESA DE AYUDA - EQUIDAD - LINKTIC','gerente' => 'ANA GUERRA','estado' => 'ACTIVO','empresa' => 'LINKTIC'],
             ['centro' => '9','proyecto' => '009 - BUS INTEGRACIÓN - POSITIVA - HICOME','gerente' => 'LUZ FORERO','estado' => 'ACTIVO','empresa' => 'HICOME'],
+            ['centro' => 'N/A','proyecto' => 'N/A','gerente' => 'N/A','estado' => 'N/A','empresa' => 'N/A'],
 
         ];
         foreach ($centros as $item) {

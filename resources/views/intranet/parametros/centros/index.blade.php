@@ -34,6 +34,7 @@
                     <table class="table table-striped table-hover table-sm tabla_data_table tabla-borrando" id="tabla-data">
                         <thead class="thead-inverse">
                             <tr>
+                                <th></th>
                                 <th class="text-center">Centro de Costo</th>
                                 <th class="text-center">Proyecto</th>
                                 <th class="text-center">Gerente</th>
@@ -45,6 +46,7 @@
                         <tbody>
                             @foreach ($centros as $centro)
                                 <tr>
+                                    <td class="text-center">{{ $centro->id }}</td>
                                     <td class="text-center">{{ $centro->centro }}</td>
                                     <td class="text-left">{{ $centro->proyecto }}</td>
                                     <td class="text-left">{{ $centro->gerente }}</td>

@@ -16,22 +16,23 @@ class Tabla_Contratos extends Seeder
     public function run()
     {
         $contratos = [
-            'Aprendiz Sena',
-            'Aprendizaje',
-            'Indefinido',
-            'Miguel gomez',
-            'N/A',
-            'Obra Labor',
-            'Obra labor ',
-            'OPS',
-            'OPS por horas',
-            'Orden de servicios',
-            'Pendiente respuesta marcela',
-            'Preguntar a Oscar ',
-            'Prestación de Servicios',
-            'Prestacion de servicios por entregables',
-            'Prestación de Servicios por Horas',
-            'Termino Fijo',
+'Aprendiz Sena',
+'Aprendizaje',
+'Indefinido',
+'Miguel gomez',
+'N/A',
+'Obra Labor',
+'Obra labor ',
+'OPS',
+'OPS por horas',
+'Orden de servicios',
+'Pendiente respuesta marcela',
+'Preguntar a Oscar ',
+'Prestación de Servicios',
+'Prestacion de servicios por entregables',
+'Prestación de Servicios por Horas',
+'Termino Fijo',
+
         ];
 
         foreach ($contratos as $key => $value) {

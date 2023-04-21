@@ -14,8 +14,24 @@ class CreateEmpleadosTable extends Migration
     public function up()
     {
         Schema::create('empleados', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id')->autoIncrement();
+            $table->string('empresa', 255)->default('N/A');
+            $table->string('cargo', 255)->nullable();
+            $table->string('usuario', 255);
+            $table->string('cedula', 50)->unique()->nullable();
+            $table->string('telefono', 50)->nullable();
+            $table->unsignedBigInteger('gestionas_id');
+            $table->foreign('gestionas_id', 'fk_empleado_gestionas')->references('id')->on('gestionas')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('contratos_id');
+            $table->foreign('contratos_id', 'fk_empleado_contratos')->references('id')->on('contratos')->onDelete('restrict')->onUpdate('restrict');
+            $table->date('fecha_retiro')->nullable();
+            $table->string('ticket', 50)->nullable();
+            $table->unsignedBigInteger('centro_costos_id');
+            $table->foreign('centro_costos_id', 'fk_empleado_centro_costos')->references('id')->on('centro_costos')->onDelete('restrict')->onUpdate('restrict');
+            $table->string('estado', 255);
             $table->timestamps();
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_spanish_ci';
         });
     }
 

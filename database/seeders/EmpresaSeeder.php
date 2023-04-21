@@ -22,6 +22,7 @@ class EmpresaSeeder extends Seeder
             '3tCapital',
             'Hicome',
             'Cymetria',
+            'N/A',
 
         ];
 
