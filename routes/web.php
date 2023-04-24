@@ -32,6 +32,7 @@ use App\Http\Controllers\Intranet\Empresa\ProveedoresRentadosController;
 use App\Http\Controllers\Intranet\Empresa\SubCentrosCostosController;
 use App\Http\Controllers\Intranet\Empresa\EmpresaController;
 use App\Http\Controllers\Intranet\Empresa\GestionaController;
+use App\Http\Controllers\Intranet\Empresa\RetiroController;
 use App\Models\Admin\Usuario;
 
 /*
@@ -315,10 +316,11 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('empleados/{id}/editar', [EmpleadoController::class,'editar',])->name('empleados-editar');
             Route::put('empleados/{id}', [EmpleadoController::class,'actualizar',])->name('empleados-actualizar');
             Route::delete('empleados/{id}', [EmpleadoController::class,'eliminar',])->name('empleados-eliminar');
-
             Route::get('empleados/{id}/retirar', [EmpleadoController::class,'retirar_empleado',])->name('empleados-retirar');
             Route::post('empleados/{id}/retirar', [EmpleadoController::class,'retiro_empleado',])->name('empleados-retiro');
             Route::get('empleados/retiro_confirmacion', [EmpleadoController::class,'retiro_confirmacion',])->name('retiro_confirmacion');
+            // Ruta Administrador empleados
+            Route::get('retiros', [RetiroController::class,'index',])->name('retiros');
 
     });
 });

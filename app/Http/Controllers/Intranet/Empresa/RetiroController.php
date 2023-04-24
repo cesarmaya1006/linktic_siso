@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Models\Empresa\Retiro;
 use App\Http\Controllers\Controller;
+use App\Models\Empresa\Empleado;
 use Illuminate\Http\Request;
 
 class RetiroController extends Controller
@@ -15,7 +16,8 @@ class RetiroController extends Controller
      */
     public function index()
     {
-        //
+        $empleados = Retiro::get();
+        return view('intranet.empresa.retiros.index', compact('empleados'));
     }
 
     /**

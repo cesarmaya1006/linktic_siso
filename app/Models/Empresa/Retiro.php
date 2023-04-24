@@ -11,4 +11,5 @@ class Retiro extends Model
     use HasFactory,Notifiable;
     protected $table = "retiros";
     protected $guarded = ['id'];
+
 }
