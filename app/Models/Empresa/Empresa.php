@@ -11,4 +11,10 @@ class Empresa extends Model
     use HasFactory,Notifiable;
     protected $table = "empresas";
     protected $guarded = ['id'];
+    //----------------------------------------------------------------------------------
+    public function empleados()
+    {
+        return $this->hasMany(Empleado::class, 'empresas_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
 }

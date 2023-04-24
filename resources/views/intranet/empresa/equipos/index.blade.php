@@ -6,7 +6,7 @@
 @endsection
 <!-- Pagina CSS -->
 @section('estilosHojas')
-    <<link rel="stylesheet" href="{{ asset('DataTables/Responsive-2.4.1/css/responsive.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('DataTables/Responsive-2.4.1/css/responsive.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('DataTables/Buttons-2.3.6/css/buttons.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('DataTables/Buttons-2.3.6/css/buttons.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dataTable/buttons.dataTables.min.css') }}">

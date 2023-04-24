@@ -23,4 +23,10 @@ class CentroCosto extends Model
         return $this->hasMany(EquipoRentado::class, 'centro_costo_id', 'id');
     }
     //----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
+    public function empleados()
+    {
+        return $this->hasMany(Empleado::class, 'centro_costos_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
 }

@@ -15,7 +15,8 @@ class CreateEmpleadosTable extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->bigIncrements('id')->autoIncrement();
-            $table->string('empresa', 255)->default('N/A');
+            $table->unsignedBigInteger('empresas_id')->default(7);
+            $table->foreign('empresas_id', 'fk_empleado_empresas')->references('id')->on('empresas')->onDelete('restrict')->onUpdate('restrict');
             $table->string('cargo', 255)->nullable();
             $table->string('usuario', 255);
             $table->string('cedula', 50)->unique()->nullable();
@@ -28,7 +29,7 @@ class CreateEmpleadosTable extends Migration
             $table->string('ticket', 50)->nullable();
             $table->unsignedBigInteger('centro_costos_id');
             $table->foreign('centro_costos_id', 'fk_empleado_centro_costos')->references('id')->on('centro_costos')->onDelete('restrict')->onUpdate('restrict');
-            $table->string('estado', 255);
+            $table->string('estado', 255)->default('Activo');
             $table->timestamps();
             $table->charset = 'utf8';
             $table->collation = 'utf8_spanish_ci';

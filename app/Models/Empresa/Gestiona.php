@@ -11,4 +11,10 @@ class Gestiona extends Model
     use HasFactory,Notifiable;
     protected $table = "gestionas";
     protected $guarded = ['id'];
+    //----------------------------------------------------------------------------------
+    public function empleados()
+    {
+        return $this->hasMany(Empleado::class, 'gestionas_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
 }

@@ -23,7 +23,6 @@ class EmpresaSeeder extends Seeder
             'Hicome',
             'Cymetria',
             'N/A',
-
         ];
 
         foreach ($empresas as $key => $value) {
