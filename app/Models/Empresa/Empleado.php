@@ -33,4 +33,31 @@ class Empleado extends Model
         return $this->belongsTo(Empresa::class, 'empresas_id', 'id');
     }
     //----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
+    public function equiposrentados()
+    {
+        return $this->belongsToMany(EquipoRentado::class, 'empleado_equipo_rentados');
+    }
+    //----------------------------------------------------------------------------------
+    public function cuentas_corporativas()
+    {
+        return $this->belongsToMany(CuentaCorporativa::class, 'empleado_cuentas');
+    }
+    //----------------------------------------------------------------------------------
+    public function cuentas_empleados()
+    {
+        return $this->hasMany(EmpleadoCuentas::class, 'empleado_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+    public function licencias_empleado()
+    {
+        return $this->hasMany(EmpleadoLicencia::class, 'empleado_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+    public function licencias_corporativas()
+    {
+        return $this->belongsToMany(Licencia::class, 'empleado_licencias');
+    }
+    //----------------------------------------------------------------------------------
+
 }

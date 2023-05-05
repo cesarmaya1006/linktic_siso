@@ -27,7 +27,8 @@
     "jszip": "^3.10.1",
     "pdfmake": "^0.2.7",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.7.3"
+    "sweetalert2": "^11.7.3",
+    "trmcol": "^2.0.2"
   },
   "name": "carnet_back",
   "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\"></a></p>",

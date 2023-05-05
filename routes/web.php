@@ -19,6 +19,7 @@ use App\Http\Controllers\Intranet\Admin\ContratoController;
 use App\Http\Controllers\Intranet\Admin\EstadoController;
 use App\Http\Controllers\Intranet\Empresa\CaracteristicasController;
 use App\Http\Controllers\Intranet\Empresa\CentrosCostosController;
+use App\Http\Controllers\Intranet\Empresa\CuentaCorporativaController;
 use App\Http\Controllers\Intranet\Empresa\EmpleadoController;
 use App\Http\Controllers\Intranet\Empresa\EquipoController;
 use App\Http\Controllers\Intranet\Empresa\EquiposRentadosAsignacionController;
@@ -319,8 +320,21 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('empleados/{id}/retirar', [EmpleadoController::class,'retirar_empleado',])->name('empleados-retirar');
             Route::post('empleados/{id}/retirar', [EmpleadoController::class,'retiro_empleado',])->name('empleados-retiro');
             Route::get('empleados/retiro_confirmacion', [EmpleadoController::class,'retiro_confirmacion',])->name('retiro_confirmacion');
+            Route::get('empleados/get_cuentas_corporativas/{id}', [EmpleadoController::class,'get_cuentas_corporativas',])->name('get_cuentas_corporativas');
+            Route::get('empleados/get_licencias_corporativas/{id}', [EmpleadoController::class,'get_licencias_corporativas',])->name('get_licencias_corporativas');
+            Route::post('licencias-corporativas/{empleado_id}/{licencia_id}/asignar', [EmpleadoController::class, 'asignar_licencias'])->name('admin-licencias_corporativas-asignar');
             // Ruta Administrador empleados
             Route::get('retiros', [RetiroController::class,'index',])->name('retiros');
+            //Rutas Empleados/equipos rentados
+            Route::get('empleados/equipos_rentados/{id}/asignar', [EmpleadoController::class,'equipos_rentados_asignar',])->name('equipos_rentados_asignar');
+            // Rutas cuentas corporativas
+            Route::get('cuentas-corporativas', [CuentaCorporativaController::class,'index',])->name('admin-cuentas_corporativas');
+            Route::get('cuentas-corporativas-crear', [CuentaCorporativaController::class,'crear',])->name('admin-cuentas_corporativas-crear');
+            Route::post('cuentas-corporativas', [CuentaCorporativaController::class, 'guardar'])->name('admin-cuentas_corporativas-guardar');
+            Route::get('cuentas-corporativas/{id}/editar', [CuentaCorporativaController::class,'editar',])->name('admin-cuentas_corporativas-editar');
+            Route::put('cuentas-corporativas/{id}', [CuentaCorporativaController::class,'actualizar',])->name('admin-cuentas_corporativas-actualizar');
+            Route::delete('cuentas-corporativas/{id}', [CuentaCorporativaController::class,'eliminar',])->name('admin-cuentas_corporativas-eliminar');
+            Route::post('cuentas-corporativas/{empleado_id}/{cuenta_corporativa_id}/asignar', [CuentaCorporativaController::class, 'asignar'])->name('admin-cuentas_corporativas-asignar');
 
     });
 });

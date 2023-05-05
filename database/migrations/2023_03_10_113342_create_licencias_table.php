@@ -15,12 +15,7 @@ class CreateLicenciasTable extends Migration
     {
         Schema::create('licencias', function (Blueprint $table) {
             $table->bigIncrements('id')->autoIncrement();
-            $table->unsignedBigInteger('categoria_id');
-            $table->foreign('categoria_id', 'fk_categoria_licencia')->references('id')->on('categorias')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedBigInteger('estado_elemento_id');
-            $table->foreign('estado_elemento_id', 'fk_estado_licencia')->references('id')->on('estado_elementos')->onDelete('restrict')->onUpdate('restrict');
             $table->text('licencia', 255);
-            $table->text('pertenencia', 50);
             $table->text('proveedor', 255)->nullable();
             $table->text('fabricante', 255)->nullable();
             $table->text('serial', 255)->nullable();

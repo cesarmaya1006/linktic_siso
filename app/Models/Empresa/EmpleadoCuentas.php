@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Licencia extends Model
+class EmpleadoCuentas extends Model
 {
     use HasFactory,Notifiable;
-    protected $table = "licencias";
+    protected $table = "empleado_cuentas";
     protected $guarded = ['id'];
+
 }

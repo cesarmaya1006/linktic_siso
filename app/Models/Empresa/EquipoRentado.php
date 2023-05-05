@@ -48,4 +48,10 @@ class EquipoRentado extends Model
         return $this->hasMany(AsignacionRentado::class, 'equipo_rentado_id', 'id');
     }
     //----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
+    public function usuariosrentados()
+    {
+        return $this->belongsToMany(Empleado::class, 'empleado_equipo_rentados');
+    }
+    //----------------------------------------------------------------------------------
 }

@@ -76,8 +76,9 @@ class Tabla_Menu extends Seeder
             //------------------------------------------------------------------------------------------------------------
             //36
             ['nombre' =>  'Parametros', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '7', 'icono' =>  'fas fa-cog'],
-
             //----------------------------------------------------------------------------------------------------------------------
+            ['nombre' =>  'Cuentas Corporativas', 'menu_id' => $menu_linea_3, 'url' =>  'admin/cuentas-corporativas', 'orden' => '14', 'icono' =>  'fas fa-address-card'],
+
 
         ];
         foreach ($menus as $menu) {

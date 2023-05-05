@@ -116,4 +116,23 @@ $semaforo = 'green';
 }
 echo $semaforo;
 }
+
+
+function trm(){
+    $date = date("Y-m-d");//Fecha actual
+    try {
+        $soap = new soapclient("https://www.superfinanciera.gov.co/SuperfinancieraWebServiceTRM/TCRMServicesWebService/TCRMServicesWebService?WSDL", array(
+            'soap_version'   => SOAP_1_1,
+            'trace' => 1,
+            "location" => "http://www.superfinanciera.gov.co/SuperfinancieraWebServiceTRM/TCRMServicesWebService/TCRMServicesWebService",
+        ));
+        $response = $soap->queryTCRM(array('tcrmQueryAssociatedDate' => $date));
+        $response = $response->return;
+        if($response->success){
+            return $response->value;
+        }
+    } catch(Exception $e){
+        return $e->getMessage();
+    }
+}
 ?>
