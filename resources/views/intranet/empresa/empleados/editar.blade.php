@@ -23,12 +23,19 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
+<<<<<<< HEAD
 
 
         <div class="card-body">
             <form action="{{ route('empleados-actualizar', ['id' => $empleado->id]) }}" class="form-horizontal" method="POST">
                 @csrf
                 @method('put')
+=======
+        <form action="{{ route('correos-actualizar', ['id' => $empleado->id]) }}" class="form-horizontal" method="POST">
+            @csrf
+            @method('put')
+            <div class="card-body">
+>>>>>>> 632e140 (se suben archivos por primera vez)
                 @include('intranet.empresa.empleados.form')
             </form>
             <hr>

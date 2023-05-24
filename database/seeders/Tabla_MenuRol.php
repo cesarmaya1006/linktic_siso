@@ -44,7 +44,11 @@ class Tabla_MenuRol extends Seeder
             ['rol_id' => '2', 'menu_id' => '13'],
             ['rol_id' => '2', 'menu_id' => '14'],
         ];
+<<<<<<< HEAD
         for ($i=1; $i <42; $i++) {
+=======
+        for ($i=1; $i < 42; $i++) {
+>>>>>>> 632e140 (se suben archivos por primera vez)
             DB::table('menu_rol')->insert([
                 'rol_id' => '1',
                 'menu_id' => $i,

@@ -19,7 +19,13 @@ use App\Http\Controllers\Intranet\Admin\ContratoController;
 use App\Http\Controllers\Intranet\Admin\EstadoController;
 use App\Http\Controllers\Intranet\Empresa\CaracteristicasController;
 use App\Http\Controllers\Intranet\Empresa\CentrosCostosController;
+<<<<<<< HEAD
 use App\Http\Controllers\Intranet\Empresa\CuentaCorporativaController;
+=======
+use App\Http\Controllers\Intranet\Empresa\CorreoController;
+use App\Http\Controllers\Intranet\Empresa\DominioCorreoController;
+use App\Http\Controllers\Intranet\Empresa\DominioDaddyController;
+>>>>>>> 632e140 (se suben archivos por primera vez)
 use App\Http\Controllers\Intranet\Empresa\EmpleadoController;
 use App\Http\Controllers\Intranet\Empresa\EquipoController;
 use App\Http\Controllers\Intranet\Empresa\EquiposRentadosAsignacionController;
@@ -33,11 +39,16 @@ use App\Http\Controllers\Intranet\Empresa\ProveedoresRentadosController;
 use App\Http\Controllers\Intranet\Empresa\SubCentrosCostosController;
 use App\Http\Controllers\Intranet\Empresa\EmpresaController;
 use App\Http\Controllers\Intranet\Empresa\GestionaController;
+<<<<<<< HEAD
 use App\Http\Controllers\Intranet\Empresa\MatrizCargoController;
 use App\Http\Controllers\Intranet\Empresa\MatrizCuentaCorporativaController;
 use App\Http\Controllers\Intranet\Empresa\MatrizPerfilController;
+=======
+use App\Http\Controllers\Intranet\Empresa\PagoCorreosController;
+>>>>>>> 632e140 (se suben archivos por primera vez)
 use App\Http\Controllers\Intranet\Empresa\RetiroController;
 use App\Models\Admin\Usuario;
+use App\Models\Intranet\Empresa\DominioCorreo;
 
 /*
 |--------------------------------------------------------------------------
@@ -313,7 +324,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::delete('asignacion_equipos_rentados/{id}', [EquiposRentadosAsignacionController::class,'eliminar',])->name('admin-equipos_rentados_asignacion-eliminar');
             // ------------------------------------------------------------------------------------
             // ------------------------------------------------------------------------------------
-            // Ruta Administrador empleados
+            // Ruta Administrador
             Route::get('empleados', [EmpleadoController::class,'index',])->name('empleados');
             Route::get('empleados-crear', [EmpleadoController::class,'crear',])->name('empleados-crear');
             Route::post('empleados', [EmpleadoController::class, 'guardar'])->name('empleados-guardar');
@@ -333,6 +344,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('licencias-corporativas/{empleado_id}/{licencia_id}/asignar', [EmpleadoController::class, 'asignar_licencias'])->name('admin-licencias_corporativas-asignar');
             // Ruta Administrador empleados
             Route::get('retiros', [RetiroController::class,'index',])->name('retiros');
+<<<<<<< HEAD
             // Ruta Administrador cargos
             Route::get('matriz_cargos', [MatrizCargoController::class,'index',])->name('matriz_cargos');
             Route::get('matriz_cargos-crear', [MatrizCargoController::class,'crear',])->name('admin-matriz_cargos-crear');
@@ -379,7 +391,46 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('cuentas-corporativas/{id}', [CuentaCorporativaController::class,'actualizar',])->name('admin-cuentas_corporativas-actualizar');
             Route::delete('cuentas-corporativas/{id}', [CuentaCorporativaController::class,'eliminar',])->name('admin-cuentas_corporativas-eliminar');
             Route::post('cuentas-corporativas/{empleado_id}/{cuenta_corporativa_id}/asignar', [CuentaCorporativaController::class, 'asignar'])->name('admin-cuentas_corporativas-asignar');
+=======
+                  // ------------------------------------------------------------------------------------
+           
+>>>>>>> 632e140 (se suben archivos por primera vez)
 
     });
+     // Ruta Administrador del Sistema Correos
+     Route::get('correos', [CorreoController::class,'index',])->name('correos');
+     Route::get('correos-create', [CorreoController::class,'create',])->name('correos-create');
+     Route::post('correos-store', [CorreoController::class, 'store'])->name('admin-correos-store');
+     Route::get('correos/{id}/editar', [CorreoController::class,'update',])->name('admin-correos-editar');
+     Route::put('correos/{id}', [CorreoController::class,'edit',])->name('correos-actualizar');
+     Route::delete('correos/{id}', [CorreoController::class,'destroy',])->name('admin-correos-eliminar');
+
+       // Ruta Administrador de pagos. mover el controlador
+       Route::get('pagos', [PagoCorreosController::class,'index',])->name('pagos');
+       Route::get('pagos-create', [PagoCorreosController::class,'create',])->name('pagos-create');
+       Route::post('pagos-store', [PagoCorreosController::class, 'store'])->name('admin-pagos-store');
+       Route::get('pagos/{id}/editar', [PagoCorreosController::class,'update',])->name('pagos-editar');
+       Route::put('pagos/{id}', [PagoCorreosController::class,'edit',])->name('pagos-actualizar');
+       Route::delete('pagos/{id}', [PagoCorreosController::class,'destroy',])->name('pagos-eliminar');
+
+
+
+         // Ruta Administrador de las rutas
+         Route::get('dominios', [DominioCorreoController::class,'index',])->name('dominios');
+         Route::get('dominios-create', [DominioCorreoController::class,'create',])->name('dominios-create');
+         Route::post('dominios-store', [DominioCorreoController::class, 'store'])->name('admin-dominios-store');
+         Route::get('dominios/{id}/editar', [DominioCorreoController::class,'update',])->name('admin-dominios-editar');
+         Route::put('dominios/{id}', [DominioCorreoController::class,'edit',])->name('dominios-actualizar');
+         Route::delete('dominios/{id}', [DominioCorreoController::class,'destroy',])->name('admin-dominios-eliminar');
+
+
+            // Ruta Administrador de las rutas
+            Route::get('dominiosDaddy', [DominioDaddyController::class,'index',])->name('dominiosDaddy');
+            Route::get('dominiosDaddy-create', [DominioDaddyController::class,'create',])->name('dominiosDaddy-create');
+            Route::post('dominiosDaddy-store', [DominioDaddyController::class, 'store'])->name('admin-dominiosDaddy-store');
+            Route::get('dominiosDaddy/{id}/editar', [DominioDaddyController::class,'update',])->name('admin-dominiosDaddy-editar');
+            Route::put('dominiosDaddy/{id}', [DominioDaddyController::class,'edit',])->name('dominiosDaddy-actualizar');
+            Route::delete('dominiosDaddy/{id}', [DominioDaddyController::class,'destroy',])->name('admin-dominiosDaddy-eliminar');
+   
 });
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
