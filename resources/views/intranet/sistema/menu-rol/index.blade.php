@@ -37,8 +37,8 @@
                     <tbody>
                         @foreach ($menus as $key => $menu)
                             @if ($menu['menu_id'] != 0)
-                            @break
-                        @endif
+                                @break
+                            @endif
                         <tr>
                             <td class="font-weight-bold" style="width:1px;white-space:nowrap;"><i
                                     class="fa fa-arrows-alt"></i>

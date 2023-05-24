@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class EmpleadoEquipoRentado extends Model
+class EmpleadoImpresora extends Model
 {
     use HasFactory,Notifiable;
-    protected $table = "empleado_equipo_rentados";
+    protected $table = "empleado_impresoras";
     protected $guarded = ['id'];
 }

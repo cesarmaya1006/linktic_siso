@@ -20,6 +20,7 @@ class CreateEmpleadosTable extends Migration
             $table->string('cargo', 255)->nullable();
             $table->string('usuario', 255);
             $table->string('cedula', 50)->unique()->nullable();
+            $table->string('usuario_glpi', 50)->unique()->nullable();
             $table->string('telefono', 50)->nullable();
             $table->unsignedBigInteger('gestionas_id');
             $table->foreign('gestionas_id', 'fk_empleado_gestionas')->references('id')->on('gestionas')->onDelete('restrict')->onUpdate('restrict');

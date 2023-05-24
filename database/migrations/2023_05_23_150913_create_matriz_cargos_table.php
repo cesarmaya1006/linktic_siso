@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmpleadoMonitoresTable extends Migration
+class CreateMatrizCargosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateEmpleadoMonitoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('empleado_monitores', function (Blueprint $table) {
+        Schema::create('matriz_cargos', function (Blueprint $table) {
             $table->bigIncrements('id')->autoIncrement();
-            $table->unsignedBigInteger('empleado_id');
-            $table->foreign('empleado_id', 'fk_empleados_monitores')->references('id')->on('empleados')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedBigInteger('glpi_monitors_id');
+            $table->string('cargo', 255);
             $table->timestamps();
             $table->charset = 'utf8';
             $table->collation = 'utf8_spanish_ci';
@@ -31,6 +29,6 @@ class CreateEmpleadoMonitoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empleado_monitores');
+        Schema::dropIfExists('matriz_cargos');
     }
 }

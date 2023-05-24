@@ -21,7 +21,7 @@ class Tabla_Menu extends Seeder
         $menu_linea_3 =8;
         $menu_linea_4 =22;
         $menu_linea_5 =28;
-        $menu_linea_6 =31;
+        $menu_linea_6 =35;
         $menus = [
             // Menus padre
             //1
@@ -63,18 +63,22 @@ class Tabla_Menu extends Seeder
 
             //------------------------------------------------------------------------------------------------------------
             //28
-            ['nombre' =>  'Empleados', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '5', 'icono' =>  'fas fa-bezier-curve'],
+            ['nombre' =>  'Menu Matrices', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '5', 'icono' =>  'fas fa-bezier-curve'],
             ['nombre' =>  'Matriz Empleados', 'menu_id' => $menu_linea_5, 'url' =>  'admin/empleados', 'orden' => '1', 'icono' =>  'fas fa-user-tie'],
             ['nombre' =>  'Matriz de Retiros', 'menu_id' => $menu_linea_5, 'url' =>  'admin/retiros', 'orden' => '2', 'icono' =>  'fas fa-user-alt-slash'],
+            ['nombre' =>  'Matriz de Cargos', 'menu_id' => $menu_linea_5, 'url' =>  'admin/matriz_cargos', 'orden' => '3', 'icono' =>  'fas fa-sitemap'],
+            ['nombre' =>  'Matriz de Perfiles', 'menu_id' => $menu_linea_5, 'url' =>  'admin/matriz_perfiles', 'orden' => '4', 'icono' =>  'far fa-user-circle'],
+            ['nombre' =>  'Matriz Cuentas Corporativas', 'menu_id' => $menu_linea_5, 'url' =>  'admin/matriz_cuentas_corporativas', 'orden' => '5', 'icono' =>  'far fa-address-card'],
+            ['nombre' =>  'Matriz Cargos Perfiles', 'menu_id' => $menu_linea_5, 'url' =>  'admin/matriz_cargos_perfiles', 'orden' => '6', 'icono' =>  'fas fa-user-friends'],
             //------------------------------------------------------------------------------------------------------------
-            //31
+            //35
             ['nombre' =>  'Otras opciones', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '6', 'icono' =>  'fas fa-question-circle'],
             ['nombre' =>  'Nuestas políticas de datos', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/consulta-politicas', 'orden' => '1', 'icono' =>  'fas fa-question-circle'],
             ['nombre' =>  'Ayuda', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/ayuda', 'orden' => '2', 'icono' =>  'fas fa-question-circle'],
             ['nombre' =>  'Actualizar datos', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/actualizar-datos', 'orden' => '3', 'icono' =>  'fas fa-edit'],
             ['nombre' =>  'Cambiar contraseña', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/cambiar-password', 'orden' => '4', 'icono' =>  'fas fa-key'],
             //------------------------------------------------------------------------------------------------------------
-            //36
+            //40
             ['nombre' =>  'Parametros', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '7', 'icono' =>  'fas fa-cog'],
             //----------------------------------------------------------------------------------------------------------------------
             ['nombre' =>  'Cuentas Corporativas', 'menu_id' => $menu_linea_3, 'url' =>  'admin/cuentas-corporativas', 'orden' => '14', 'icono' =>  'fas fa-address-card'],

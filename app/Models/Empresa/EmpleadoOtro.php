@@ -6,20 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class RentadoEstado extends Model
+class EmpleadoOtro extends Model
 {
     use HasFactory,Notifiable;
-    protected $table = "rentado_estados";
+    protected $table = "empleado_otros";
     protected $guarded = ['id'];
     //----------------------------------------------------------------------------------
-    public function equipos()
+    public function empleado()
     {
-        return $this->hasMany(EquipoRentado::class, 'rentado_estado_id', 'id');
+        return $this->belongsTo(Empleado::class, 'empleado_id', 'id');
     }
     //----------------------------------------------------------------------------------
-    public function otros()
+    public function estado_siso()
     {
-        return $this->hasMany(EmpleadoOtro::class, 'otro_estado_id', 'id');
+        return $this->belongsTo(RentadoEstado::class, 'otro_estado_id', 'id');
     }
     //----------------------------------------------------------------------------------
 }

@@ -14,10 +14,13 @@ class CreateEmpleadoEquipoRentadosTable extends Migration
     public function up()
     {
         Schema::create('empleado_equipo_rentados', function (Blueprint $table) {
+            $table->bigIncrements('id')->autoIncrement();
             $table->unsignedBigInteger('empleado_id');
             $table->foreign('empleado_id', 'fk_empleados_equipo_rentados')->references('id')->on('empleados')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedBigInteger('equipo_rentado_id');
+            $table->unsignedBigInteger('equipo_rentado_id')->nullable();
             $table->foreign('equipo_rentado_id', 'fk_equipo_rentados_empleados')->references('id')->on('equipo_rentados')->onDelete('restrict')->onUpdate('restrict');
+            $table->unsignedBigInteger('glpi_computers_id')->nullable();
+            $table->timestamps();
             $table->charset = 'utf8';
             $table->collation = 'utf8_spanish_ci';
         });

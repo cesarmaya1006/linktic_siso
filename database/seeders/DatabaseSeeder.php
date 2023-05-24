@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'dominio_empresas', 'usuarios','permiso_cargos','categorias','matriz_caracteristicas','proveedor_rentados',
             'centro_costos','sub_centro_costos','rentado_responsables','rentado_asignados','rentado_estados','rentado_tipos',
             'equipo_rentados','asignacion_rentados','gestionas','empresas','empleados','retiros','cuenta_corporativas','empleado_cuentas',
-            'licencias']);
+            'licencias','matriz_cargos','matriz_perfis']);
         // --------------------------------------------------------------------------------------------------
         $this->call(Tabla_DocuTipos::class);
         $this->call(Tabla_Roles::class);
@@ -54,6 +54,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CuentaCorporativaSeeder::class);
         $this->call(EmpleadoCuentasSeeder::class);
         $this->call(Tabla_Licencias::class);
+        $this->call(MatrizCargoSeeder::class);
+        $this->call(MatrizPerfiSeeder::class);
 
     }
 

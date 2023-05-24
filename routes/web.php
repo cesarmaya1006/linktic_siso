@@ -33,6 +33,9 @@ use App\Http\Controllers\Intranet\Empresa\ProveedoresRentadosController;
 use App\Http\Controllers\Intranet\Empresa\SubCentrosCostosController;
 use App\Http\Controllers\Intranet\Empresa\EmpresaController;
 use App\Http\Controllers\Intranet\Empresa\GestionaController;
+use App\Http\Controllers\Intranet\Empresa\MatrizCargoController;
+use App\Http\Controllers\Intranet\Empresa\MatrizCuentaCorporativaController;
+use App\Http\Controllers\Intranet\Empresa\MatrizPerfilController;
 use App\Http\Controllers\Intranet\Empresa\RetiroController;
 use App\Models\Admin\Usuario;
 
@@ -320,13 +323,54 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('empleados/{id}/retirar', [EmpleadoController::class,'retirar_empleado',])->name('empleados-retirar');
             Route::post('empleados/{id}/retirar', [EmpleadoController::class,'retiro_empleado',])->name('empleados-retiro');
             Route::get('empleados/retiro_confirmacion', [EmpleadoController::class,'retiro_confirmacion',])->name('retiro_confirmacion');
+            Route::get('empleados/get_equipos_rentados/{id}', [EmpleadoController::class,'get_equipos_rentados',])->name('get_equipos_rentados');
+            Route::get('empleados/get_equipos_propios/{id}', [EmpleadoController::class,'get_equipos_propios',])->name('get_equipos_propios');
             Route::get('empleados/get_cuentas_corporativas/{id}', [EmpleadoController::class,'get_cuentas_corporativas',])->name('get_cuentas_corporativas');
             Route::get('empleados/get_licencias_corporativas/{id}', [EmpleadoController::class,'get_licencias_corporativas',])->name('get_licencias_corporativas');
+            Route::get('empleados/get_impresoras/{id}', [EmpleadoController::class,'get_impresoras',])->name('get_impresoras');
+            Route::get('empleados/get_monitores/{id}', [EmpleadoController::class,'get_monitores',])->name('get_monitores');
+            Route::get('empleados/get_otros/{id}', [EmpleadoController::class,'get_otros',])->name('get_otros');
             Route::post('licencias-corporativas/{empleado_id}/{licencia_id}/asignar', [EmpleadoController::class, 'asignar_licencias'])->name('admin-licencias_corporativas-asignar');
             // Ruta Administrador empleados
             Route::get('retiros', [RetiroController::class,'index',])->name('retiros');
+            // Ruta Administrador cargos
+            Route::get('matriz_cargos', [MatrizCargoController::class,'index',])->name('matriz_cargos');
+            Route::get('matriz_cargos-crear', [MatrizCargoController::class,'crear',])->name('admin-matriz_cargos-crear');
+            Route::post('matriz_cargos', [MatrizCargoController::class, 'guardar'])->name('admin-matriz_cargos-guardar');
+            Route::get('matriz_cargos/{id}/editar', [MatrizCargoController::class,'editar',])->name('admin-matriz_cargos-editar');
+            Route::put('matriz_cargos/{id}', [MatrizCargoController::class,'actualizar',])->name('admin-matriz_cargos-actualizar');
+            Route::delete('matriz_cargos/{id}', [MatrizCargoController::class,'eliminar',])->name('admin-matriz_cargos-eliminar');
+            // Ruta Administrador perfilES
+            Route::get('matriz_perfiles', [MatrizPerfilController::class,'index',])->name('matriz_perfiles');
+            Route::get('matriz_perfiles-crear', [MatrizPerfilController::class,'crear',])->name('admin-matriz_perfiles-crear');
+            Route::post('matriz_perfiles', [MatrizPerfilController::class, 'guardar'])->name('admin-matriz_perfiles-guardar');
+            Route::get('matriz_perfiles/{id}/editar', [MatrizPerfilController::class,'editar',])->name('admin-matriz_perfiles-editar');
+            Route::put('matriz_perfiles/{id}', [MatrizPerfilController::class,'actualizar',])->name('admin-matriz_perfiles-actualizar');
+            Route::delete('matriz_perfiles/{id}', [MatrizPerfilController::class,'eliminar',])->name('admin-matriz_perfiles-eliminar');
+            // Ruta Administrador Matriz Cuentas Corporativas
+            Route::get('matriz_cuentas_corporativas', [MatrizCuentaCorporativaController::class,'index',])->name('matriz_cuentas_corporativas');
+            Route::post('matriz_cuentas_corporativas-asignacion/{matriz_cargo_id}/{cuenta_corporativa_id}', [MatrizCuentaCorporativaController::class,'asignacion',])->name('matriz_cuentas_corporativas_asignacion');
+            Route::post('matriz_cuentas_corporativas-desasignacion/{matriz_cargo_id}/{cuenta_corporativa_id}', [MatrizCuentaCorporativaController::class,'desasignacion',])->name('matriz_cuentas_corporativas_desasignacion');
+            // Ruta Administrador Matriz Cargos Perfiles
+            Route::get('matriz_cargos_perfiles', [MatrizCuentaCorporativaController::class,'index',])->name('matriz_cargo_perfiles');
+            Route::post('matriz_cargos_perfiles-asignacion/{matriz_cargo_id}/{cuenta_corporativa_id}', [MatrizCuentaCorporativaController::class,'asignacion',])->name('matriz_cargos_perfiles_asignacion');
+            Route::post('matriz_cargos_perfiles-desasignacion/{matriz_cargo_id}/{cuenta_corporativa_id}', [MatrizCuentaCorporativaController::class,'desasignacion',])->name('matriz_cargos_perfiles_desasignacion');
+
             //Rutas Empleados/equipos rentados
             Route::get('empleados/equipos_rentados/{id}/asignar', [EmpleadoController::class,'equipos_rentados_asignar',])->name('equipos_rentados_asignar');
+            Route::post('empleados/equipos_rentados/{empleado_id}/{equipo_rentado_id}/asignacion', [EmpleadoController::class,'equipos_rentados_asignacion',])->name('equipos_rentados_asignacion');
+            //Rutas Empleados/impresoras
+            Route::get('empleados/impresoras/{id}/asignar', [EmpleadoController::class,'impresoras_asignar',])->name('impresoras_asignar');
+            Route::post('empleados/impresoras/{empleado_id}/{glpi_printers_id}/asignacion', [EmpleadoController::class,'impresoras_asignacion',])->name('impresoras_asignacion');
+            //Rutas Empleados/monitores
+            Route::get('empleados/monitores/{id}/asignar', [EmpleadoController::class,'monitores_asignar',])->name('monitores_asignar');
+            Route::post('empleados/monitores/{empleado_id}/{glpi_monitors_id}/asignacion', [EmpleadoController::class,'monitores_asignacion',])->name('monitores_asignacion');
+            //Rutas Empleados/Otros Elementos
+            Route::get('empleados/otros/{id}/asignar', [EmpleadoController::class,'otros_asignar',])->name('otros_asignar');
+            Route::post('empleados/otros/asignacion/{id}', [EmpleadoController::class,'otros_asignacion',])->name('otros_asignacion');
+            //Rutas Empleados/equipos propios
+            Route::get('empleados/equipos_propios/{id}/asignar', [EmpleadoController::class,'equipos_propios_asignar',])->name('equipos_propios_asignar');
+            Route::post('empleados/equipos_propios/{empleado_id}/{glpi_computers_id}/asignacion', [EmpleadoController::class,'equipos_propios_asignacion',])->name('equipos_propios_asignacion');
             // Rutas cuentas corporativas
             Route::get('cuentas-corporativas', [CuentaCorporativaController::class,'index',])->name('admin-cuentas_corporativas');
             Route::get('cuentas-corporativas-crear', [CuentaCorporativaController::class,'crear',])->name('admin-cuentas_corporativas-crear');

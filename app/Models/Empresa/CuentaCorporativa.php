@@ -21,4 +21,10 @@ class CuentaCorporativa extends Model
         return $this->hasMany(EmpleadoCuentas::class, 'cuenta_corporativa_id', 'id');
     }
     //----------------------------------------------------------------------------------
+    //==================================================================================
+    public function cargos()
+    {
+        return $this->belongsToMany(MatrizCargo::class,'matriz_cuentas_corporativas');
+    }
+    //==================================================================================
 }

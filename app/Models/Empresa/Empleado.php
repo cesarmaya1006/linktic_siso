@@ -34,6 +34,22 @@ class Empleado extends Model
     }
     //----------------------------------------------------------------------------------
     //----------------------------------------------------------------------------------
+    public function equipospropios()
+    {
+        return $this->hasMany(EmpleadoEquipoRentado::class, 'empleado_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+    public function impresoras()
+    {
+        return $this->hasMany(EmpleadoImpresora::class, 'empleado_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+    public function monitores()
+    {
+        return $this->hasMany(EmpleadoMonitores::class, 'empleado_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
     public function equiposrentados()
     {
         return $this->belongsToMany(EquipoRentado::class, 'empleado_equipo_rentados');
@@ -57,6 +73,12 @@ class Empleado extends Model
     public function licencias_corporativas()
     {
         return $this->belongsToMany(Licencia::class, 'empleado_licencias');
+    }
+    //----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
+    public function otros()
+    {
+        return $this->hasMany(EmpleadoOtro::class, 'empleado_id', 'id');
     }
     //----------------------------------------------------------------------------------
 
