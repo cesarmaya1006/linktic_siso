@@ -13,19 +13,11 @@
     <link rel="stylesheet" href="{{ asset('css/extranet/general.css') }}">
     <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css') }}">
-<<<<<<< .merge_file_PbN8A0
     <title>Siso - LinkTic</title>
     @yield('css_pagina')
     <style>
         body {
             background-image: linear-gradient(to bottom right, #00E1FF, #009CFF, #008500 80%);
-=======
-    <title>LinkTic Siso</title>
-    @yield('css_pagina')
-    <style>
-        body {
-            background-image: linear-gradient(to bottom right, #1DD600, #00E1FF, #009CFF 85%);
->>>>>>> .merge_file_E1fWF4
             /* background-image: linear-gradient(to right, {{ $parametro->fondo1 }}, {{ $parametro->fondo2 }}); */
             /* background-image: url({{ asset('imagenes/img-inicio/img-principal-inicio4.jpg') }});
             background-size: cover; */
