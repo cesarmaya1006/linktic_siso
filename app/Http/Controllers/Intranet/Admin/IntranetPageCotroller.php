@@ -10,6 +10,8 @@ use App\Models\Admin\Usuario;
 use App\Models\PQR\AsignacionTarea;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidarPassword;
+use App\Models\Empresa\EquipoRentado;
+use App\Models\Empresa\RentadoEstado;
 
 class IntranetPageCotroller extends Controller
 {
@@ -21,7 +23,9 @@ class IntranetPageCotroller extends Controller
     public function index()
     {
         $usuario = Usuario::findOrFail(session('id_usuario'));
-        return view('intranet.index.index', compact('usuario'));
+        $equiposRentados = EquipoRentado::get();
+        $estado_rentados = RentadoEstado::get();
+        return view('intranet.index.index', compact('usuario','equiposRentados','estado_rentados'));
     }
 
     public function restablecer_password(ValidarPassword $request)
