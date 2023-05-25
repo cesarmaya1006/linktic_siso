@@ -19,13 +19,10 @@ use App\Http\Controllers\Intranet\Admin\ContratoController;
 use App\Http\Controllers\Intranet\Admin\EstadoController;
 use App\Http\Controllers\Intranet\Empresa\CaracteristicasController;
 use App\Http\Controllers\Intranet\Empresa\CentrosCostosController;
-<<<<<<< HEAD
 use App\Http\Controllers\Intranet\Empresa\CuentaCorporativaController;
-=======
 use App\Http\Controllers\Intranet\Empresa\CorreoController;
 use App\Http\Controllers\Intranet\Empresa\DominioCorreoController;
 use App\Http\Controllers\Intranet\Empresa\DominioDaddyController;
->>>>>>> 632e140 (se suben archivos por primera vez)
 use App\Http\Controllers\Intranet\Empresa\EmpleadoController;
 use App\Http\Controllers\Intranet\Empresa\EquipoController;
 use App\Http\Controllers\Intranet\Empresa\EquiposRentadosAsignacionController;
@@ -39,13 +36,10 @@ use App\Http\Controllers\Intranet\Empresa\ProveedoresRentadosController;
 use App\Http\Controllers\Intranet\Empresa\SubCentrosCostosController;
 use App\Http\Controllers\Intranet\Empresa\EmpresaController;
 use App\Http\Controllers\Intranet\Empresa\GestionaController;
-<<<<<<< HEAD
 use App\Http\Controllers\Intranet\Empresa\MatrizCargoController;
 use App\Http\Controllers\Intranet\Empresa\MatrizCuentaCorporativaController;
 use App\Http\Controllers\Intranet\Empresa\MatrizPerfilController;
-=======
 use App\Http\Controllers\Intranet\Empresa\PagoCorreosController;
->>>>>>> 632e140 (se suben archivos por primera vez)
 use App\Http\Controllers\Intranet\Empresa\RetiroController;
 use App\Models\Admin\Usuario;
 use App\Models\Intranet\Empresa\DominioCorreo;
@@ -344,7 +338,6 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('licencias-corporativas/{empleado_id}/{licencia_id}/asignar', [EmpleadoController::class, 'asignar_licencias'])->name('admin-licencias_corporativas-asignar');
             // Ruta Administrador empleados
             Route::get('retiros', [RetiroController::class,'index',])->name('retiros');
-<<<<<<< HEAD
             // Ruta Administrador cargos
             Route::get('matriz_cargos', [MatrizCargoController::class,'index',])->name('matriz_cargos');
             Route::get('matriz_cargos-crear', [MatrizCargoController::class,'crear',])->name('admin-matriz_cargos-crear');
@@ -391,10 +384,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('cuentas-corporativas/{id}', [CuentaCorporativaController::class,'actualizar',])->name('admin-cuentas_corporativas-actualizar');
             Route::delete('cuentas-corporativas/{id}', [CuentaCorporativaController::class,'eliminar',])->name('admin-cuentas_corporativas-eliminar');
             Route::post('cuentas-corporativas/{empleado_id}/{cuenta_corporativa_id}/asignar', [CuentaCorporativaController::class, 'asignar'])->name('admin-cuentas_corporativas-asignar');
-=======
                   // ------------------------------------------------------------------------------------
-           
->>>>>>> 632e140 (se suben archivos por primera vez)
+
 
     });
      // Ruta Administrador del Sistema Correos
@@ -431,6 +422,6 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('dominiosDaddy/{id}/editar', [DominioDaddyController::class,'update',])->name('admin-dominiosDaddy-editar');
             Route::put('dominiosDaddy/{id}', [DominioDaddyController::class,'edit',])->name('dominiosDaddy-actualizar');
             Route::delete('dominiosDaddy/{id}', [DominioDaddyController::class,'destroy',])->name('admin-dominiosDaddy-eliminar');
-   
+
 });
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

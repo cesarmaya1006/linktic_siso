@@ -81,19 +81,16 @@ class Tabla_Menu extends Seeder
             //40
             ['nombre' =>  'Parametros', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '7', 'icono' =>  'fas fa-cog'],
             //----------------------------------------------------------------------------------------------------------------------
-<<<<<<< HEAD
             ['nombre' =>  'Cuentas Corporativas', 'menu_id' => $menu_linea_3, 'url' =>  'admin/cuentas-corporativas', 'orden' => '14', 'icono' =>  'fas fa-address-card'],
 
-=======
-            //37
+            //42
             ['nombre' =>  'Correos', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '8', 'icono' =>  'fas fa-cog'],
-            ['nombre' =>  'Correos corporativos', 'menu_id' => '37', 'url' =>  'correos', 'orden' => '1', 'icono' =>  'fas fa-cog'],
-            ['nombre' =>  'Pagos', 'menu_id' => '37', 'url' =>  'pagos', 'orden' => '2', 'icono' =>  'fas fa-cog'],
+            ['nombre' =>  'Correos corporativos', 'menu_id' => '42', 'url' =>  'correos', 'orden' => '1', 'icono' =>  'fas fa-cog'],
+            ['nombre' =>  'Pagos', 'menu_id' => '42', 'url' =>  'pagos', 'orden' => '2', 'icono' =>  'fas fa-cog'],
             ['nombre' =>  'Dominios GoDaddy', 'menu_id' => $menu_id, 'url' =>  'dominiosDaddy', 'orden' => '3', 'icono' =>  'fas fa-cog'],
             ['nombre' =>  'Dominios', 'menu_id' => $menu_linea_3, 'url' =>  'dominios', 'orden' => '14', 'icono' =>  'fas fa-cog'],
->>>>>>> 632e140 (se suben archivos por primera vez)
 
-            
+
         ];
         foreach ($menus as $menu) {
             DB::table('menu')->insert([
