@@ -1273,6 +1273,7 @@ class CorreoSeeder extends Seeder
                 'apellido' => $item['apellido'],
                 'correo' => $item['correo'],
                 'dominio' => $item['dominio'],
+                'dominio_id' => $item['dominio'],
                 'fecha_de_eliminacion' => $item['fecha_de_eliminacion'],
                 'ticket' => $item['ticket'],
                 'fecha_de_creacion' => $item['fecha_de_creacion'],

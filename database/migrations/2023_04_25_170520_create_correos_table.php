@@ -19,6 +19,8 @@ class CreateCorreosTable extends Migration
             $table->string('apellido', 255)->nullable();
             $table->string('correo', 255);
             $table->string('dominio', 255);
+            $table->unsignedBigInteger('dominio_id');
+            $table->foreign('dominio_id', 'fk_correo_dominio')->references('id')->on('dominio_correos')->onDelete('restrict')->onUpdate('restrict');
             $table->string('estado', 255);
             $table->string('ticket', 255)->nullable();
             $table->timestamp('fecha_de_creacion')->nullable();

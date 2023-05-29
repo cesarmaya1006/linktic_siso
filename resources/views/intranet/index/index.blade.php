@@ -7,6 +7,7 @@
 <!-- Pagina CSS -->
 @section('estilosHojas')
     <link rel="stylesheet" href="{{ asset('css/intranet/index.css') }}">
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 @endsection
 <!-- ************************************************************* -->
 @section('tituloHoja')
@@ -35,5 +36,5 @@
 <!-- ************************************************************* -->
 <!-- script hoja -->
 @section('scripts_pagina')
-
+<script src="{{ asset('js/intranet/index/index.js') }}"></script>
 @endsection
