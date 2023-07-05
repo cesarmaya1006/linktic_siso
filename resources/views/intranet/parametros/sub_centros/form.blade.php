@@ -21,7 +21,7 @@
             <small id="helpId" class="form-text text-muted">Sub centro</small>
         </div>
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-4 d-none">
         <div class="form-group">
             <label class="requerido" for="consecutivo">Consecutivo</label>
             <input type="hidden" name="consecutivo" id="consecutivo" value="{{ old('consecutivo', $sub_centro->consecutivo ?? '') }}" required>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 use App\Http\Controllers\Controller;
 use App\Models\Empresa\Empleado;
 use App\Models\Empresa\CentroCosto;
+use App\Models\Empresa\RolesPermiso;
 use App\Models\Intranet\Empresa\DominioDaddy;
 use Illuminate\Http\Request;
 
@@ -17,9 +18,22 @@ class DominioDaddyController extends Controller
      */
     public function index()
     {
-        
+
         $dominios = DominioDaddy::get();
-        return view('intranet.empresa.dominios_daddy.index', compact('dominios'));   
+        $menu_id = 45;
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.empresa.dominios_daddy.index', compact('dominios','permiso'));
     }
 
     /**
@@ -32,7 +46,7 @@ class DominioDaddyController extends Controller
         $centros = CentroCosto::get();
         $empleados = Empleado::get();
         return view('intranet.empresa.dominios_daddy.create', compact('centros','empleados'));
-        
+
     }
 
     /**
@@ -69,7 +83,7 @@ class DominioDaddyController extends Controller
         //
         DominioDaddy::findOrFail($id)->update($request->all());
         return redirect('dominiosDaddy')->with('mensaje', 'Dcominio de correo actualizado con exito');
-        
+
     }
 
     /**
@@ -93,7 +107,7 @@ class DominioDaddyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
     public function destroy(Request $request,$id)
     {
         if ($request->ajax()) {
@@ -105,6 +119,6 @@ class DominioDaddyController extends Controller
         } else {
             abort(404);
         }
-       
-    }    
+
+    }
 }

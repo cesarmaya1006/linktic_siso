@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\Empresa\Cargo;
 use App\Models\Empresa\PermisoCargo;
+use App\Models\Empresa\RolesPermiso;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -103,5 +104,16 @@ class Menu extends Model
     public function cargos()
     {
         return $this->belongsToMany(Cargo::class, 'permiso_cargos');
+    }
+    //----------------------------------------------------------------------------------
+    public function permisos_roles()
+    {
+        return $this->hasMany(RolesPermiso::class, 'menu_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
+    public function roles_perm()
+    {
+        return $this->belongsToMany(Rol::class, 'roles_permisos');
     }
 }

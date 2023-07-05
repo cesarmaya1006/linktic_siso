@@ -34,7 +34,7 @@
                 <div class="row  d-flex justify-content-around">
                     <div class="col-10 col-md-7 table-responsive">
                         @csrf
-                        <table class="table table-striped table-hover table-sm tabla-borrando nowrap tabla_data_table"
+                        <table class="table table-striped table-hover table-sm tabla-borrando nowrap"
                             id="tabla-data">
                             <thead class="thead-inverse">
                                 <tr>

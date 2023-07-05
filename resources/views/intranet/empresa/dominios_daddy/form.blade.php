@@ -18,10 +18,11 @@
     <div class="col-12 col-md-2">
         <div class="form-group">
             <label for="ticket" class="control-label">Ticket renovacion</label>
-            <input type="text" name="ticket_renovacion" id="ticket_renovacion" class="form-control form-control-sm" 
+            <input type="text" name="ticket_renovacion" id="ticket_renovacion" class="form-control form-control-sm"
             value="{{old('ticket', $pagos->ticket ?? '')}}" />
         </div>
     </div>
+    @if (isset($pagos))
     <div class="col-12 col-md-4">
         <div class="form-group">
             <label for="estado" class="control-label"> Renovacion </label>
@@ -32,6 +33,7 @@
             </select>
         </div>
     </div>
+    @endif
     <div class="col-12 col-md-4">
         <div class="form-group">
             <label for="fecha_de_vencimiento" class="control-label"> Fecha de vencimiento </label>
@@ -67,7 +69,7 @@
     <div class="col-12 col-md-4">
         <div class="form-group">
             <label for="factura" class="control-label"> Factura </label>
-            <input type="text" name="factura" id="factura" class="form-control form-control-sm" 
+            <input type="text" name="factura" id="factura" class="form-control form-control-sm"
             value="{{old('factura', $pagos->factura??'')}}"/>
 
         </div>
@@ -83,7 +85,7 @@
     <div class="col-12 col-md-4">
         <div class="form-group">
             <label for="costo_dolares" class="control-label"> Tarjeta </label>
-            <input type="text" name="tarjeta" id="tarjeta" class="form-control form-control-sm" 
+            <input type="text" name="tarjeta" id="tarjeta" class="form-control form-control-sm"
             value="{{old('tarjeta', $pagos->tarjeta??'')}}" />
         </div>
     </div>

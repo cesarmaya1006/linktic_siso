@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Empresa\RentadoTipo;
+use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
 
 class EquiposRentadosTiposController extends Controller
@@ -16,7 +17,20 @@ class EquiposRentadosTiposController extends Controller
     public function index()
     {
         $tipos = RentadoTipo::get();
-        return view('intranet.parametros.tipos.index', compact('tipos'));
+        $menu_id = 18;
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.parametros.tipos.index', compact('tipos','permiso'));
     }
 
     /**

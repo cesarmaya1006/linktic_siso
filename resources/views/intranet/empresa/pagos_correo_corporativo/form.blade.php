@@ -1,4 +1,6 @@
-<? $meses = [1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto', 9 => 'septiembre', 10 => 'octubre', 11 => 'Noviembre', 12 => 'Diciembre'] ?>
+@php
+    $meses = [1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril', 5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto', 9 => 'septiembre', 10 => 'octubre', 11 => 'Noviembre', 12 => 'Diciembre'];
+@endphp
 <div class="row">
     <div class="col-12 col-md-3">
         <div class="form-group">

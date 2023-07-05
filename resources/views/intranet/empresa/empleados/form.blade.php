@@ -73,6 +73,18 @@
             </select>
         </div>
     </div>
+    @if (isset($empleado))
+    <div class="col-12 col-md-4">
+        <div class="form-group">
+            <label for="estado" class="control-label requerido">Estado</label>
+            <select class="form-control form-control-sm" name="estado" id="estado">
+                <option value="Activo" {{$empleado->estado=='Activo'?'selected':''}}>Activo</option>
+                <option value="Proceso de retiro" {{$empleado->estado=='Proceso de retiro'?'selected':''}}>Proceso de retiro</option>
+                <option value="Retirados con cuentas activas" {{$empleado->estado=='Retirados con cuentas activas'?'selected':''}}>Retirados con cuentas activas</option>
+            </select>
+        </div>
+    </div>
+    @endif
 </div>
 <div class="row">
     <div class="col-12 mt-4 mb-5">

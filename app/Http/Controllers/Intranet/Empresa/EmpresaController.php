@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Models\Empresa\Empresa;
 use App\Http\Controllers\Controller;
+use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
@@ -15,7 +16,20 @@ class EmpresaController extends Controller
      */
     public function index()
     {   $empresas = Empresa::get();
-        return view('intranet.parametros.empresas.index', compact('empresas'));
+        $menu_id = 20;
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.parametros.empresas.index', compact('empresas','permiso'));
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Models\Empresa\Equipo;
 use App\Models\Empresa\Equipo2;
 use App\Models\Empresa\GlpiInfocom;
 use App\Models\Empresa\GlpiNotepads;
+use App\Models\Empresa\RolesPermiso;
 use DateInterval;
 use DateTime;
 use Illuminate\Http\Request;
@@ -21,29 +22,51 @@ class EquipoController extends Controller
     public function index()
     {
         $equipos = Equipo::get();
-        $equiposGLPI = Equipo2::with('entidad')->with('usuario')->get();
+        $equiposGLPI = Equipo2::with('entidad')
+            ->with('usuario')
+            ->get();
 
         foreach ($equiposGLPI as $equipo) {
-            $infoComps = GlpiInfocom::where('itemtype','Computer')->where('items_id',$equipo->id)->get();
-            $notepads = GlpiNotepads::where('itemtype','Computer')->where('items_id',$equipo->id)->get();
+            $infoComps = GlpiInfocom::where('itemtype', 'Computer')
+                ->where('items_id', $equipo->id)
+                ->get();
+            $notepads = GlpiNotepads::where('itemtype', 'Computer')
+                ->where('items_id', $equipo->id)
+                ->get();
             foreach ($infoComps as $infoComp) {
                 if ($equipo->id == $infoComp->items_id) {
                     $equipo['fec_compra'] = $infoComp->buy_date;
-                    $meses = $this->verMeses(array($infoComp->buy_date,date('Y-m-d')));
+                    $meses = $this->verMeses([
+                        $infoComp->buy_date,
+                        date('Y-m-d'),
+                    ]);
                     $equipo['meses_uso'] = $meses;
-                    $equipo['porcentaje'] = round((($meses*100)/60),2);
+                    $equipo['porcentaje'] = round(($meses * 100) / 60, 2);
                     $equipo['suppliers_id'] = $infoComp->suppliers_id;
-                    $equipo['proveedor'] = $infoComp->proveedor->name??'N/A';
+                    $equipo['proveedor'] = $infoComp->proveedor->name ?? 'N/A';
                     break;
                 }
             }
             foreach ($notepads as $item) {
-                $equipo['centro_costo'] = $item->content??'N/A';
+                $equipo['centro_costo'] = $item->content ?? 'N/A';
                 break;
             }
         }
         //dd($equiposGLPI->toArray());
-        return view('intranet.empresa.equipos.index', compact('equipos','equiposGLPI'));
+        $menu_id = 23;
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.empresa.equipos.index',compact('equipos', 'equiposGLPI','permiso'));
     }
 
     /**
@@ -112,12 +135,12 @@ class EquipoController extends Controller
         //
     }
 
-    private function verMeses($a){
-
-        $f1 = new DateTime( $a[0] );
-        $f2 = new DateTime( $a[1] );
-       // obtener la diferencia de fechas
-       $d = $f1->diff($f2);
-       return  ( $d->y * 12 ) + $d->m;
+    private function verMeses($a)
+    {
+        $f1 = new DateTime($a[0]);
+        $f2 = new DateTime($a[1]);
+        // obtener la diferencia de fechas
+        $d = $f1->diff($f2);
+        return $d->y * 12 + $d->m;
     }
 }

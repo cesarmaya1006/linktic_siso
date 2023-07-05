@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 use App\Models\Empresa\Retiro;
 use App\Http\Controllers\Controller;
 use App\Models\Empresa\Empleado;
+use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
 
 class RetiroController extends Controller
@@ -17,7 +18,20 @@ class RetiroController extends Controller
     public function index()
     {
         $empleados = Retiro::get();
-        return view('intranet.empresa.retiros.index', compact('empleados'));
+        $menu_id = 30;
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.empresa.retiros.index', compact('empleados','permiso'));
     }
 
     /**

@@ -21,6 +21,7 @@ use App\Models\Empresa\GlpiPrinter;
 use App\Models\Empresa\Licencia;
 use App\Models\Empresa\RentadoEstado;
 use App\Models\Empresa\Retiro;
+use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
@@ -41,7 +42,20 @@ class EmpleadoController extends Controller
             $equipos_propios = Equipo2::whereIn('id', $ids_equiposPropios)->get();
             $empleado['equipos_propios'] = $equipos_propios;
         }
-        return view('intranet.empresa.empleados.index', compact('empleados'));
+        $menu_id = 29;
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.empresa.empleados.index', compact('empleados','permiso'));
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Models\Admin\Menu;
 use App\Models\Empresa\Area;
 use App\Models\Empresa\Cargo;
 use App\Models\Empresa\PermisoCargo;
+use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
 
 class CargoController extends Controller
@@ -19,7 +20,20 @@ class CargoController extends Controller
     public function index()
     {
         $cargos = Cargo::get();
-        return view('intranet.parametros.cargos.index', compact('cargos'));
+        $menu_id = 10;
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.parametros.cargos.index', compact('cargos','permiso'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Empresa\GlpiPrinter;
+use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
 
 class ImpresoraController extends Controller
@@ -17,7 +18,20 @@ class ImpresoraController extends Controller
     {
         $impresorasGlpi = GlpiPrinter::get();
         //dd($equiposGLPI->toArray());
-        return view('intranet.empresa.impresoras.index', compact('impresorasGlpi'));
+        $menu_id = 25;
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.empresa.impresoras.index', compact('impresorasGlpi','permiso'));
     }
 
     /**

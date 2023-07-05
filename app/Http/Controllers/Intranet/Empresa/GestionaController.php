@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Models\Empresa\Gestiona;
 use App\Http\Controllers\Controller;
+use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
 
 class GestionaController extends Controller
@@ -15,7 +16,20 @@ class GestionaController extends Controller
      */
     public function index()
     {   $gestiones = Gestiona::get();
-        return view('intranet.parametros.gestion.index', compact('gestiones'));
+        $menu_id = 21;
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.parametros.gestion.index', compact('gestiones','permiso'));
     }
 
     /**

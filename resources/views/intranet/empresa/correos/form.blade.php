@@ -1,17 +1,17 @@
 
 
-<div class="row">  
+<div class="row">
     <div class="col-12 col-md-3">
         <div class="form-group">
             <label for="nombre" class="control-label requerido"> Nombre </label>
-            <input type="text" name="nombre" id="nombre" class="form-control form-control-sm" 
+            <input type="text" name="nombre" id="nombre" class="form-control form-control-sm"
                    value="{{old('nombre', $correos->nombre ?? '')}}" required/>
         </div>
     </div>
     <div class="col-12 col-md-4">
         <div class="form-group">
             <label for="apellido" class="control-label requerido"> Apellido </label>
-            <input type="text" name="apellido" id="apellido" class="form-control form-control-sm" 
+            <input type="text" name="apellido" id="apellido" class="form-control form-control-sm"
                    value="{{old('apellido', $correos->apellido ?? '')}}" required/>
         </div>
     </div>
@@ -27,7 +27,7 @@
             <label for="dominio" class="control-label requerido"> Dominio </label>
             <select type="text" name="dominio" id="dominio" class="form-control form-control-sm" required>
                 <option value="">--Seleccione--</option>
-              
+
                 @foreach ($dominios as $dominio)
                 <option value="{{$dominio->id}}" {{isset($correos)?($correos->dominio==$dominio->id?'selected':''):''}}>{{$dominio->dominio}}</option>
                 @endforeach </select>
@@ -40,21 +40,21 @@
                 <option value="">--Seleccione--</option>
                 <option value="Activo" {{!empty($correos)?($correos->estado=="Activo"?'selected':''):''}} >Activo</option>
                 <option value="Eliminado" {{!empty($correos)?($correos->estado=="Eliminado"?'selected':''):''}}>Eliminado</option>
-               
+
             </select>
         </div>
     </div>
     <div class="col-12 col-md-2">
         <div class="form-group">
             <label for="ticket" class="control-label requerido"> Ticket </label>
-            <input type="text" name="ticket" id="ticket" class="form-control form-control-sm" 
+            <input type="text" name="ticket" id="ticket" class="form-control form-control-sm"
                    value="{{old('ticket', $correos->ticket??'')}}" required/>
         </div>
     </div>
     <div class="col-12 col-md-2">
         <div class="form-group">
             <label for="ticket" class="control-label requerido">Fecha de creacion</label>
-            <input type="date" name="fecha_de_creacion" id="fecha_de_creacion" 
+            <input type="date" name="fecha_de_creacion" id="fecha_de_creacion"
              class="form-control form-control-sm" value="{{old('fecha_de_creacion', $correos->fecha_de_creacion ?? '')}}" required/>
         </div>
     </div>
@@ -72,26 +72,26 @@
     <div class="col-12 col-md-4">
         <div class="form-group">
             <label for="costo_dolares" class="control-label requerido">Costos en dolares</label>
-            <input type="text" name="costo_dolares" id="costo_dolares" 
+            <input type="text" name="costo_dolares" id="costo_dolares"
              class="form-control form-control-sm" value="{{old('costo_dolares', $correos->costo_dolares??'')}}" required/>
-       
+
         </div>
     </div>
-    
-    <div class="col-12 col-md-2">
-        <div class="form-group">
-            <label for="ticket" class="control-label requerido"> Fecha de eliminacion </label>
-            <input type="date" name="fecha_de_eliminacion" id="fecha_de_eliminacion" 
-             class="form-control form-control-sm" value="{{old('fecha_de_eliminacion', $correos->fecha_de_eliminacion??'')}}" required/>
+    @if (isset($correos))
+        <div class="col-12 col-md-2 {{$correos->estado != 'Eliminado'?'d-none':''}}" id="campo_correos">
+            <div class="form-group">
+                <label for="ticket" class="control-label requerido"> Fecha de eliminacion </label>
+                <input type="date" name="fecha_de_eliminacion" id="fecha_de_eliminacion"
+                 class="form-control form-control-sm" value="{{old('fecha_de_eliminacion', $correos->fecha_de_eliminacion??'')}}" required/>
+            </div>
         </div>
-    </div>
-  
+    @endif
     <div class="form-group">
-            <label for="comentarios" class="control-label requerido"> Comentarios </label>
-            <textarea name="comentarios" id="comentarios"  
+            <label for="comentarios" class="control-label"> Comentarios </label>
+            <textarea name="comentarios" id="comentarios"
              class="form-control form-control-sm" value="{{old('comentarios', $correos->comentarios??'')}}">
              {{old('comentarios', $correos->comentarios??'')}}
             </textarea>
-       
+
         </div>
 </div>

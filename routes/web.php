@@ -38,6 +38,7 @@ use App\Http\Controllers\Intranet\Empresa\EmpresaController;
 use App\Http\Controllers\Intranet\Empresa\GestionaController;
 use App\Http\Controllers\Intranet\Empresa\MatrizCargoController;
 use App\Http\Controllers\Intranet\Empresa\MatrizCuentaCorporativaController;
+use App\Http\Controllers\Intranet\Empresa\MatrizPerfilCargoController;
 use App\Http\Controllers\Intranet\Empresa\MatrizPerfilController;
 use App\Http\Controllers\Intranet\Empresa\PagoCorreosController;
 use App\Http\Controllers\Intranet\Empresa\RetiroController;
@@ -120,6 +121,8 @@ Route::group(['middleware' => 'auth'], function () {
             // ------------------------------------------------------------------------------------
             /*RUTAS PERMISO_ROL*/
             Route::get('_permiso-rol', [PermisoRolController::class,'index',])->name('admin-permiso_rol');
+            Route::get('_permiso-rol_data', [PermisoRolController::class,'data',])->name('_permiso-rol_data');
+            Route::post('_permiso-rol_cambio_permiso/{id}', [PermisoRolController::class,'cambio_permiso',])->name('_permiso-rol_cambio_permiso');
             Route::post('_permiso-rol', [PermisoRolController::class,'guardar',])->name('admin-guardar_permiso_rol');
 
             // ------------------------------------------------------------------------------------
@@ -357,9 +360,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('matriz_cuentas_corporativas-asignacion/{matriz_cargo_id}/{cuenta_corporativa_id}', [MatrizCuentaCorporativaController::class,'asignacion',])->name('matriz_cuentas_corporativas_asignacion');
             Route::post('matriz_cuentas_corporativas-desasignacion/{matriz_cargo_id}/{cuenta_corporativa_id}', [MatrizCuentaCorporativaController::class,'desasignacion',])->name('matriz_cuentas_corporativas_desasignacion');
             // Ruta Administrador Matriz Cargos Perfiles
-            Route::get('matriz_cargos_perfiles', [MatrizCuentaCorporativaController::class,'index',])->name('matriz_cargo_perfiles');
-            Route::post('matriz_cargos_perfiles-asignacion/{matriz_cargo_id}/{cuenta_corporativa_id}', [MatrizCuentaCorporativaController::class,'asignacion',])->name('matriz_cargos_perfiles_asignacion');
-            Route::post('matriz_cargos_perfiles-desasignacion/{matriz_cargo_id}/{cuenta_corporativa_id}', [MatrizCuentaCorporativaController::class,'desasignacion',])->name('matriz_cargos_perfiles_desasignacion');
+            Route::get('matriz_cargos_perfiles', [MatrizPerfilCargoController::class,'index',])->name('matriz_cargo_perfiles');
+            Route::post('matriz_cargos_perfiles-asignacion/{matriz_cargo_id}/{matriz_perfi_id}', [MatrizPerfilCargoController::class,'asignacion',])->name('matriz_cargos_perfiles_asignacion');
+            Route::post('matriz_cargos_perfiles-desasignacion/{matriz_cargo_id}/{matriz_perfi_id}', [MatrizPerfilCargoController::class,'desasignacion',])->name('matriz_cargos_perfiles_desasignacion');
 
             //Rutas Empleados/equipos rentados
             Route::get('empleados/equipos_rentados/{id}/asignar', [EmpleadoController::class,'equipos_rentados_asignar',])->name('equipos_rentados_asignar');

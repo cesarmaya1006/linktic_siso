@@ -8,7 +8,7 @@
 <!-- ************************************************************* -->
 <!-- titulo hoja -->
 @section('tituloHoja')
-    Pagos de correos Go daddy
+    Pagos de correos GoDaddy
 @endsection
 <!-- ************************************************************* -->
 <!-- ************************************************************* -->
@@ -19,7 +19,7 @@
         @include('includes.error-form')
         @include('includes.mensaje')
         <div class="card-header">
-            <h3 class="card-title"> Nuevo Pago de correo </h3>
+            <!-- <h3 class="card-title"> Nuevo Pago de correo </h3> -->
         </div>
         <!-- /.card-header -->
         <!-- form start -->

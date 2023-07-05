@@ -41,5 +41,6 @@
 <!-- scripts hoja -->
 @section('scripts_pagina')
     <script src="{{ asset('js/intranet/empresa/caracteristicas/crear.js') }}"></script>
+    <script src="{{ asset('js/intranet/empresa/correos/editar.js') }}"></script>
 @endsection
 <!-- ************************************************************* -->

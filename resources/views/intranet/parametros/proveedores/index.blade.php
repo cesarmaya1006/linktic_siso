@@ -30,16 +30,19 @@
                     <h5>Listado de proveedores equipos rentados</h5>
                 </div>
                 <div class="col-12 col-md-6 pr-5">
+                    @if ($permiso==null || $permiso->guardar)
                     <a href="{{ route('admin-proveedores_rentados-crear') }}" class="btn btn-block btn-info btn-xs bg-gradient btn-sombra float-end"
                         style="max-width: 150px">
                         <i class="fa fa-fw fa-plus-circle"></i> Nuevo registro
                     </a>
+                    @endif
                 </div>
             </div>
             <hr>
             <div class="row  d-flex justify-content-around">
+                @if ($permiso==null || $permiso->listar)
                 <div class="col-12 table-responsive">
-                    <table class="table table-striped table-hover table-sm nowrap tabla_data_table" id="tabla-data">
+                    <table class="table table-striped table-hover table-sm nowrap tabla_data_table_xs" id="tabla-data">
                         <thead class="thead-inverse">
                             <tr>
                                 <th></th>
@@ -53,10 +56,13 @@
                                 <td></td>
                                 <td>{{$proveedor->proveedor}}</td>
                                 <td>
+                                    @if ($permiso == null || $permiso->actualizar == 1)
                                     <a href="{{ route('admin-proveedores_rentados-editar', ['id' => $proveedor->id]) }}"
                                         class="btn-accion-tabla tooltipsC" title="Editar este registro">
                                         <i class="fas fa-pen-square"></i>
                                     </a>
+                                    @endif
+                                    @if ($permiso == null || $permiso->borrar == 1)
                                     <form action="{{ route('admin-proveedores_rentados-eliminar', ['id' => $proveedor->id]) }}"
                                         class="d-inline form-eliminar" method="POST">
                                         @csrf @method("delete")
@@ -65,12 +71,28 @@
                                             <i class="fa fa-fw fa-trash text-danger"></i>
                                         </button>
                                     </form>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+                @else
+                <div class="col-md-6 col-sm-6 col-12">
+                    <div class="info-box bg-danger">
+                        <span class="info-box-icon"><i class="fas fa-comments"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">
+                                <h3>Aviso del sistema</h3>
+                            </span>
+                            <span class="info-box-text">
+                                <h5>Su rol no tiene permisos de listar en este modulo</h5>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </div>

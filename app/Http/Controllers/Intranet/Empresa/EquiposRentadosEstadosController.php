@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Empresa\RentadoEstado;
+use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
 
 class EquiposRentadosEstadosController extends Controller
@@ -16,7 +17,20 @@ class EquiposRentadosEstadosController extends Controller
     public function index()
     {
         $estados_rentados = RentadoEstado::get();
-        return view('intranet.parametros.estados_rentados.index', compact('estados_rentados'));
+        $menu_id = 19;
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.parametros.estados_rentados.index', compact('estados_rentados','permiso'));
     }
 
     /**

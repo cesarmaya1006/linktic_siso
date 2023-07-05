@@ -6,7 +6,7 @@ $(document).ready(function() {
         };
         $.ajax({
             type: 'get', //THIS NEEDS TO BE GET
-            url: 'http://127.0.0.1:8000/admin/menu-guardar-orden',
+            url: 'http://siso.linktic.com/admin/menu-guardar-orden',
             dataType: 'json',
             data: data,
             success: function(respuesta) {}
@@ -34,3 +34,4 @@ $(document).ready(function() {
 
     $('#nestable').nestable('expandAll');
 });
+
