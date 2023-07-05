@@ -32,6 +32,7 @@
         <div class="card-body pb-3">
             <div class="container-fluid">
                 <div class="row  d-flex justify-content-around">
+                    @if ($permiso == null || $permiso->listar)
                     <div class="col-10 col-md-7 table-responsive">
                         @csrf
                         <table class="table table-striped table-hover table-sm tabla-borrando nowrap"
@@ -45,6 +46,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    if ($permiso == null || $permiso->actualizar == 1) {
+                                        $actualizar = 1;
+                                    }else{
+                                        $actualizar =0;
+                                    }
+                                @endphp
                                 @foreach ($cargos as $cargo)
                                     <tr>
                                         <td class="text-center">{{ $cargo['cargo'] }}</td>
@@ -58,6 +66,7 @@
                                                     @else
                                                     onclick="asignacion('{{route('matriz_cuentas_corporativas_asignacion',['matriz_cargo_id' => $cargo->id,'cuenta_corporativa_id' => $cuenta->id])}}')"
                                                     @endif
+                                                    {{($actualizar == 0)?'disabled':''}}
                                                     >
                                             </td>
                                         @endforeach
@@ -66,6 +75,20 @@
                             </tbody>
                         </table>
                     </div>
+                    @else
+                    <div class="info-box bg-danger">
+                        <span class="info-box-icon"><i class="fas fa-comments"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">
+                                <h3>Aviso del sistema</h3>
+                            </span>
+                            <span class="info-box-text">
+                                <h5>Su rol no tiene permisos de listar en este modulo</h5>
+                            </span>
+                        </div>
+                    </div>
+                    @endif
+
                 </div>
             </div>
         </div>

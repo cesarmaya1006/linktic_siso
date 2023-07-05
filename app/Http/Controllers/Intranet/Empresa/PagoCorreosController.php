@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Empresa\CentroCosto;
+use App\Models\Empresa\RolesPermiso;
 use App\Models\Intranet\Empresa\DominioCorreo;
 use App\Models\Intranet\Empresa\PagoCorreo;
 use Illuminate\Http\Request;
@@ -21,7 +22,21 @@ class PagoCorreosController extends Controller
         //
         $pagos = PagoCorreo::get();
         $dominios = DominioCorreo::get();
-        return view('intranet.empresa.pagos_correo_corporativo.index', compact('pagos'));
+        $menu_id = 44;
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+
+        return view('intranet.empresa.pagos_correo_corporativo.index', compact('pagos','permiso'));
     }
 
     /**
@@ -47,7 +62,7 @@ class PagoCorreosController extends Controller
         $costoPesos = $request['costo_dolares'] * $request['trm'];
         $request['costo_pesos'] = $costoPesos;
 
-      
+
         PagoCorreo::create($request->all());
         return redirect('pagos')->with('mensaje', 'Correo creado con exito');
     }
@@ -109,6 +124,6 @@ class PagoCorreosController extends Controller
         } else {
             abort(404);
         }
-       
-    }  
+
+    }
 }
