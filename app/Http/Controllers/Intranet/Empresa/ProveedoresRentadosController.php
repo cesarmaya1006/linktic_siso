@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\ProveedorRentado;
 use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class ProveedoresRentadosController extends Controller
     public function index()
     {
         $proveedores = ProveedorRentado::get();
-        $menu_id = 15;
+        $menus = Menu::where('nombre','Proveedores Rentados')->get();
+        $menu_id = $menus[0]['id'];$rol_id = session('rol_id');
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

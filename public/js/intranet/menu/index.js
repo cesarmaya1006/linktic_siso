@@ -2,11 +2,12 @@ $(document).ready(function() {
     $('#nestable').nestable().on('change', function() {
         const data = {
             menu: window.JSON.stringify($('#nestable').nestable('serialize')),
-            _token: $('input[name=_token]').val()
+            _token: $('input[name=_token]').val(),
         };
+        const data_url = $('#url_final').val();
         $.ajax({
             type: 'get', //THIS NEEDS TO BE GET
-            url: 'http://siso.linktic.com/admin/menu-guardar-orden',
+            url: data_url,
             dataType: 'json',
             data: data,
             success: function(respuesta) {}

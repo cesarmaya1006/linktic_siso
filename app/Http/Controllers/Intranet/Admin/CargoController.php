@@ -20,7 +20,8 @@ class CargoController extends Controller
     public function index()
     {
         $cargos = Cargo::get();
-        $menu_id = 10;
+        $menus = Menu::where('nombre','Cargos')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

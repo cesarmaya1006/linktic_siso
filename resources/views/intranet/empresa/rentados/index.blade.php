@@ -46,7 +46,7 @@
             <div class="row  d-flex justify-content-around">
                 @if ($permiso == null || $permiso->listar)
                     <div class="col-12 table-responsive">
-                        <table class="table table-striped table-hover table-sm nowrap tabla_data_table_xl" id="tabla-data">
+                        <table class="table table-striped table-hover table-sm nowrap tabla_data_table_xl tabla-borrando" id="tabla-data">
                             <thead class="thead-inverse">
                                 <tr>
                                     <th class="text-center" style="white-space:nowrap;">Id</th>
@@ -56,8 +56,7 @@
                                     <th class="text-center" style="white-space:nowrap;">Proveedor</th>
                                     <th class="text-center" style="white-space:nowrap;">Centro de Costo</th>
                                     <th class="text-center" style="white-space:nowrap;">Sub-Centro de Costo</th>
-                                    <th class="text-center" style="white-space:nowrap;">Tikect</th>
-                                    <th class="text-center" style="white-space:nowrap;">Responsable</th>
+                                    <th class="text-center" style="white-space:nowrap;">Ticket</th>
                                     <th class="text-center" style="white-space:nowrap;">Tipo de Equipo</th>
                                     <th class="text-center" style="white-space:nowrap;">Serial</th>
                                     <th class="text-center" style="white-space:nowrap;">Codigo</th>
@@ -87,7 +86,6 @@
                                         <td class="text-left">{{ $equipo->centro_costo->proyecto }}</td>
                                         <td class="text-left">{{ $equipo->sub_centro_costo->centro ?? '' }}</td>
                                         <td class="text-center">{{ $equipo->tiket }}</td>
-                                        <td class="text-left">{{ $equipo->responsable->responsable }}</td>
                                         <td class="text-center">{{ $equipo->tipo->tipo }}</td>
                                         <td class="text-center">{{ $equipo->serial }}</td>
                                         <td class="text-center">{{ $equipo->codigo }}</td>

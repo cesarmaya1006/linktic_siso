@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Models\Empresa\Gestiona;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class GestionaController extends Controller
      */
     public function index()
     {   $gestiones = Gestiona::get();
-        $menu_id = 21;
+        $menus = Menu::where('nombre','Gestion')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

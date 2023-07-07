@@ -54,8 +54,6 @@
                                     <tr>
                                         <th class="text-center" scope="col">Id</th>
                                         <th class="text-center" scope="col">Usuario</th>
-                                        <th class="text-center" scope="col">{{$rol->id==3?'Area':'Facultad'}}</th>
-                                        <th class="text-center" scope="col">{{$rol->id==3?'Cargo':'Carrera'}}</th>
                                         <th class="text-center" scope="col">N. Identificacion</th>
                                         <th class="text-center" scope="col">Nombres y Apellidos</th>
                                         <th class="text-center" scope="col">Telefono</th>
@@ -72,8 +70,6 @@
                                             <tr>
                                                 <td class="text-center text-nowrap">{{ $usuario->id }}</td>
                                                 <td class="text-center text-nowrap">{{ $usuario->usuario }}</td>
-                                                <td class="text-left text-nowrap">{{$rol->id==3?$usuario->persona->cargo->area->area:$usuario->persona->carrera->facultad->facultad}}</td>
-                                                <td class="text-left text-nowrap">{{$rol->id==3?$usuario->persona->cargo->cargo:$usuario->persona->carrera->carrera}}</td>
                                                 <td class="text-left text-nowrap">{{$usuario->persona->identificacion}}</td>
                                                 <td class="text-left text-nowrap">{{$usuario->persona->nombre1 . ' ' . $usuario->persona->nombre2 . ' ' . $usuario->persona->apellido1 . ' ' . $usuario->persona->apellido2}}</td>
                                                 <td class="text-right text-nowrap">{{$usuario->persona->telefono}}</td>

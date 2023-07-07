@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\Contrato;
 use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
@@ -18,8 +19,8 @@ class ContratoController extends Controller
     {   //$usurio = Usuario::findOrFail(session('id_usuario'));
         //dd($usurio->roles[0]->toArray());
         $contratos = Contrato::get();
-        $menu_id = 11;
-        $rol_id = session('rol_id');
+        $menus = Menu::where('nombre','Contratos')->get();
+        $menu_id = $menus[0]['id'];$rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)
                 ->where('menu_id', $menu_id)

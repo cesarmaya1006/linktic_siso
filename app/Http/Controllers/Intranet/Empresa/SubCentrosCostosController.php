@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidacionSubCentro;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\CentroCosto;
+use App\Models\Empresa\RolesPermiso;
 use App\Models\Empresa\SubCentroCosto;
 use Illuminate\Http\Request;
 
@@ -18,7 +21,21 @@ class SubCentrosCostosController extends Controller
     {   //$usurio = Usuario::findOrFail(session('id_usuario'));
         //dd($usurio->roles[0]->toArray());
         $sub_centros = SubCentroCosto::get();
-        return view('intranet.parametros.sub_centros.index', compact('sub_centros'));
+        $menus = Menu::where('nombre','Sub - Centros de Costo')->get();
+        $menu_id = $menus[0]['id'];$rol_id = session('rol_id');
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.parametros.sub_centros.index', compact('sub_centros','permiso'));
     }
 
     /**
@@ -38,7 +55,7 @@ class SubCentrosCostosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function guardar(ValidacionSubCentro $request)
     {
         SubCentroCosto::create($request->all());
         return redirect('admin/sub_centros_costo')->with('mensaje', 'Sub - Centro de costo creado con exito');

@@ -44,7 +44,6 @@
                                 <th class="text-center" style="white-space:nowrap;">Proveedor</th>
                                 <th class="text-center" style="white-space:nowrap;">Centro de Costo</th>
                                 <th class="text-center" style="white-space:nowrap;">Sub-Centro de Costo</th>
-                                <th class="text-center" style="white-space:nowrap;">Responsable</th>
                                 <th class="text-center" style="white-space:nowrap;">Tipo de Equipo</th>
                                 <th class="text-center" style="white-space:nowrap;">Serial</th>
                                 <th class="text-center" style="white-space:nowrap;">Codigo</th>
@@ -66,7 +65,6 @@
                                 <td class="text-left">{{$asignado->equipo->proveedor->proveedor}}</td>
                                 <td class="text-left">{{$asignado->equipo->centro_costo->proyecto}}</td>
                                 <td class="text-left">{{$asignado->equipo->sub_centro_costo->centro??''}}</td>
-                                <td class="text-left">{{$asignado->equipo->responsable->responsable}}</td>
                                 <td class="text-center">{{$asignado->equipo->tipo->tipo}}</td>
                                 <td class="text-center">{{$asignado->equipo->serial}}</td>
                                 <td class="text-center">{{$asignado->equipo->codigo}}</td>

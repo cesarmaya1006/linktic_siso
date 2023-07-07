@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidacionCambioPass;
 use App\Imports\ImportUsuario;
 use App\Models\Admin\Rol;
 use App\Models\Admin\Tipo_Docu;
@@ -126,15 +127,15 @@ class UsuarioController extends Controller
         $nuevaPersona['apellido1'] = utf8_encode(ucwords($request['apellido1']));
         $nuevaPersona['apellido2'] = utf8_encode(ucwords($request['apellido2']));
         $nuevaPersona['telefono'] = $request['telefono'];
-        $nuevaPersona['direccion'] = $request['direccion'];
+        //$nuevaPersona['direccion'] = $request['direccion'];
         $nuevaPersona['email'] = strtolower($request['email']);
-        $nuevaPersona['contrato_id'] = $request['contrato_id'];
-        $nuevaPersona['centro_id'] = $request['centro_id'];
-        $nuevaPersona['cargo_id'] = $request['cargo_id'];
-        $nuevaPersona['asignacion'] = $request['asignacion'];
-        $nuevaPersona['fecha_inicio'] = $request['fecha_inicio'];
-        $nuevaPersona['fecha_retiro'] = $request['fecha_retiro'];
-        $nuevaPersona['tiket'] = $request['tiket'];
+        //$nuevaPersona['contrato_id'] = $request['contrato_id'];
+        //$nuevaPersona['centro_id'] = $request['centro_id'];
+        //$nuevaPersona['cargo_id'] = $request['cargo_id'];
+        //$nuevaPersona['asignacion'] = $request['asignacion'];
+        //$nuevaPersona['fecha_inicio'] = $request['fecha_inicio'];
+        //$nuevaPersona['fecha_retiro'] = $request['fecha_retiro'];
+        //$nuevaPersona['tiket'] = $request['tiket'];
         // - - - - - - - - - - - - - - - - - - - - - - - -
         if ($request->hasFile('foto')) {
             $ruta = Config::get('constantes.folder_img_usuarios');
@@ -251,6 +252,18 @@ class UsuarioController extends Controller
                 $p->where('cargo_id', $id);
             })->get();
         }
+
+    }
+
+    public function cambio_pass(){
+        return view('intranet.sistema.password.index');
+    }
+
+
+    public function cambio_pass_guardar(ValidacionCambioPass $request, $id){
+        $usuarioUpdate['password'] = bcrypt(utf8_encode($request['password_new']));
+        Usuario::findOrFail($id)->update($usuarioUpdate);
+        return redirect('cambiar-password')->with('mensaje','Contraseña actualizada con exito');
 
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\Categoria;
 use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {   $categorias = Categoria::get();
-        $menu_id = 14;
+        $menus = Menu::where('nombre','Categorias')->get();
+        $menu_id = $menus[0]['id'];$rol_id = session('rol_id');
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

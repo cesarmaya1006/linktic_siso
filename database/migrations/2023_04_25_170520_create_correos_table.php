@@ -19,7 +19,7 @@ class CreateCorreosTable extends Migration
             $table->string('apellido', 255)->nullable();
             $table->string('correo', 255);
             $table->string('dominio', 255);
-            $table->unsignedBigInteger('dominio_id');
+            $table->unsignedBigInteger('dominio_id')->nullable();
             $table->foreign('dominio_id', 'fk_correo_dominio')->references('id')->on('dominio_correos')->onDelete('restrict')->onUpdate('restrict');
             $table->string('estado', 255);
             $table->string('ticket', 255)->nullable();
@@ -29,7 +29,7 @@ class CreateCorreosTable extends Migration
             $table->double('costo_dolares')->nullable();
             $table->bigInteger('costo_pesos')->nullable();
             $table->bigInteger('trm')->nullable();
-            $table->timestamp('fecha_de_eliminacion')->nullable();
+            $table->date('fecha_de_eliminacion')->nullable();
             $table->longText('comentarios')->nullable();
             $table->timestamps();
             $table->charset = 'utf8';

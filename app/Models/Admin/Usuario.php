@@ -78,7 +78,7 @@ class Usuario extends Authenticatable
                 'rol_id' => $roles[0]['id'],
                 'rol_nombre' => $roles[0]['nombre'],
             ]);
-            if ($roles[0]['id'] > 2) {
+            /*if ($roles[0]['id'] > 2) {
                 if ($roles[0]['id'] == 3) {
                     Session::put([
                         'area' => $this->persona->cargo->area->area,
@@ -90,7 +90,7 @@ class Usuario extends Authenticatable
                         'cargo' => $this->persona->carrera->carrera
                     ]);
                 }
-            }
+            }*/
         } else {
             Session::put('roles', $roles);
         }

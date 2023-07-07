@@ -17,7 +17,7 @@
     </div>
     <div class="col-12 col-md-2">
         <div class="form-group">
-            <label for="ticket" class="control-label">Ticket renovacion</label>
+            <label for="ticket" class="control-label">Ticket</label>
             <input type="text" name="ticket_renovacion" id="ticket_renovacion" class="form-control form-control-sm"
             value="{{old('ticket', $pagos->ticket ?? '')}}" />
         </div>

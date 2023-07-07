@@ -42,7 +42,7 @@ class Tabla_Menu extends Seeder
             ['nombre' =>  'Cargos', 'menu_id' => $menu_linea_3, 'url' =>  'admin/cargos', 'orden' => '2', 'icono' =>  'fas fa-bezier-curve'],
             ['nombre' =>  'Contratos', 'menu_id' => $menu_linea_3, 'url' =>  'admin/contratos', 'orden' => '3', 'icono' =>  'fas fa-file-csv'],
             ['nombre' =>  'Centros de Costo', 'menu_id' => $menu_linea_3, 'url' =>  'admin/centros', 'orden' => '4', 'icono' =>  'fas fa-closed-captioning'],
-            ['nombre' =>  'Estados', 'menu_id' => $menu_linea_3, 'url' =>  'admin/estados', 'orden' => '5', 'icono' =>  'fas fa-spell-check'],
+            ['nombre' =>  'Dominios Correos', 'menu_id' => $menu_linea_3, 'url' =>  'admin/dominios_correos', 'orden' => '5', 'icono' =>  'fas fa-spell-check'],
             ['nombre' =>  'Categorias', 'menu_id' => $menu_linea_3, 'url' =>  'admin/categorias', 'orden' => '6', 'icono' =>  'fas fa-layer-group'],
             ['nombre' =>  'Proveedores Rentados', 'menu_id' => $menu_linea_3, 'url' =>  'admin/proveedores_rentados', 'orden' => '7', 'icono' =>  'fas fa-user-friends'],
             ['nombre' =>  'Sub - Centros de Costo', 'menu_id' => $menu_linea_3, 'url' =>  'admin/sub_centros_costo', 'orden' => '8', 'icono' =>  'fas fa-hand-holding-usd'],
@@ -72,23 +72,24 @@ class Tabla_Menu extends Seeder
             ['nombre' =>  'Matriz Cargos Perfiles', 'menu_id' => $menu_linea_5, 'url' =>  'admin/matriz_cargos_perfiles', 'orden' => '6', 'icono' =>  'fas fa-user-friends'],
             //------------------------------------------------------------------------------------------------------------
             //35
-            ['nombre' =>  'Otras opciones', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '6', 'icono' =>  'fas fa-question-circle'],
-            ['nombre' =>  'Nuestas políticas de datos', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/consulta-politicas', 'orden' => '1', 'icono' =>  'fas fa-question-circle'],
-            ['nombre' =>  'Ayuda', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/ayuda', 'orden' => '2', 'icono' =>  'fas fa-question-circle'],
-            ['nombre' =>  'Actualizar datos', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/actualizar-datos', 'orden' => '3', 'icono' =>  'fas fa-edit'],
-            ['nombre' =>  'Cambiar contraseña', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/cambiar-password', 'orden' => '4', 'icono' =>  'fas fa-key'],
+            ['nombre' =>  'Otras opciones', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '7', 'icono' =>  'fas fa-question-circle'],
+            //['nombre' =>  'Nuestas políticas de datos', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/consulta-politicas', 'orden' => '1', 'icono' =>  'fas fa-question-circle'],
+            //['nombre' =>  'Ayuda', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/ayuda', 'orden' => '2', 'icono' =>  'fas fa-question-circle'],
+            //['nombre' =>  'Actualizar datos', 'menu_id' => $menu_linea_6, 'url' =>  'usuario/actualizar-datos', 'orden' => '3', 'icono' =>  'fas fa-edit'],
+            ['nombre' =>  'Cambiar contraseña', 'menu_id' => $menu_linea_6, 'url' =>  'cambiar-password', 'orden' => '4', 'icono' =>  'fas fa-key'],
             //------------------------------------------------------------------------------------------------------------
             //40
-            ['nombre' =>  'Parametros', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '7', 'icono' =>  'fas fa-cog'],
+            //['nombre' =>  'Parametros', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '7', 'icono' =>  'fas fa-cog'],
             //----------------------------------------------------------------------------------------------------------------------
+            //37
             ['nombre' =>  'Cuentas Corporativas', 'menu_id' => $menu_linea_3, 'url' =>  'admin/cuentas-corporativas', 'orden' => '14', 'icono' =>  'fas fa-address-card'],
 
-            //42
-            ['nombre' =>  'Correos', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '8', 'icono' =>  'fas fa-cog'],
-            ['nombre' =>  'Correos corporativos', 'menu_id' => '42', 'url' =>  'correos', 'orden' => '1', 'icono' =>  'fas fa-cog'],
-            ['nombre' =>  'Pagos', 'menu_id' => '42', 'url' =>  'pagos', 'orden' => '2', 'icono' =>  'fas fa-cog'],
+            //38
+            ['nombre' =>  'Correos', 'menu_id' => $menu_id, 'url' =>  '#', 'orden' => '6', 'icono' =>  'fas fa-cog'],
+            ['nombre' =>  'Correos corporativos', 'menu_id' => '38', 'url' =>  'correos', 'orden' => '1', 'icono' =>  'fas fa-cog'],
+            ['nombre' =>  'Pagos', 'menu_id' => '38', 'url' =>  'pagos', 'orden' => '2', 'icono' =>  'fas fa-cog'],
             ['nombre' =>  'Dominios GoDaddy', 'menu_id' => $menu_id, 'url' =>  'dominiosDaddy', 'orden' => '3', 'icono' =>  'fas fa-cog'],
-            ['nombre' =>  'Dominios', 'menu_id' => $menu_linea_3, 'url' =>  'dominios', 'orden' => '14', 'icono' =>  'fas fa-cog'],
+            //['nombre' =>  'Dominios', 'menu_id' => $menu_linea_3, 'url' =>  'dominios', 'orden' => '14', 'icono' =>  'fas fa-cog'],
 
 
         ];

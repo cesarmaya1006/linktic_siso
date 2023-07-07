@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\MatrizCargo;
 use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class MatrizCargoController extends Controller
     public function index()
     {
         $cargos = MatrizCargo::get();
-        $menu_id = 31;
+        $menus = Menu::where('nombre','Matriz de Cargos')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

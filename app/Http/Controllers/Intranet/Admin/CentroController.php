@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Intranet\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidacionCentro;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\Centro;
 use App\Models\Empresa\CentroCosto;
 use App\Models\Empresa\RolesPermiso;
@@ -19,7 +21,8 @@ class CentroController extends Controller
     {   //$usurio = Usuario::findOrFail(session('id_usuario'));
         //dd($usurio->roles[0]->toArray());
         $centros = CentroCosto::get();
-        $menu_id = 12;
+        $menus = Menu::where('nombre','Centros de Costo')->get();
+        $menu_id = $menus[0]['id'];$rol_id = session('rol_id');
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)
@@ -51,7 +54,7 @@ class CentroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function guardar(ValidacionCentro $request)
     {
         CentroCosto::create($request->all());
         return redirect('admin/centros')->with('mensaje', 'Centro de costo creado con exito');

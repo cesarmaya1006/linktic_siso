@@ -82,7 +82,7 @@
             <div class="form-group">
                 <label for="ticket" class="control-label requerido"> Fecha de eliminacion </label>
                 <input type="date" name="fecha_de_eliminacion" id="fecha_de_eliminacion"
-                 class="form-control form-control-sm" value="{{old('fecha_de_eliminacion', $correos->fecha_de_eliminacion??'')}}" required/>
+                 class="form-control form-control-sm" value="{{ $correos->fecha_de_eliminacion!=NULL? $correos->fecha_de_eliminacion : date('Y-m-d')}}" required/>
             </div>
         </div>
     @endif

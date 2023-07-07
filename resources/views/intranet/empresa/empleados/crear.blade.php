@@ -31,7 +31,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                <button class="btn btn-primary btn-sobra btn-xs pl-5 pr-5" type="submit">Guardar</button>
+               <!-- <button class="btn btn-primary btn-sobra btn-xs pl-5 pr-5" type="submit">Guardar</button> -->
             </div>
             <!-- /.card-footer -->
         </form>

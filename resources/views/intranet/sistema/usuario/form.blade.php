@@ -1,4 +1,4 @@
-<div class="row d-flex justify-content-evenly">
+<div class="row">
     <div class="col-10 col-md-2 form-group">
         <label for="rol_id" class="requerido">Rol de Usuario</label>
         <select name="rol_id[]" id="rol_id_form" class="form-control" required {{ isset($data) ? 'disabled' : '' }}>
@@ -8,7 +8,7 @@
             @endforeach
         </select>
     </div>
-    <div class="col-10 col-md-2 form-group">
+    <!-- <div class="col-10 col-md-2 form-group">
         <label for="contrato_id" class="requerido">Tipo de Contrato</label>
         <select name="contrato_id" id="contrato_id" class="form-control" required>
             <option value="">Elija un tipo de contrato</option>
@@ -30,8 +30,9 @@
             @endforeach
         </select>
     </div>
+-->
     <!--  ------------------------------------------------------------------------------------  -->
-    <div class="col-10 col-md-2 form-group">
+    <!-- <div class="col-10 col-md-2 form-group">
         <label for="area_id" class="requerido">Área de trabajo</label>
         <select name="area_id" id="area_id" class="form-control"  data_url="{{route('admin-cargar_cargos')}}">
             <option value="">Elija un Area</option>
@@ -57,10 +58,11 @@
             @endif
         </select>
     </div>
+-->
     <!--  ------------------------------------------------------------------------------------  -->
 </div>
-<hr>
-<div class="row d-flex justify-content-evenly">
+<!--
+<div class="row d-none">
     <div class="col-10 col-md-2 form-group">
         <label for="asignacion" class="requerido">Asignación Salarial</label>
         <input type="number" class="form-control text-right" id="asignacion" name="asignacion" step="500" placeholder="Nombre de Usuario"
@@ -68,10 +70,10 @@
         <small id="helpId" class="form-text text-muted">Asignacion salarial</small>
     </div>
     <div class="col-10 col-md-2 form-group">
-        <label for="tiket">Num Tikect</label>
+        <label for="tiket">Num Ticket</label>
         <input type="text" class="form-control" id="tiket" name="tiket" placeholder="Nombre de Usuario"
             value="{{ old('tiket', $data->tiket ?? '') }}">
-        <small id="helpId" class="form-text text-muted">Tikect</small>
+        <small id="helpId" class="form-text text-muted">Ticket</small>
     </div>
     <div class="col-10 col-md-2 form-group">
         <label for="fecha_inicio" class="requerido">Fecha Inicio</label>
@@ -85,8 +87,11 @@
             value="{{ old('fecha_retiro', $data->fecha_retiro ?? '') }}">
         <small id="helpId" class="form-text text-muted">fecha retiroo</small>
     </div>
+-->
     <!--  ------------------------------------------------------------------------------------  -->
+<!--
 </div>
+-->
 <hr>
 <div class="row d-flex justify-content-evenly">
     <div class="col-10 col-md-2 form-group">
@@ -148,13 +153,14 @@
             required>
         <small id="helpId" class="form-text text-muted">Tel&eacute;fono</small>
     </div>
-    <div class="col-10 col-md-2 form-group">
+    <!--<div class="col-10 col-md-2 form-group">
         <label for="direccion" class="requerido">Dirección</label>
         <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion Usuario"
             value="{{ old('direccion', isset($data) ? ($data->direccion != 'Sin Direccion' ? $data->direccion : '') : '') }}"
             required>
         <small id="helpId" class="form-text text-muted">Dirección</small>
     </div>
+-->
 </div>
 <div class="row d-flex justify-content-evenly">
     <div class="col-10 col-md-2 form-group">

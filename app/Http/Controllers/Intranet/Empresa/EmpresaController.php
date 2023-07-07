@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Models\Empresa\Empresa;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class EmpresaController extends Controller
      */
     public function index()
     {   $empresas = Empresa::get();
-        $menu_id = 20;
+        $menus = Menu::where('nombre','Empresas')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

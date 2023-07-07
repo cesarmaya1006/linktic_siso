@@ -51,7 +51,7 @@
     </div>
     <div class="col-12 col-md-3">
         <div class="form-group">
-            <label for="rentado_responsable_id" class="control-label requerido">Responsable</label>
+            <label for="rentado_responsable_id" class="control-label">Responsable</label>
             <div class="input-group mb-3">
                 <a class="btn btn-outline-info" type="button" id="button_modal_responsables"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                 <select class="form-control" name="rentado_responsable_id" id="rentado_responsable_id">
@@ -91,7 +91,7 @@
     </div>
     <div class="col-12 col-md-3">
         <div class="form-group">
-            <label for="ticket" class="control-label requerido">Tiket</label>
+            <label for="ticket" class="control-label requerido">Ticket</label>
             <input type="text" name="ticket" id="ticket" class="form-control" value="{{old('ticket', $equipo->ticket ?? '')}}" required/>
         </div>
     </div>

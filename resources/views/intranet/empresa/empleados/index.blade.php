@@ -77,80 +77,94 @@
                                             <td class="text-center">{{ $empleado->centro->centro ?? '---' }}</td>
                                             <td class="text-center">{{ $empleado->fecha_retiro ?? '---' }}</td>
                                             <td class="text-center">
-                                                @if ($permiso == null || $permiso->borrar == 1)
+                                                @if ($permiso == null || $permiso->listar == 1)
                                                     <button data-bs-toggle="modal" data-bs-target="#compPropiosModal"
                                                         class="btn-accion-tabla tooltipsC text-primary verModalEquiposPropios"
                                                         title="Ver Equipos"
                                                         data_url="{{ route('get_equipos_propios', ['id' => $empleado->id]) }}"
-                                                        data_empleado="{{ $empleado->usuario }}">
+                                                        data_empleado="{{ $empleado->usuario }}"
+                                                        onclick="verModalEquiposPropiosFunc('{{ route('get_equipos_propios', ['id' => $empleado->id]) }}','{{ $empleado->usuario }}')"
+                                                        >
                                                         <i class="fa fa-eye pl-3 pr-3" aria-hidden="true"> Ver</i>
                                                     </button>
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                @if ($permiso == null || $permiso->borrar == 1)
+                                                @if ($permiso == null || $permiso->listar == 1)
                                                     <button data-bs-toggle="modal" data-bs-target="#compRentadosModal"
                                                         class="btn-accion-tabla tooltipsC text-primary verModalEquiposRentados"
                                                         title="Ver Equipos"
                                                         data_url="{{ route('get_equipos_rentados', ['id' => $empleado->id]) }}"
-                                                        data_empleado="{{ $empleado->usuario }}">
+                                                        data_empleado="{{ $empleado->usuario }}"
+                                                        onclick="verModalEquiposRentadosFunc('{{ route('get_equipos_rentados', ['id' => $empleado->id]) }}','{{ $empleado->usuario }}')"
+                                                        >
                                                         <i class="fa fa-eye pl-3 pr-3" aria-hidden="true"> Ver</i>
                                                     </button>
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                @if ($permiso == null || $permiso->borrar == 1)
+                                                @if ($permiso == null || $permiso->listar == 1)
                                                     <button data-bs-toggle="modal" data-bs-target="#monitoresModal"
                                                         class="btn-accion-tabla tooltipsC text-primary verModalMonitores"
                                                         title="Ver Monitores"
                                                         data_url="{{ route('get_monitores', ['id' => $empleado->id]) }}"
-                                                        data_empleado="{{ $empleado->usuario }}">
+                                                        data_empleado="{{ $empleado->usuario }}"
+                                                        onclick="verModalMonitoresFunc('{{ route('get_monitores', ['id' => $empleado->id]) }}','{{ $empleado->usuario }}')"
+                                                        >
                                                         <i class="fa fa-eye pl-3 pr-3" aria-hidden="true"> Ver</i>
                                                     </button>
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                @if ($permiso == null || $permiso->borrar == 1)
+                                                @if ($permiso == null || $permiso->listar == 1)
                                                     <button data-bs-toggle="modal" data-bs-target="#impresorasModal"
                                                         class="btn-accion-tabla tooltipsC text-primary verModalImpresoras"
                                                         title="Ver Impresoras"
                                                         data_url="{{ route('get_impresoras', ['id' => $empleado->id]) }}"
-                                                        data_empleado="{{ $empleado->usuario }}">
+                                                        data_empleado="{{ $empleado->usuario }}"
+                                                        onclick="verModalImpresorasFunc('{{ route('get_impresoras', ['id' => $empleado->id]) }}','{{ $empleado->usuario }}')"
+                                                        >
                                                         <i class="fa fa-eye pl-3 pr-3" aria-hidden="true"> Ver</i>
                                                     </button>
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                @if ($permiso == null || $permiso->borrar == 1)
+                                                @if ($permiso == null || $permiso->listar == 1)
                                                     <button data-bs-toggle="modal" data-bs-target="#otrosModal"
                                                         class="btn-accion-tabla tooltipsC text-primary verModalOtros"
                                                         title="Ver Otros Equipos"
                                                         data_url="{{ route('get_otros', ['id' => $empleado->id]) }}"
-                                                        data_empleado="{{ $empleado->usuario }}">
+                                                        data_empleado="{{ $empleado->usuario }}"
+                                                        onclick="verModalOtrosFunc('{{ route('get_otros', ['id' => $empleado->id]) }}','{{ $empleado->usuario }}')"
+                                                        >
                                                         <i class="fa fa-eye pl-3 pr-3" aria-hidden="true"> Ver</i>
                                                     </button>
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                @if ($permiso == null || $permiso->borrar == 1)
+                                                @if ($permiso == null || $permiso->listar == 1)
                                                     <button data-bs-toggle="modal"
                                                         data-bs-target="#cuentasCorporativasModal"
                                                         class="btn-accion-tabla tooltipsC text-primary verModalCuentasCorporativas"
                                                         title="Ver Cuentas"
                                                         data_url="{{ route('get_cuentas_corporativas', ['id' => $empleado->id]) }}"
-                                                        data_empleado="{{ $empleado->usuario }}">
+                                                        data_empleado="{{ $empleado->usuario }}"
+                                                        onclick="verModalCuentasCorporativasFunc('{{ route('get_cuentas_corporativas', ['id' => $empleado->id]) }}','{{ $empleado->usuario }}')"
+                                                        >
                                                         <i class="fa fa-eye pl-3 pr-3" aria-hidden="true"> Ver</i>
                                                     </button>
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                @if ($permiso == null || $permiso->borrar == 1)
+                                                @if ($permiso == null || $permiso->listar == 1)
                                                     <button data-bs-toggle="modal"
                                                         data-bs-target="#licenciasCorporativasModal"
                                                         class="btn-accion-tabla tooltipsC text-primary verModalLicenciasCorporativas"
                                                         title="Ver Licencias"
                                                         data_url="{{ route('get_licencias_corporativas', ['id' => $empleado->id]) }}"
-                                                        data_empleado="{{ $empleado->usuario }}">
+                                                        data_empleado="{{ $empleado->usuario }}"
+                                                        onclick="verModalLicenciasCorporativasFunc('{{ route('get_licencias_corporativas', ['id' => $empleado->id]) }}','{{ $empleado->usuario }}')"
+                                                        >
                                                         <i class="fa fa-eye pl-3 pr-3" aria-hidden="true"> Ver</i>
                                                     </button>
                                                 @endif

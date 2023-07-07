@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\GlpiOperatingSystem;
 use App\Models\Empresa\MatrizCaracteristica;
 use App\Models\Empresa\RolesPermiso;
@@ -18,7 +19,8 @@ class CaracteristicasController extends Controller
     public function index()
     {
         $caracteristicas = MatrizCaracteristica::get();
-        $menu_id = 26;
+        $menus = Menu::where('nombre','Matriz Caracteristicas PC')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

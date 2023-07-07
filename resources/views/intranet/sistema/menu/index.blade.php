@@ -29,6 +29,7 @@
         </div>
         <br>
         @csrf
+        <input type="hidden" id="url_final" value="{{route('admin-menu-guardar-orden')}}">
         <div class="cf nestable-lists">
             <div class="dd" id="nestable">
                 <ol class="dd-list" id="dd_list99" data-url="{{ route('admin-menu-guardar-orden') }}">

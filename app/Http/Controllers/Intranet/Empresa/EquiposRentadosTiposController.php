@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\RentadoTipo;
 use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class EquiposRentadosTiposController extends Controller
     public function index()
     {
         $tipos = RentadoTipo::get();
-        $menu_id = 18;
+        $menus = Menu::where('nombre','Tipos PC Rentados')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

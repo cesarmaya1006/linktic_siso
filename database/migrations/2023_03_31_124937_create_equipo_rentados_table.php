@@ -21,7 +21,7 @@ class CreateEquipoRentadosTable extends Migration
             $table->foreign('centro_costo_id', 'fk_centro_costo_equipo')->references('id')->on('centro_costos')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('sub_centro_costo_id')->nullable();
             $table->foreign('sub_centro_costo_id', 'fk_sub_centro_costo_equipo')->references('id')->on('sub_centro_costos')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedBigInteger('rentado_responsable_id');
+            $table->unsignedBigInteger('rentado_responsable_id')->nullable();
             $table->foreign('rentado_responsable_id', 'fk_rentado_responsable_equipo')->references('id')->on('rentado_responsables')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('rentado_tipo_id');
             $table->foreign('rentado_tipo_id', 'fk_glpi_rentado_tipo_equipo_rentado')->references('id')->on('rentado_tipos')->onDelete('restrict')->onUpdate('restrict');

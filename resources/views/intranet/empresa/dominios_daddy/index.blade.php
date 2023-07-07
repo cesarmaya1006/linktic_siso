@@ -12,7 +12,7 @@
 
 <!-- ************************************************************* -->
 @section('tituloHoja')
-    Dominios go daddy
+    Dominios GoDaddy
 @endsection
 <!-- ************************************************************* -->
 @section('cuerpo_pagina')
@@ -22,7 +22,7 @@
         <div class="card-header">
             <div class="row mb-3">
                 <div class="col-12 col-md-6 col-lg-6 text-md-left text-lg-left pl-2">
-                    <h5>Listado de Pagos Dominios plataforma go daddy</h5>
+                    <h5>Listado de Pagos Dominios plataforma GoDaddy</h5>
                 </div>
                 <div class="col-12 col-md-6 pr-5">
                     @if ($permiso == null || $permiso->guardar)

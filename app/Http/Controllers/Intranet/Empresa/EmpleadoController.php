@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 use App\Models\Empresa\Empleado;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacionEmpleado;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\CentroCosto;
 use App\Models\Empresa\Contrato;
 use App\Models\Empresa\CuentaCorporativa;
@@ -42,7 +43,8 @@ class EmpleadoController extends Controller
             $equipos_propios = Equipo2::whereIn('id', $ids_equiposPropios)->get();
             $empleado['equipos_propios'] = $equipos_propios;
         }
-        $menu_id = 29;
+        $menus = Menu::where('nombre','Matriz Empleados')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Models\Empresa\Retiro;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\Empleado;
 use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
@@ -18,7 +19,8 @@ class RetiroController extends Controller
     public function index()
     {
         $empleados = Retiro::get();
-        $menu_id = 30;
+        $menus = Menu::where('nombre','Matriz de Retiros')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

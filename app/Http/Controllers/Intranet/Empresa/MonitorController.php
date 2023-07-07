@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\GlpiMonitor;
 use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
@@ -18,7 +19,8 @@ class MonitorController extends Controller
     {
         $monitoresGlpi = GlpiMonitor::get();
         //dd($equiposGLPI->toArray());
-        $menu_id = 24;
+        $menus = Menu::where('nombre','Monitores')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

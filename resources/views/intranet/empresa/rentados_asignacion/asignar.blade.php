@@ -111,8 +111,8 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="observaciones_asignacion" class="control-label requerido">Observaciones de entrega</label>
-                                        <textarea class="form-control form-control-sm" id="observaciones_asignacion" name="observaciones_asignacion" rows="5" style="resize: none;" required>{{$equipo->observaciones}}</textarea>
+                                        <label for="observaciones_asignacion" class="control-label">Observaciones de entrega</label>
+                                        <textarea class="form-control form-control-sm" id="observaciones_asignacion" name="observaciones_asignacion" rows="5" style="resize: none;" >{{$equipo->observaciones}}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-3">

@@ -64,6 +64,8 @@ Route::get('/clear-cache', function () {
 });
 Route::get('/migrar-bd', function () {
     echo Artisan::call('migrate:refresh');
+    echo Artisan::call('db:seed');
+
 });
 //---------------------------------------------------------------------------------
 Route::get('/', [ExtranetPageController::class, 'index'])->name('index');
@@ -81,6 +83,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cargar_cargos', [AjaxController::class, 'cargar_cargos'])->name('admin-cargar_cargos');
     Route::get('cargar_menu_permisos', [AjaxController::class, 'cargar_menu_permisos'])->name('admin-cargar_menu_permisos');
     Route::post('modificar_menu_permisos', [AjaxController::class, 'modificar_menu_permisos'])->name('admin-modificar_menu_permisos');
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //cambio de contraseña
+    Route::get('cambiar-password', [UsuarioController::class, 'cambio_pass'])->name('cambiar-password');
+    Route::put('cambiar-password/{id}', [UsuarioController::class, 'cambio_pass_guardar'])->name('cambiar-password_guardar');
+
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     Route::group(['prefix' => 'admin'], function () {
         Route::get('index', [IntranetPageCotroller::class, 'index'])->name('admin-index');
@@ -206,6 +213,14 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('gestion/{id}/editar', [GestionaController::class,'editar',])->name('admin-gestion-editar');
             Route::put('gestion/{id}', [GestionaController::class,'actualizar',])->name('admin-gestion-actualizar');
             Route::delete('gestion/{id}', [GestionaController::class,'eliminar',])->name('admin-gestion-eliminar');
+
+            // Rutas Dominios Correos
+            Route::get('dominios_correos', [DominioCorreoController::class,'index',])->name('dominios');
+            Route::get('dominios_correos-create', [DominioCorreoController::class,'create',])->name('dominios-create');
+            Route::post('dominios_correos-store', [DominioCorreoController::class, 'store'])->name('admin-dominios-store');
+            Route::get('dominios_correos/{id}/editar', [DominioCorreoController::class,'update',])->name('admin-dominios-editar');
+            Route::put('dominios_correos/{id}', [DominioCorreoController::class,'edit',])->name('dominios-actualizar');
+            Route::delete('dominios_correos/{id}', [DominioCorreoController::class,'destroy',])->name('admin-dominios-eliminar');
 
         });
             // ------------------------------------------------------------------------------------
@@ -399,32 +414,30 @@ Route::group(['middleware' => 'auth'], function () {
      Route::put('correos/{id}', [CorreoController::class,'edit',])->name('correos-actualizar');
      Route::delete('correos/{id}', [CorreoController::class,'destroy',])->name('admin-correos-eliminar');
 
-       // Ruta Administrador de pagos. mover el controlador
-       Route::get('pagos', [PagoCorreosController::class,'index',])->name('pagos');
-       Route::get('pagos-create', [PagoCorreosController::class,'create',])->name('pagos-create');
-       Route::post('pagos-store', [PagoCorreosController::class, 'store'])->name('admin-pagos-store');
-       Route::get('pagos/{id}/editar', [PagoCorreosController::class,'update',])->name('pagos-editar');
-       Route::put('pagos/{id}', [PagoCorreosController::class,'edit',])->name('pagos-actualizar');
-       Route::delete('pagos/{id}', [PagoCorreosController::class,'destroy',])->name('pagos-eliminar');
+    // Ruta Administrador de pagos. mover el controlador
+    Route::get('pagos', [PagoCorreosController::class,'index',])->name('pagos');
+    Route::get('pagos-create', [PagoCorreosController::class,'create',])->name('pagos-create');
+    Route::post('pagos-store', [PagoCorreosController::class, 'store'])->name('admin-pagos-store');
+    Route::get('pagos/{id}/editar', [PagoCorreosController::class,'update',])->name('pagos-editar');
+    Route::put('pagos/{id}', [PagoCorreosController::class,'edit',])->name('pagos-actualizar');
+    Route::delete('pagos/{id}', [PagoCorreosController::class,'destroy',])->name('pagos-eliminar');
+
+    // Ruta Administrador de las rutas
+    /*Route::get('dominios', [DominioCorreoController::class,'index',])->name('dominios');
+    Route::get('dominios-create', [DominioCorreoController::class,'create',])->name('dominios-create');
+    Route::post('dominios-store', [DominioCorreoController::class, 'store'])->name('admin-dominios-store');
+    Route::get('dominios/{id}/editar', [DominioCorreoController::class,'update',])->name('admin-dominios-editar');
+    Route::put('dominios/{id}', [DominioCorreoController::class,'edit',])->name('dominios-actualizar');
+    Route::delete('dominios/{id}', [DominioCorreoController::class,'destroy',])->name('admin-dominios-eliminar');*/
 
 
-
-         // Ruta Administrador de las rutas
-         Route::get('dominios', [DominioCorreoController::class,'index',])->name('dominios');
-         Route::get('dominios-create', [DominioCorreoController::class,'create',])->name('dominios-create');
-         Route::post('dominios-store', [DominioCorreoController::class, 'store'])->name('admin-dominios-store');
-         Route::get('dominios/{id}/editar', [DominioCorreoController::class,'update',])->name('admin-dominios-editar');
-         Route::put('dominios/{id}', [DominioCorreoController::class,'edit',])->name('dominios-actualizar');
-         Route::delete('dominios/{id}', [DominioCorreoController::class,'destroy',])->name('admin-dominios-eliminar');
-
-
-            // Ruta Administrador de las rutas
-            Route::get('dominiosDaddy', [DominioDaddyController::class,'index',])->name('dominiosDaddy');
-            Route::get('dominiosDaddy-create', [DominioDaddyController::class,'create',])->name('dominiosDaddy-create');
-            Route::post('dominiosDaddy-store', [DominioDaddyController::class, 'store'])->name('admin-dominiosDaddy-store');
-            Route::get('dominiosDaddy/{id}/editar', [DominioDaddyController::class,'update',])->name('admin-dominiosDaddy-editar');
-            Route::put('dominiosDaddy/{id}', [DominioDaddyController::class,'edit',])->name('dominiosDaddy-actualizar');
-            Route::delete('dominiosDaddy/{id}', [DominioDaddyController::class,'destroy',])->name('admin-dominiosDaddy-eliminar');
+    // Ruta Administrador de las rutas
+    Route::get('dominiosDaddy', [DominioDaddyController::class,'index',])->name('dominiosDaddy');
+    Route::get('dominiosDaddy-create', [DominioDaddyController::class,'create',])->name('dominiosDaddy-create');
+    Route::post('dominiosDaddy-store', [DominioDaddyController::class, 'store'])->name('admin-dominiosDaddy-store');
+    Route::get('dominiosDaddy/{id}/editar', [DominioDaddyController::class,'update',])->name('admin-dominiosDaddy-editar');
+    Route::put('dominiosDaddy/{id}', [DominioDaddyController::class,'edit',])->name('dominiosDaddy-actualizar');
+    Route::delete('dominiosDaddy/{id}', [DominioDaddyController::class,'destroy',])->name('admin-dominiosDaddy-eliminar');
 
 });
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

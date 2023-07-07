@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\CuentaCorporativa;
 use App\Models\Empresa\Empleado;
 use App\Models\Empresa\RolesPermiso;
@@ -12,7 +13,8 @@ class CuentaCorporativaController extends Controller
 {
     public function index()
     {   $cuentas = CuentaCorporativa::get();
-        $menu_id = 41;
+        $menus = Menu::where('nombre','Cuentas Corporativas')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

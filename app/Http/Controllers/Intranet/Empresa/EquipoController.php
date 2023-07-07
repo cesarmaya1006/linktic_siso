@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\Equipo;
 use App\Models\Empresa\Equipo2;
 use App\Models\Empresa\GlpiInfocom;
@@ -53,7 +54,8 @@ class EquipoController extends Controller
             }
         }
         //dd($equiposGLPI->toArray());
-        $menu_id = 23;
+        $menus = Menu::where('nombre','Equipos Propios')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)

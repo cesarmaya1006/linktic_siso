@@ -25,17 +25,7 @@
             <div class="box-body  card-primary">
                 <div class="row mt-2 mb-2">
                     <div class="col-12 col-md-6 pl-3">
-                        <div class="row">
-                            <div class="col-12">
-                                <strong class="mr-3">Exportar:</strong>
-                                <a class="mb-sm-3" href="{{ route('roles-exportarExcel') }}"
-                                    class="btn-accion-tabla tooltipsC mr-1" title="Exportar a Excel">
-                                    <img class="img-fluid"
-                                        src="{{ Storage::url('public/imagenes/sistema/excel-logo.png') }}"
-                                        alt="Exportar a Excel" width="40px" height="auto">
-                                </a>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="col-12 col-md-6 pr-5">
                         <a href="{{ route('admin-rol-crear') }}" class="btn btn-block btn-info btn-sm float-end"
@@ -44,7 +34,7 @@
                         </a>
                     </div>
                 </div>
-                <table class="table table-striped table-bordered table-hover" id="tabla-data">
+                <table class="table table-striped table-hover table-sm tabla-borrando nowrap tabla_data_table_xs" id="tabla-data_2">
                     <thead>
                         <tr>
                             <th>Nombre</th>

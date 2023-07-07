@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\Dominio;
+use App\Models\Empresa\RolesPermiso;
 use App\Models\Intranet\Empresa\DominioCorreo;
 use Illuminate\Http\Request;
 
@@ -19,7 +21,21 @@ class DominioCorreoController extends Controller
         //
 
         $dominios = DominioCorreo::get();
-        return view('intranet.empresa.dominios_correos.index', compact('dominios'));        
+        $menus = Menu::where('nombre','Dominios Correos')->get();
+        $menu_id = $menus[0]['id'];$rol_id = session('rol_id');
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.empresa.dominios_correos.index', compact('dominios','permiso'));
     }
 
     /**
@@ -29,7 +45,7 @@ class DominioCorreoController extends Controller
      */
     public function create()
     {
-        return view('intranet.empresa.dominios_correos.crear');   
+        return view('intranet.empresa.dominios_correos.crear');
     }
 
     /**
@@ -43,7 +59,7 @@ class DominioCorreoController extends Controller
         //
 
         DominioCorreo::create($request->all());
-        return redirect('dominios')->with('mensaje', 'Dominio creado con exito');
+        return redirect('admin/dominios_correos')->with('mensaje', 'Dominio creado con exito');
     }
 
     /**
@@ -65,11 +81,11 @@ class DominioCorreoController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        
-       
+
+
         DominioCorreo::findOrFail($id)->update($request->all());
-        return redirect('dominios')->with('mensaje', 'Dcominio de correo actualizado con exito');
-    
+        return redirect('admin/dominios_correos')->with('mensaje', 'Dominio de correo actualizado con exito');
+
     }
 
     /**
@@ -83,7 +99,7 @@ class DominioCorreoController extends Controller
     {
         //
         $dominio = DominioCorreo::findOrFail($id);
-       
+
 
         return view('intranet.empresa.dominios_correos.editar', compact('dominio'));
     }
@@ -105,6 +121,6 @@ class DominioCorreoController extends Controller
         } else {
             abort(404);
         }
-       
-    }    
+
+    }
 }

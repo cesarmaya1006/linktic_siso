@@ -47,7 +47,6 @@
                                 <th>Devolver al proveedor</th>
                                 <th class="text-center" style="white-space:nowrap;">Id</th>
                                 <th class="text-center" style="white-space:nowrap;">Proveedor</th>
-                                <th class="text-center" style="white-space:nowrap;">Responsable</th>
                                 <th class="text-center" style="white-space:nowrap;">Tipo de Equipo</th>
                                 <th class="text-center" style="white-space:nowrap;">Serial</th>
                                 <th class="text-center" style="white-space:nowrap;">Codigo</th>
@@ -62,7 +61,6 @@
                                 <td class="text-center"><a class="btn btn-info btn-xs" href="{{route('devolver_asignado_proveedor',['id' => $equipo->id])}}">Devolver al proveedor</a></td>
                                 <td>{{$equipo->id}}</td>
                                 <td class="text-left">{{$equipo->proveedor->proveedor}}</td>
-                                <td class="text-left">{{$equipo->responsable->responsable}}</td>
                                 <td class="text-center">{{$equipo->tipo->tipo}}</td>
                                 <td class="text-center">{{$equipo->serial}}</td>
                                 <td class="text-center">{{$equipo->codigo}}</td>

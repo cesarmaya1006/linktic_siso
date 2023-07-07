@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\RentadoEstado;
 use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class EquiposRentadosEstadosController extends Controller
     public function index()
     {
         $estados_rentados = RentadoEstado::get();
-        $menu_id = 19;
+        $menus = Menu::where('nombre','Estados PC Rentados')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)
@@ -52,7 +54,7 @@ class EquiposRentadosEstadosController extends Controller
     public function guardar(Request $request)
     {
         RentadoEstado::create($request->all());
-        return redirect('admin/estados_rentados')->with('mensaje', 'Estado PCs Rentados creado con exito');
+        return redirect('admin/rentados_estados')->with('mensaje', 'Estado PCs Rentados creado con exito');
     }
 
     /**

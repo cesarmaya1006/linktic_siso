@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\CentroCosto;
 use App\Models\Empresa\EquipoRentado;
 use App\Models\Empresa\ProveedorRentado;
 use App\Models\Empresa\RentadoEstado;
 use App\Models\Empresa\RentadoResponsable;
 use App\Models\Empresa\RentadoTipo;
+use App\Models\Empresa\RolesPermiso;
 use App\Models\Empresa\SubCentroCosto;
 use DateTime;
 use Illuminate\Http\Request;
@@ -62,7 +64,23 @@ class EquiposRentadosController extends Controller
 
 
         }
-        return view('intranet.empresa.rentados.index', compact('rentados'));
+
+        $menus = Menu::where('nombre','Equipos rentados')->get();
+        $menu_id = $menus[0]['id'];
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+
+        return view('intranet.empresa.rentados.index', compact('rentados','permiso'));
     }
 
     /**
@@ -145,7 +163,7 @@ class EquiposRentadosController extends Controller
     public function eliminar(Request $request, $id)
     {
         if ($request->ajax()) {
-            if (RentadoEstado::destroy($id)) {
+            if (EquipoRentado::destroy($id)) {
                 return response()->json(['mensaje' => 'ok']);
             } else {
                 return response()->json(['mensaje' => 'ng']);

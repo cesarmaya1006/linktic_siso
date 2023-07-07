@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\Empleado;
 use App\Models\Empresa\CentroCosto;
 use App\Models\Empresa\RolesPermiso;
@@ -20,7 +21,8 @@ class DominioDaddyController extends Controller
     {
 
         $dominios = DominioDaddy::get();
-        $menu_id = 45;
+        $menus = Menu::where('nombre','Dominios GoDaddy')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)
@@ -33,6 +35,7 @@ class DominioDaddyController extends Controller
         } else {
             $permiso = null;
         }
+
         return view('intranet.empresa.dominios_daddy.index', compact('dominios','permiso'));
     }
 

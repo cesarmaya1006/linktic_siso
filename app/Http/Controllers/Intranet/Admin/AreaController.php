@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Admin\Usuario;
 use App\Models\Empresa\Area;
 use App\Models\Empresa\RolesPermiso;
@@ -20,7 +21,8 @@ class AreaController extends Controller
         //$usurio = Usuario::findOrFail(session('id_usuario'));
         //dd($usurio->roles[0]->toArray());
         $areas = Area::get();
-        $menu_id = 9;
+        $menus = Menu::where('nombre','Areas')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)
