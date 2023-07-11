@@ -32,7 +32,7 @@ class CrearTablaPersonas extends Migration
             $table->string('telefono', 50);
             $table->string('direccion', 255)->nullable();
             $table->string('email', 255)->unique();
-            $table->string('foto', 255)->unique()->default('usuario-inicial.jpg');
+            $table->string('foto', 255)->default('usuario-inicial.jpg');
             $table->bigInteger('asignacion')->default(0)->nullable();
             $table->boolean('estado')->default('1');
             $table->date('fecha_inicio')->nullable();

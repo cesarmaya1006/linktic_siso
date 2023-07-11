@@ -23,7 +23,7 @@ class CreateCorreosTable extends Migration
             $table->foreign('dominio_id', 'fk_correo_dominio')->references('id')->on('dominio_correos')->onDelete('restrict')->onUpdate('restrict');
             $table->string('estado', 255);
             $table->string('ticket', 255)->nullable();
-            $table->timestamp('fecha_de_creacion')->nullable();
+            $table->date('fecha_de_creacion')->nullable();
             $table->unsignedBigInteger('centro_costos_id');
             $table->foreign('centro_costos_id', 'fk_correo_centro_costos')->references('id')->on('centro_costos')->onDelete('restrict')->onUpdate('restrict');
             $table->double('costo_dolares')->nullable();

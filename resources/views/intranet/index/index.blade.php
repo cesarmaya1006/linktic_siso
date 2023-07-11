@@ -22,12 +22,7 @@
                     @include('includes.mensaje')
                 </div>
             </div>
-            @if (session('rol_id') == 1)
-                @include('intranet.index.adminsistema')
-            @endif
-            @if (session('rol_id') == 2)
-                @include('intranet.index.indexadmin')
-            @endif
+            @include('intranet.index.indexadmin')
         </div>
     @else
         @include('intranet.index.cambiopassword')

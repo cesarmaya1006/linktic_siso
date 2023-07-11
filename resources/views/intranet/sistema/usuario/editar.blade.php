@@ -3,7 +3,6 @@
 <!-- titulo hoja -->
 @section('estilosHojas')
     <!-- Pagina CSS -->
-    <link rel="stylesheet" href="{{ asset('css/admin/admin_rol.css') }}">
 @endsection
 <!-- ************************************************************* -->
 <!-- titulo hoja -->

@@ -13,7 +13,7 @@ class ValidarUsuario extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,24 @@ class ValidarUsuario extends FormRequest
     public function rules()
     {
         return [
-            //
+            'identificacion' => 'required|max:250|unique:personas,identificacion,' . $this->route('id'),
+            'email' => 'required|max:250|unique:personas,email,' . $this->route('id'),
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'identificacion.unique' => 'El numero de identificacion se encuentra duplicado en la base de datos, verfique e intentelo nuevamente.',
+            'email.unique' => 'El correo se encuentra duplicado, verfique e intentelo nuevamente.'
+        ];
+
+    }
+    public function attributes()
+    {
+        return [
+            'identificacion' => 'Número de Identificación',
+            'email' => 'Correo Electronico',
+
         ];
     }
 }

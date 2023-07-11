@@ -17,7 +17,7 @@ class DominioDaddySeeder extends Seeder
     {
         $pagosCorreo = [
 
-            ['cuenta' => 'xfdanielgarcia99.com', 'estado' => 'Inactivo', 'ticket_renovacion' => NULL, 'fecha_de_vencimiento' => '2023-01-12', 'renovacion' => 'No', 'centro_costos_id' => 107, 'empleado_id' => 16, 'factura' => NULL, 'valor' => 0, 'tarjeta' => NULL, 'fecha_de_compra' => NULL],
+            ['cuenta' => 'danielgarcia99.com', 'estado' => 'Inactivo', 'ticket_renovacion' => NULL, 'fecha_de_vencimiento' => '2023-01-12', 'renovacion' => 'No', 'centro_costos_id' => 107, 'empleado_id' => 16, 'factura' => NULL, 'valor' => 0, 'tarjeta' => NULL, 'fecha_de_compra' => NULL],
             ['cuenta' => 'juancapacho.com', 'estado' => 'Inactivo', 'ticket_renovacion' => NULL, 'fecha_de_vencimiento' => '2023-01-12', 'renovacion' => 'No', 'centro_costos_id' => 107, 'empleado_id' => 16, 'factura' => NULL, 'valor' => 0, 'tarjeta' => NULL, 'fecha_de_compra' => NULL],
             ['cuenta' => 'mariosolano.com', 'estado' => 'Inactivo', 'ticket_renovacion' => NULL, 'fecha_de_vencimiento' => '2023-01-12', 'renovacion' => 'No', 'centro_costos_id' => 107, 'empleado_id' => 16, 'factura' => NULL, 'valor' => 0, 'tarjeta' => NULL, 'fecha_de_compra' => NULL],
             ['cuenta' => 'saraybechara.com', 'estado' => 'Inactivo', 'ticket_renovacion' => NULL, 'fecha_de_vencimiento' => '2023-01-17', 'renovacion' => 'No', 'centro_costos_id' => 107, 'empleado_id' => 16, 'factura' => NULL, 'valor' => 0, 'tarjeta' => NULL, 'fecha_de_compra' => NULL],

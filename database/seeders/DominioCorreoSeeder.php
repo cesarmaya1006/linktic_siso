@@ -44,7 +44,10 @@ class DominioCorreoSeeder extends Seeder
             'vendeporinternet.co',
             'wimbu.co',
             'yaktil.com',
-            'N/a'
+            'N/A',
+            'prevaleceseguros.com',
+            'givingsas.com',
+
 
 
 ];

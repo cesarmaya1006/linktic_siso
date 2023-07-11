@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacionCambioPass;
+use App\Http\Requests\ValidarUsuario;
 use App\Imports\ImportUsuario;
 use App\Models\Admin\Rol;
 use App\Models\Admin\Tipo_Docu;
@@ -13,7 +14,8 @@ use App\Models\Empresa\Area;
 use App\Models\Empresa\Centro;
 use App\Models\Empresa\Contrato;
 use App\Models\Personas\Persona;
-use Carbon\Carbon;
+use App\Models\Empresa\RolesPermiso;
+use App\Models\Admin\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Maatwebsite\Excel\Facades\Excel;
@@ -29,8 +31,22 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $roles = Rol::where('id', '>', '2')->get();
-        return view('intranet.sistema.usuario.index', compact('roles'));
+        $roles = Rol::where('id', '>', '1')->get();
+        $menus = Menu::where('nombre','Usuarios')->get();
+        $menu_id = $menus[0]['id'];
+        $rol_id = session('rol_id');
+        if ($rol_id > 1) {
+            $permisos = RolesPermiso::where('rol_id', $rol_id)
+                ->where('menu_id', $menu_id)
+                ->get();
+            foreach ($permisos as $permiso_) {
+                $permiso_id = $permiso_->id;
+            }
+            $permiso = RolesPermiso::findOrFail($permiso_id);
+        } else {
+            $permiso = null;
+        }
+        return view('intranet.sistema.usuario.index', compact('roles','permiso'));
     }
 
     public function importar()
@@ -101,7 +117,7 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function guardar(Request $request)
+    public function guardar(ValidarUsuario $request)
     {
         //dd($request->all());
         $roles = $request->rol_id;
@@ -184,9 +200,10 @@ class UsuarioController extends Controller
             ->pluck('nombre', 'id')
             ->toArray();
         $data = Usuario::findOrFail($id);
+        $contratos = Contrato::get();
         return view(
             'intranet.sistema.usuario.editar',
-            compact('data', 'roles', 'tiposdocu')
+            compact('data', 'roles', 'tiposdocu','contratos')
         );
     }
 
@@ -197,20 +214,38 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(Request $request, $id)
+    public function actualizar(ValidarUsuario $request, $id)
     {
         $actualizar_usuario['docutipos_id'] = $request['docutipos_id'];
         $actualizar_usuario['identificacion'] = $request['identificacion'];
-        $actualizar_usuario['nombres'] = $request['nombres'];
-        $actualizar_usuario['apellidos'] = $request['apellidos'];
-        $actualizar_usuario['email'] = $request['email'];
+        $actualizar_usuario['nombre1'] = utf8_encode(ucwords($request['nombre1']));
+        $actualizar_usuario['nombre2'] = utf8_encode(ucwords($request['nombre2']));
+        $actualizar_usuario['apellido1'] = utf8_encode(ucwords($request['apellido1']));
+        $actualizar_usuario['apellido2'] = utf8_encode(ucwords($request['apellido2']));
         $actualizar_usuario['telefono'] = $request['telefono'];
+        $actualizar_usuario['email'] = strtolower($request['email']);
+        if ($request->hasFile('foto')) {
+            $ruta = Config::get('constantes.folder_img_usuarios');
+            $ruta = trim($ruta);
+            $foto = $request->foto;
+            $imagen_foto = Image::make($foto);
+            $nombrefoto = time() . $foto->getClientOriginalName();
+            $imagen_foto->resize(400, 500);
+            $imagen_foto->save($ruta . $nombrefoto, 100);
+            $actualizar_usuario['foto'] = $nombrefoto;
+        }
         $roles = $request->rol_id;
         $roles['estado'] = 1;
-        $usuario = Persona::findOrFail($id);
+        $usuario = Usuario::findOrFail($id);
+        $usuario->roles()->sync($request->rol_id);
+        //-------------------------------------------
+
+        if ($request['password']!=null) {
+            $usuarioAct['password']= bcrypt(utf8_encode($request['password']));
+            Usuario::findOrFail($id)->update($usuarioAct);
+        }
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         Persona::findOrFail($id)->update($actualizar_usuario);
-        $usuario->update($actualizar_usuario);
         //-------------------------------------------
         return redirect('admin/usuario-index')->with(
             'mensaje',
@@ -266,5 +301,4 @@ class UsuarioController extends Controller
         return redirect('cambiar-password')->with('mensaje','Contraseña actualizada con exito');
 
     }
-
 }
