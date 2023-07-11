@@ -1,4 +1,4 @@
-@extends("theme.back.plantilla")
+@extends('theme.back.plantilla')
 <!-- ************************************************************* -->
 <!-- Funciones php -->
 @section('funciones_php')
@@ -6,7 +6,6 @@
 @endsection
 <!-- Pagina CSS -->
 @section('estilosHojas')
-
 @endsection
 
 
@@ -118,6 +117,6 @@
 <!-- ************************************************************* -->
 <!-- script hoja -->
 @section('scripts_pagina')
-<script src="{{ asset('js/intranet/empresa/correos/correos.js') }}"></script>
+    <script src="{{ asset('js/intranet/empresa/correos/correos.js') }}"></script>
 @endsection
 <!-- ************************************************************* -->

@@ -38,6 +38,7 @@ class CorreoController extends Controller
         } else {
             $permiso = null;
         }
+
         return view('intranet.empresa.correos.index', compact('correos','dominios','permiso'));
     }
 
@@ -64,8 +65,6 @@ class CorreoController extends Controller
     {
         $costoPesos = $request['costo_dolares'] * $request['trm'];
         $request['costo_pesos'] = $costoPesos;
-
-
         Correo::create($request->all());
         return redirect('correos')->with('mensaje', 'Correo creado con exito');
     }

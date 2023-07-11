@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Menu;
 use App\Models\Empresa\CentroCosto;
 use App\Models\Empresa\RolesPermiso;
+use App\Models\Empresa\RolesPermiso;
 use App\Models\Intranet\Empresa\DominioCorreo;
 use App\Models\Intranet\Empresa\PagoCorreo;
 use Illuminate\Http\Request;
@@ -37,6 +38,7 @@ class PagoCorreosController extends Controller
         } else {
             $permiso = null;
         }
+
         return view('intranet.empresa.pagos_correo_corporativo.index', compact('pagos','permiso'));
     }
 
