@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin\Menu;
+use App\Models\Admin\Rol;
+use App\Models\Empresa\RolesPermiso;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -119,6 +122,18 @@ class DominioDaddySeeder extends Seeder
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
 
             ]);
+        }
+        $menus = Menu::where('url','<>','#')->get();
+        $roles = Rol::where('id','>',1)->get();
+        foreach ($roles as $rol) {
+            foreach ($menus as $menu) {
+               $rolMenusPermisos = RolesPermiso::where('rol_id',$rol->id)->where('menu_id',$menu->id)->get();
+               if ($rolMenusPermisos->count()==0) {
+                $nuevoPermiso['rol_id'] = $rol->id;
+                $nuevoPermiso['menu_id'] = $menu->id;
+                RolesPermiso::create($nuevoPermiso);
+               }
+            }
         }
     }
 }

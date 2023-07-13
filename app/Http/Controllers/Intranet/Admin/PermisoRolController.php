@@ -71,4 +71,17 @@ class PermisoRolController extends Controller
             abort(404);
         }
     }
+    public function aplicar_permisos(Request $request){
+        if ($request->ajax()) {
+            $data = json_decode(stripslashes($_POST['info']));
+            foreach ($data as $item) {
+                $permiso_act[$item->opcion] = $item->valor;
+                RolesPermiso::findOrFail($item->id)->update($permiso_act);
+            }
+            return response()->json(['mensaje' => 'ok']);
+        } else {
+            abort(404);
+        }
+
+    }
 }

@@ -131,6 +131,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('_permiso-rol_data', [PermisoRolController::class,'data',])->name('_permiso-rol_data');
             Route::post('_permiso-rol_cambio_permiso/{id}', [PermisoRolController::class,'cambio_permiso',])->name('_permiso-rol_cambio_permiso');
             Route::post('_permiso-rol', [PermisoRolController::class,'guardar',])->name('admin-guardar_permiso_rol');
+            Route::post('_permiso-rol_todos/{id}/{opcion}', [PermisoRolController::class,'guardar_todos',])->name('admin-guardar_permiso_rol_todos');
+            Route::post('_permiso-rol_aplicar_permisos', [PermisoRolController::class,'aplicar_permisos',])->name('permiso_rol_aplicar_permisos');
 
             // ------------------------------------------------------------------------------------
         });
