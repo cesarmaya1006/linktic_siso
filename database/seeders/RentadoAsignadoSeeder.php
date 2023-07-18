@@ -100,7 +100,7 @@ class RentadoAsignadoSeeder extends Seeder
             ['asignado' => 'Jose Garcia-diadema pc com'],
             ['asignado' => 'Jose Lopez'],
             ['asignado' => 'Jose Mario Mier Rivera'],
-            ['asignado' =>'Juan Carlos Alvarez'],
+            ['asignado' => 'Juan Carlos Alvarez'],
             ['asignado' => 'Juan David Chavarro Plazas'],
             ['asignado' => 'July Gordillo'],
             ['asignado' => 'Justine Pulido'],
@@ -144,7 +144,7 @@ class RentadoAsignadoSeeder extends Seeder
             ['asignado' => 'Oswaldo Paez'],
             ['asignado' => 'Paola Arrubla Sanchez'],
             ['asignado' => 'Paola Barbosa'],
-            ['asignado' => 'Paula Garzon '],
+            ['asignado' => 'Paula Garzon'],
             ['asignado' => 'Paula Rendon'],
             ['asignado' => 'Rama Judicial'],
             ['asignado' => 'Richard Valderrama'],
@@ -165,6 +165,9 @@ class RentadoAsignadoSeeder extends Seeder
             ['asignado' => 'Yiced Baracaldo Casas'],
             ['asignado' => 'Yina Ruiz'],
             ['asignado' => 'Yulieth Parra'],
+            ['asignado' => 'Jose David Alfonso Robayo'],
+            ['asignado' => 'Vanessa Batero Ladino'],
+            ['asignado' => 'N/A'],
         ];
         foreach ($asignados as $item) {
             DB::table('rentado_asignados')->insert([

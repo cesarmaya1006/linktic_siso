@@ -12,7 +12,6 @@ function asignacion(url) {
         success: function(respuesta) {
             if (respuesta.mensaje == "ok") {
                 Sistema.notificaciones('La cuenta fue asignada correctamente', 'Sistema', 'success');
-                location.reload();
             } else {
                 Sistema.notificaciones('El equipo no pudo ser eliminado, hay recursos usandolo', 'Sistema', 'error');
             }
@@ -37,7 +36,6 @@ function des_asignacion(url) {
         success: function(respuesta) {
             if (respuesta.mensaje == "ok") {
                 Sistema.notificaciones('El equipo fue asignado correctamente', 'Sistema', 'success');
-                location.reload();
             } else {
                 Sistema.notificaciones('Se quito la asignación del equipo correctamente', 'Sistema', 'success');
             }

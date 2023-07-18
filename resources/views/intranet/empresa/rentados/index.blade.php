@@ -46,7 +46,8 @@
             <div class="row  d-flex justify-content-around">
                 @if ($permiso == null || $permiso->listar)
                     <div class="col-12 table-responsive">
-                        <table class="table table-striped table-hover table-sm nowrap tabla_data_table_xl tabla-borrando" id="tabla-data">
+                        <table class="table table-striped table-hover table-sm nowrap tabla_data_table_xl tabla-borrando"
+                            id="tabla-data">
                             <thead class="thead-inverse">
                                 <tr>
                                     <th class="text-center" style="white-space:nowrap;">Id</th>
@@ -94,7 +95,41 @@
                                         <td class="text-center">
                                             {{ $equipo->rentado_estado_id === 2 ? 'Devuelto al proveedor' : $equipo->estado->estado }}
                                         </td>
-                                        <td class="text-center">{{ $equipo->meses_uso }}</td>
+                                        <td class="text-center">
+                                            @php
+                                                $barras = '';
+                                                if ($equipo->porcentaje <= 50) {
+                                                    $barras .= '<div class="progress-bar bg-success" role="progressbar" style="width: ' . $equipo->porcentaje . '%" aria-valuenow="' . $equipo->porcentaje . '" aria-valuemin="0" aria-valuemax="100"></div>';
+                                                } else {
+                                                    $barras .= '<div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>';
+                                                    if ($equipo->porcentaje <= 65) {
+                                                        $barras .= '<div class="progress-bar" role="progressbar" style="width: ' . (50 - $equipo->porcentaje) . '%" aria-valuenow="' . (50 - $equipo->porcentaje) . '" aria-valuemin="0" aria-valuemax="100"></div>';
+                                                    } else {
+                                                        $barras .= '<div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>';
+                                                        if ($equipo->porcentaje <= 75) {
+                                                            $barras .= '<div class="progress-bar bg-info" role="progressbar" style="width: ' . (65 - $equipo->porcentaje) . '%" aria-valuenow="' . (65 - $equipo->porcentaje) . '" aria-valuemin="0" aria-valuemax="100"></div>';
+                                                        } else {
+                                                            $barras .= '<div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>';
+                                                            if ($equipo->porcentaje <= 85) {
+                                                                $barras .= '<div class="progress-bar bg-warning" role="progressbar" style="width: ' . (75 - $equipo->porcentaje) . '%" aria-valuenow="' . (75 - $equipo->porcentaje) . '" aria-valuemin="0" aria-valuemax="100"></div>';
+                                                            } else {
+                                                                $barras .= '<div class="progress-bar bg-warning" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>';
+                                                                if ($equipo->porcentaje <= 100) {
+                                                                    $barras .= '<div class="progress-bar bg-danger" role="progressbar" style="width: ' . (85 - $equipo->porcentaje) . '%" aria-valuenow="' . (85 - $equipo->porcentaje) . '" aria-valuemin="0" aria-valuemax="100"></div>';
+                                                                } else {
+                                                                    $barras .= '<div class="progress-bar bg-danger" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>';
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            @endphp
+                                            {{ $equipo->meses_uso }}
+                                            <div class="progress">
+                                                {!! $barras !!}
+                                            </div>
+                                            {{$equipo->porcentaje .' %'}}
+                                        </td>
                                         <td class="text-center">{{ $equipo->fecha_devolucion ?? '---' }}</td>
                                         <td class="text-left">{{ $equipo->observaciones ?? '' }}</td>
                                         <td class="text-center">

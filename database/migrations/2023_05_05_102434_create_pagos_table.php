@@ -15,6 +15,7 @@ class CreatePagosTable extends Migration
     {
         Schema::create('pago_correo_corporativo', function (Blueprint $table) {
             $table->bigIncrements('id')->autoIncrement();
+            $table->bigInteger('anno');
             $table->string('mes_facturado',255);
             $table->string('ticket', 255)->nullable();
             $table->unsignedBigInteger('dominio_id');

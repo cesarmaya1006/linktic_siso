@@ -105,6 +105,7 @@ class AsignacionRentadoSeeder extends Seeder
             ['rentado_asignado_id' => 22,'equipo_rentado_id' => 87,'fecha_asignacion' => '2021-09-16','fecha_devolucion' => '2021-10-15'],
             ['rentado_asignado_id' => 12,'equipo_rentado_id' => 88,'fecha_asignacion' => '2021-09-16','fecha_devolucion' => '2021-10-28'],
             ['rentado_asignado_id' => 47,'equipo_rentado_id' => 89,'fecha_asignacion' => '2021-09-16','fecha_devolucion' => '2021-11-09'],
+            ['rentado_asignado_id' => 152,'equipo_rentado_id' => 90,'fecha_asignacion' => '2021-09-16','fecha_devolucion' => '2021-10-06'],
             ['rentado_asignado_id' => 15,'equipo_rentado_id' => 91,'fecha_asignacion' => '2021-09-16','fecha_devolucion' => '2021-12-03'],
             ['rentado_asignado_id' => 68,'equipo_rentado_id' => 92,'fecha_asignacion' => '2021-09-16','fecha_devolucion' => '2021-10-15'],
             ['rentado_asignado_id' => 119,'equipo_rentado_id' => 93,'fecha_asignacion' => '2021-09-16','fecha_devolucion' => '2022-01-21'],
@@ -283,6 +284,7 @@ class AsignacionRentadoSeeder extends Seeder
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 266,'fecha_asignacion' => '2022-10-21','fecha_devolucion' => null],
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 267,'fecha_asignacion' => '2022-10-21','fecha_devolucion' => null],
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 268,'fecha_asignacion' => '2022-10-21','fecha_devolucion' => null],
+            ['rentado_asignado_id' => 152,'equipo_rentado_id' => 269,'fecha_asignacion' => '2022-11-09','fecha_devolucion' => '2022-12-29'],
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 270,'fecha_asignacion' => '2022-11-09','fecha_devolucion' => '2022-12-29'],
             ['rentado_asignado_id' => 48,'equipo_rentado_id' => 271,'fecha_asignacion' => '2022-11-09','fecha_devolucion' => null],
             ['rentado_asignado_id' => 106,'equipo_rentado_id' => 272,'fecha_asignacion' => '2022-11-09','fecha_devolucion' => null],
@@ -292,6 +294,7 @@ class AsignacionRentadoSeeder extends Seeder
             ['rentado_asignado_id' => 60,'equipo_rentado_id' => 276,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => null],
             ['rentado_asignado_id' => 132,'equipo_rentado_id' => 277,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => null],
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 278,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => '2022-12-29'],
+            ['rentado_asignado_id' => 152,'equipo_rentado_id' => 279,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => '2022-12-29'],
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 280,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => '2022-12-29'],
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 281,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => '2022-12-29'],
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 282,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => '2022-12-29'],
@@ -314,6 +317,7 @@ class AsignacionRentadoSeeder extends Seeder
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 299,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => '2022-12-29'],
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 300,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => '2022-12-29'],
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 301,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => '2022-12-29'],
+            ['rentado_asignado_id' => 152,'equipo_rentado_id' => 302,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => '2022-12-29'],
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 303,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => '2022-12-29'],
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 304,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => '2022-12-29'],
             ['rentado_asignado_id' => 131,'equipo_rentado_id' => 305,'fecha_asignacion' => '2022-11-10','fecha_devolucion' => '2022-12-29'],
@@ -335,6 +339,7 @@ class AsignacionRentadoSeeder extends Seeder
             ['rentado_asignado_id' => 113,'equipo_rentado_id' => 321,'fecha_asignacion' => '2023-05-31','fecha_devolucion' => null],
             ['rentado_asignado_id' => 64,'equipo_rentado_id' => 322,'fecha_asignacion' => '2023-05-31','fecha_devolucion' => null],
             ['rentado_asignado_id' => 43,'equipo_rentado_id' => 323,'fecha_asignacion' => '2023-05-31','fecha_devolucion' => null],
+
 
 
         ];

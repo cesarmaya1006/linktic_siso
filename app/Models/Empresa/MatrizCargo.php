@@ -17,6 +17,11 @@ class MatrizCargo extends Model
         return $this->belongsToMany(CuentaCorporativa::class, 'matriz_cuentas_corporativas');
     }
     //--------------------------------------------------------------------
+    public function matriz_perfiles()
+    {
+        return $this->belongsToMany(MatrizCargo::class, 'matriz_perfil_cargos');
+    }
+    //--------------------------------------------------------------------
     //----------------------------------------------------------------------------------
     public function matriz_cuentas_corporativas()
     {

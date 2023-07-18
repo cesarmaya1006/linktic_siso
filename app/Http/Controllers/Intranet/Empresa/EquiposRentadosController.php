@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidacionEquiposRentados;
 use App\Models\Admin\Menu;
 use App\Models\Empresa\CentroCosto;
 use App\Models\Empresa\EquipoRentado;
@@ -52,6 +53,7 @@ class EquiposRentadosController extends Controller
                         $fechaUso = $equipo_asignado->fecha_devolucion;
                         $meses = $this->verMeses(array($equipo_asignado->equipo->fecha_entrega,$fechaUso));
                         $equipo['meses_uso_renta'] = $meses;
+
                     } else {
                         $equipo['meses_uso_renta'] = 'Sin Fecha de devolución';
                     }
@@ -61,7 +63,7 @@ class EquiposRentadosController extends Controller
                 $equipo['fecha_asignacion'] = '---';
 
             }
-
+            $equipo['porcentaje'] = round(($equipo['meses_uso'] * 100) / 24, 2);
 
         }
 
@@ -106,7 +108,7 @@ class EquiposRentadosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function guardar(ValidacionEquiposRentados $request)
     {
         EquipoRentado::create($request->all());
         return redirect('admin/equipos_rentados')->with('mensaje', 'Equipo registrado con exito');

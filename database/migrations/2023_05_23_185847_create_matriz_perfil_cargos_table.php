@@ -17,7 +17,7 @@ class CreateMatrizPerfilCargosTable extends Migration
             $table->bigIncrements('id')->autoIncrement();
             $table->unsignedBigInteger('matriz_cargo_id');
             $table->foreign('matriz_cargo_id', 'fk_matriz_cargos_matriz_perfis')->references('id')->on('matriz_cargos')->onDelete('restrict')->onUpdate('restrict');
-            $table->unsignedBigInteger('matriz_perfi_id')->nullable();
+            $table->unsignedBigInteger('matriz_perfi_id');
             $table->foreign('matriz_perfi_id', 'fk_matriz_perfis_matriz_cargos')->references('id')->on('matriz_perfis')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
             $table->charset = 'utf8';

@@ -100,6 +100,6 @@
 <!-- ************************************************************* -->
 <!-- script hoja -->
 @section('scripts_pagina')
-    <script src="{{ asset('js/intranet/empresa/matriz_cargos_perfiles/matriz_cargos_perfiless.js') }}"></script>
+    <script src="{{ asset('js/intranet/empresa/matriz_cargos_perfiles/matriz_cargos_perfiles.js') }}"></script>
 @endsection
 <!-- ************************************************************* -->

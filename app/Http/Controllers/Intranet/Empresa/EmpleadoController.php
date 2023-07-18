@@ -130,7 +130,9 @@ class EmpleadoController extends Controller
             $ids_monitores[]=$monitor->glpi_monitors_id;
         }
         $monitores = GlpiMonitor::whereIn('id', $ids_monitores)->get();
-        $otros  = EmpleadoOtro::where('estado','1')->get();
+        //------
+
+        $otros  = EmpleadoOtro::where('estado','1')->where('empleado_id',$empleado->id)->get();
         //------
         return view('intranet.empresa.empleados.editar', compact('empleado','gestiones','contratos','centros','empresas','cuentas','licencias','equipos_propios','impresoras','monitores','otros'));
     }

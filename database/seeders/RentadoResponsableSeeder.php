@@ -50,6 +50,9 @@ class RentadoResponsableSeeder extends Seeder
             ['responsable' => 'Santiago Suarez'],
             ['responsable' => 'Vende en linea'],
             ['responsable' => 'Victor Quintero'],
+            ['responsable' => 'Ruben Morales'],
+            ['responsable' => 'N/A'],
+
         ];
         foreach ($responsables as $item) {
             DB::table('rentado_responsables')->insert([

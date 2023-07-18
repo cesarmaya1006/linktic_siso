@@ -94,7 +94,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('restablecer-password', [IntranetPageCotroller::class,'restablecer_password',])->name('admin-restablecer_password');
         // Rutas Index
         // ------------------------------------------------------------------------------------
-        Route::group(['middleware' => 'adminSistema'], function () {
             // Ruta Administrador del Sistema Menus
             // ------------------------------------------------------------------------------------
             Route::get('menu-index', [MenuController::class, 'index'])->name('admin-menu-index');
@@ -135,9 +134,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('_permiso-rol_aplicar_permisos', [PermisoRolController::class,'aplicar_permisos',])->name('permiso_rol_aplicar_permisos');
 
             // ------------------------------------------------------------------------------------
-        });
         // ------------------------------------------------------------------------------------
-        Route::group(['middleware' => 'administrador'], function () {
             // Ruta Administrador del Sistema Usuarios
             Route::get('usuario-index', [UsuarioController::class,'index',])->name('admin-usuario-index');
             Route::get('usuario-crear', [UsuarioController::class,'crear',])->name('admin-usuario-crear');
@@ -224,7 +221,6 @@ Route::group(['middleware' => 'auth'], function () {
             Route::put('dominios_correos/{id}', [DominioCorreoController::class,'edit',])->name('dominios-actualizar');
             Route::delete('dominios_correos/{id}', [DominioCorreoController::class,'destroy',])->name('admin-dominios-eliminar');
 
-        });
             // ------------------------------------------------------------------------------------
             // Ruta Administrador del Sistema Equipos
             Route::get('equipos', [EquipoController::class,'index',])->name('admin-equipos');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 use App\Http\Controllers\Controller;
 use App\Models\Empresa\MatrizCargo;
 use App\Models\Empresa\MatrizPerfi;
+use App\Models\Empresa\MatrizPerfilCargo;
 use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
 
@@ -37,14 +38,23 @@ class MatrizPerfilCargoController extends Controller
     }
 
     public function asignacion(Request $request,$matriz_cargo_id,$matriz_perfi_id){
-        $cargos = new MatrizCargo();
-        $cargos->find($matriz_cargo_id)->matriz_perfil()->attach($matriz_perfi_id);
+        $newMatriz['matriz_cargo_id'] = $matriz_cargo_id;
+        $newMatriz['matriz_perfi_id'] = $matriz_perfi_id;
+
+        MatrizPerfilCargo::create($newMatriz);
+        //$cargos->find($matriz_cargo_id)->matriz_perfiles()->attach($matriz_perfi_id);
         return response()->json(['mensaje' => 'ok']);
     }
 
     public function desasignacion(Request $request,$matriz_cargo_id,$matriz_perfi_id){
-        $cargos = new MatrizCargo();
-        $cargos->find($matriz_cargo_id)->matriz_perfil()->detach($matriz_perfi_id);
+        $matrices = MatrizPerfilCargo::where('matriz_cargo_id',$matriz_cargo_id)->where('matriz_perfi_id',$matriz_perfi_id)->get();
+        $id =0;
+        foreach ($matrices as $item) {
+            $id = $item->id;
+        }
+        MatrizPerfilCargo::destroy($id);
+        //$cargos = new MatrizCargo();
+        //$cargos->find($matriz_cargo_id)->matriz_perfiles()->detach($matriz_perfi_id);
         return response()->json(['mensaje' => 'ok']);
     }
 
