@@ -3,13 +3,27 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidacionPagoCorreo;
 use App\Models\Admin\Menu;
 use App\Models\Empresa\CentroCosto;
 use App\Models\Empresa\RolesPermiso;
 use App\Models\Intranet\Empresa\DominioCorreo;
 use App\Models\Intranet\Empresa\PagoCorreo;
 use Illuminate\Http\Request;
-const MESES = array(1 =>'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 =>'Abril',5 => 'Mayo',6 => 'Junio',7 => 'Julio' ,8 => 'Agosto',9 => 'septiembre',10 => 'octubre',11 =>'Noviembre',12 => 'Diciembre');
+const MESES = [
+    1 => 'Enero',
+    2 => 'Febrero',
+    3 => 'Marzo',
+    4 => 'Abril',
+    5 => 'Mayo',
+    6 => 'Junio',
+    7 => 'Julio',
+    8 => 'Agosto',
+    9 => 'septiembre',
+    10 => 'octubre',
+    11 => 'Noviembre',
+    12 => 'Diciembre',
+];
 
 class PagoCorreosController extends Controller
 {
@@ -23,7 +37,7 @@ class PagoCorreosController extends Controller
         //
         $pagos = PagoCorreo::get();
         $dominios = DominioCorreo::get();
-        $menus = Menu::where('nombre','Correos corporativos')->get();
+        $menus = Menu::where('nombre', 'Correos corporativos')->get();
         $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
@@ -38,7 +52,10 @@ class PagoCorreosController extends Controller
             $permiso = null;
         }
 
-        return view('intranet.empresa.pagos_correo_corporativo.index', compact('pagos','permiso'));
+        return view(
+            'intranet.empresa.pagos_correo_corporativo.index',
+            compact('pagos', 'permiso')
+        );
     }
 
     /**
@@ -50,7 +67,10 @@ class PagoCorreosController extends Controller
     {
         $centros = CentroCosto::get();
         $dominios = DominioCorreo::get();
-        return view('intranet.empresa.pagos_correo_corporativo.create', compact('centros','dominios'));
+        return view(
+            'intranet.empresa.pagos_correo_corporativo.create',
+            compact('centros', 'dominios')
+        );
     }
 
     /**
@@ -59,12 +79,8 @@ class PagoCorreosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ValidacionPagoCorreo $request)
     {
-        $costoPesos = $request['costo_dolares'] * $request['trm'];
-        $request['costo_pesos'] = $costoPesos;
-
-
         PagoCorreo::create($request->all());
         return redirect('pagos')->with('mensaje', 'Correo creado con exito');
     }
@@ -92,7 +108,11 @@ class PagoCorreosController extends Controller
         $request['costo_pesos'] = $costoPesos;
 
         PagoCorreo::findOrFail($id)->update($request->all());
-        return redirect('pagos')->with('mensaje', 'Empleado actualizado con exito');    }
+        return redirect('pagos')->with(
+            'mensaje',
+            'Empleado actualizado con exito'
+        );
+    }
 
     /**
      * Update the specified resource in storage.
@@ -106,7 +126,10 @@ class PagoCorreosController extends Controller
         $pagos = PagoCorreo::findOrFail($id);
         $centros = CentroCosto::get();
         $dominios = DominioCorreo::get();
-        return view('intranet.empresa.pagos_correo_corporativo.editar', compact('pagos','centros','dominios'));
+        return view(
+            'intranet.empresa.pagos_correo_corporativo.editar',
+            compact('pagos', 'centros', 'dominios')
+        );
     }
 
     /**
@@ -115,7 +138,7 @@ class PagoCorreosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
         if ($request->ajax()) {
             if (PagoCorreo::destroy($id)) {
@@ -126,6 +149,5 @@ class PagoCorreosController extends Controller
         } else {
             abort(404);
         }
-
     }
 }

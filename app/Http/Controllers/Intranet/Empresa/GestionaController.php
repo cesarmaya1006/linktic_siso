@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Models\Empresa\Gestiona;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidacionGestion;
 use App\Models\Admin\Menu;
 use App\Models\Empresa\RolesPermiso;
 use Illuminate\Http\Request;
@@ -50,7 +51,7 @@ class GestionaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(Request $request)
+    public function guardar(ValidacionGestion $request)
     {
         Gestiona::create($request->all());
         return redirect('admin/gestion')->with('mensaje', 'Gestión creada con exito');

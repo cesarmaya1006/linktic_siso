@@ -51,9 +51,9 @@
                                         <tr>
                                             <th class="text-center" scope="col">Id</th>
                                             <th class="text-center" scope="col">Usuario</th>
-                                            <th class="text-center" scope="col">N. Identificacion</th>
+                                            <th class="text-center" scope="col">N. Identificación</th>
                                             <th class="text-center" scope="col">Nombres y Apellidos</th>
-                                            <th class="text-center" scope="col">Telefono</th>
+                                            <th class="text-center" scope="col">Teléfono</th>
                                             <th class="text-center" scope="col">Dirección</th>
                                             <th class="text-center" scope="col">Email</th>
                                             <th class="text-center" scope="col">Fecha de ingreso</th>
