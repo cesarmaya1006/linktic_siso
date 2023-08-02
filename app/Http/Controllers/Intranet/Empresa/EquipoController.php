@@ -23,7 +23,7 @@ class EquipoController extends Controller
     public function index()
     {
         $equipos = Equipo::get();
-        $equiposGLPI = Equipo2::with('entidad')
+        $equiposGLPI = Equipo2::where('is_deleted',0)->with('entidad')
             ->with('usuario')
             ->get();
 

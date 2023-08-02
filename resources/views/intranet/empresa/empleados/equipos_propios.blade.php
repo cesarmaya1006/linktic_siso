@@ -21,7 +21,7 @@
         <div class="card-header">
             <div class="row mb-3">
                 <div class="col-12 col-md-6 col-lg-6 text-md-left text-lg-left pl-2">
-                    <h5>Empleados - Asignación de equipos rentados</h5>
+                    <h5>Empleados - Asignación de equipos propios</h5>
                 </div>
                 <div class="col-12 col-md-6 pr-5">
                     <a  href="{{ route('empleados-editar', ['id' => $empleado->id]) }}"
@@ -65,9 +65,9 @@
                                 <tr id="tr_{{$equipo->id}}">
                                     <td class="text-center">
                                         <div class="form-check">
-                                            <input 
-                                                class="form-check-input" 
-                                                type="checkbox" 
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
                                                 onclick="asignacion('{{route('equipos_propios_asignacion',['empleado_id' => $empleado->id,'glpi_computers_id' => $equipo->id])}}','{{$equipo->id}}')">
                                           </div>
                                     </td>
@@ -116,7 +116,7 @@
                                                 }
                                             }
                                         }
-    
+
                                         @endphp
                                         <div class="progress">
                                             {!!$barras!!}

@@ -49,14 +49,14 @@
                                         <th class="text-center" style="white-space:nowrap;">Gestión</th>
                                         <th class="text-center" style="white-space:nowrap;">Tipo Contrato</th>
                                         <th class="text-center" style="white-space:nowrap;">Ticket de Contratación</th>
-                                        <th class="text-center" style="white-space:nowrap;">Centro de Cosotos</th>
-                                        <th class="text-center" style="white-space:nowrap;">Fecha de retiro</th>
+                                        <th class="text-center" style="white-space:nowrap;">Centro de Costos</th>
+                                        <th class="text-center" style="white-space:nowrap;">Fecha de Retiro</th>
                                         <th class="text-center" style="white-space:nowrap;">Equipos Propios</th>
                                         <th class="text-center" style="white-space:nowrap;">Equipos Rentados</th>
                                         <th class="text-center" style="white-space:nowrap;">Monitores</th>
                                         <th class="text-center" style="white-space:nowrap;">Impresoras</th>
                                         <th class="text-center" style="white-space:nowrap;">Otros Elementos</th>
-                                        <th class="text-center" style="white-space:nowrap;">Cuentas corporativas</th>
+                                        <th class="text-center" style="white-space:nowrap;">Cuentas Corporativas</th>
                                         <th class="text-center" style="white-space:nowrap;">Licencias corporativas</th>
                                         <th class="text-center" style="white-space:nowrap;">Estado</th>
                                         <th class="text-center" style="white-space:nowrap;">Opciones</th>
