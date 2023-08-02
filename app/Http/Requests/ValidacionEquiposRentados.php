@@ -30,7 +30,7 @@ class ValidacionEquiposRentados extends FormRequest
     public function messages()
     {
         return [
-            'ticket.numeric' => 'El campo Ticket solo acepta numeros, verfique e intentelo nuevamente.',
+            'ticket.numeric' => 'El campo Ticket solo acepta números, verifique e inténtelo nuevamente.',
         ];
 
     }

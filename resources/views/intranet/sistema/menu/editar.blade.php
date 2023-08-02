@@ -1,4 +1,4 @@
-@extends("admin.plantilla.plantilla")
+@extends("theme.back.plantilla")
 <!-- ************************************************************* -->
 <!-- titulo hoja -->
 @section('estilosHojas')
@@ -27,7 +27,7 @@
         @csrf
         @method('put')
         <div class="card-body">
-            @include('admin.menu.form')
+            @include('intranet.sistema.menu.form')
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
