@@ -25,20 +25,25 @@ class ValidacionEquiposRentados extends FormRequest
     {
         return [
             'ticket' => 'required|numeric',
+            'serial' => 'required|unique:equipo_rentados,serial,' . $this->route('id'),
+            'codigo' => 'required|unique:equipo_rentados,codigo,' . $this->route('id'),
+
         ];
     }
     public function messages()
     {
         return [
-            'ticket.numeric' => 'El campo Ticket solo acepta números, verifique e inténtelo nuevamente.',
+            'ticket.numeric' => 'El campo Ticket solo acepta numeros, verfique e intentelo nuevamente.',
+            'serial.unique' => 'El campo Serial de Equipo es unico y se encuentra ya registrado en la base de datos, verfique e intentelo nuevamente.',
+            'codigo.unique' => 'El campo Código de Equipo es unico y se encuentra ya registrado en la base de datos, verfique e intentelo nuevamente.',
         ];
+
 
     }
     public function attributes()
     {
         return [
             'ticket' => 'Ticket',
-
         ];
     }
 }
