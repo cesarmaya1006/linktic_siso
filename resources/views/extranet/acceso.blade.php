@@ -38,12 +38,11 @@
                                     </div>
                                     <div class="d-flex justify-content-around">
                                         <div class="centrar-items">
-                                            <button class="mt-2 btn btn-primary" type="submit">Iniciar sesiónes</button>
+                                            <button class="mt-2 btn btn-primary" type="submit">Iniciar sesión</button>
                                         </div>
                                     </div>
                                     <div class="centrar-items mt-4">
-                                        <p><a class="card-text h6" href="{{ route('solicitar_password') }}">Olvidé mi nombre
-                                                de usuario o contraseña bromelias</a></p>
+                                        <p><a class="card-text h6" href="{{ route('solicitar_password') }}">Olvidé mi contraseña</a></p>
                                     </div>
                                 </form>
                             </div>
