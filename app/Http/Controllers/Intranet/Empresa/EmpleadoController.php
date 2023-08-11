@@ -176,7 +176,8 @@ class EmpleadoController extends Controller
     public function retiro_empleado(Request $request, $id){
         if ($request->ajax()) {
             if (Retiro::create($request->all())) {
-                Empleado::destroy($id);
+                $empleadoUpdate['estado'] = 'Retirado';
+                Empleado::findOrfail($id)->update($empleadoUpdate);
                 return response()->json(['mensaje' => 'ok']);
             } else {
                 return response()->json(['mensaje' => 'ng']);

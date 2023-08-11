@@ -47,6 +47,9 @@
                                         <th class="text-center" style="white-space:nowrap;">Centro de Cosotos</th>
                                         <th class="text-center" style="white-space:nowrap;">Fecha de retiro</th>
                                         <th class="text-center" style="white-space:nowrap;">Observaciones</th>
+                                        @if (session('rol_id')==1 && isset($_GET['eliminar']))
+                                        <th>Eliminar</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,6 +67,19 @@
                                             <td class="text-center">{{ $empleado->centro_costos ?? '---' }}</td>
                                             <td class="text-center">{{ $empleado->fecha_retiro ?? '---' }}</td>
                                             <td class="text-center">{{ $empleado->observaciones ?? '---' }}</td>
+                                            @if (session('rol_id')==1 && isset($_GET['eliminar']))
+                                                <td>
+                                                    <form
+                                                        action="{{ route('retiros-eliminar', ['id' => $empleado->id]) }}"
+                                                        class="d-inline form-eliminar" method="POST">
+                                                        @csrf @method('delete')
+                                                        <button type="submit" class="btn-accion-tabla eliminar tooltipsC"
+                                                            title="Eliminar este registro">
+                                                            <i class="fa fa-fw fa-trash text-danger"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

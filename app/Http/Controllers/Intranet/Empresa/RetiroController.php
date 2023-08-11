@@ -97,8 +97,16 @@ class RetiroController extends Controller
      * @param  \App\Models\Empresa\Retiro  $retiro
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Retiro $retiro)
+    public function eliminar(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            if (Retiro::destroy($id)) {
+                return response()->json(['mensaje' => 'ok']);
+            } else {
+                return response()->json(['mensaje' => 'ng']);
+            }
+        } else {
+            abort(404);
+        }
     }
 }

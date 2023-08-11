@@ -20,7 +20,14 @@
     <div class="card">
         @include('includes.error-form')
         @include('includes.mensaje')
-        <div class="card-header">
+        <div class="card-body loading d-none">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img class="img-fluid" src="{{asset('imagenes/sistema/cargando2.gif')}}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="card-header cuerpo">
             <div class="row mb-3">
                 <div class="col-12 col-md-6 col-lg-6 text-md-left text-lg-left pl-2">
                     <h5>Retiro de empleado: <strong>{{$empleado->usuario}}</strong></h5>
@@ -32,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-body pb-3">
+        <div class="card-body cuerpo pb-3">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-6">

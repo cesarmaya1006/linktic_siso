@@ -22,15 +22,17 @@ $(document).ready(function() {
 
     function submitRequest(form) {
         const data_url = form.attr('data_url');
+        $('.loading').removeClass('d-none');
+        $('.cuerpo').addClass('d-none');
+
         $.ajax({
             url: form.attr('action'),
             type: 'POST',
             data: form.serialize(),
             success: function(respuesta) {
+                //$('.loading').addClass('d-none');
                 if (respuesta.mensaje == "ok") {
-
                     window.location = data_url;
-
                 } else {
                     Sistema.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Sistema', 'error');
                 }

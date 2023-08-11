@@ -354,6 +354,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('licencias-corporativas/{empleado_id}/{licencia_id}/asignar', [EmpleadoController::class, 'asignar_licencias'])->name('admin-licencias_corporativas-asignar');
             // Ruta Administrador empleados
             Route::get('retiros', [RetiroController::class,'index',])->name('retiros');
+            Route::delete('retiros/{id}', [RetiroController::class,'eliminar',])->name('retiros-eliminar');
             // Ruta Administrador cargos
             Route::get('matriz_cargos', [MatrizCargoController::class,'index',])->name('matriz_cargos');
             Route::get('matriz_cargos-crear', [MatrizCargoController::class,'crear',])->name('admin-matriz_cargos-crear');
