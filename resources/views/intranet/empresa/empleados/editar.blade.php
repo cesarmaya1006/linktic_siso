@@ -31,6 +31,18 @@
                 @method('put')
                 @include('intranet.empresa.empleados.form')
             </form>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    @if ($primer_id !=$empleado->id)
+                    <a href="{{ route('empleados-editar', ['id' => ($id_anterior)]) }}" class="btn btn-info btn-sombra btn-xs pl-5 pr-5 pt-1 pb-1"><i class="fas fa-reply mr-2" aria-hidden="true"></i> Anterior</a>
+                    @endif
+                </div>
+                <div class="col-12 col-md-6 text-end">
+                    @if ($ultimo_id != $empleado->id)
+                    <a href="{{ route('empleados-editar', ['id' => ($id_siguiente)]) }}" class="btn btn-info btn-sombra btn-xs pl-5 pr-5 pt-1 pb-1">Siguiente <i class="fas fa-share ml-2" aria-hidden="true"></i></a>
+                    @endif
+                </div>
+            </div>
             <hr>
             <div class="row">
                 <div class="col-12">
@@ -52,7 +64,7 @@
                                 value="{{$cuenta->id}}"
                                 id="cuenta_"{{$cuenta->id}}
                                 data_url="{{route('admin-cuentas_corporativas-asignar',['empleado_id'=>$empleado->id,'cuenta_corporativa_id'=>$cuenta->id])}}">
-                            <label class="form-check-label" for="flexCheckDefault">
+                            <label class="form-check-label text-uppercase" for="flexCheckDefault">
                             {{$cuenta->cuenta}}
                             </label>
                         </div>
@@ -80,7 +92,7 @@
                                 value="{{$licencia->id}}"
                                 id="licencia_"{{$licencia->id}}
                                 data_url="{{route('admin-licencias_corporativas-asignar',['empleado_id'=>$empleado->id,'licencia_id'=>$licencia->id])}}">
-                            <label class="form-check-label" for="flexCheckDefault">
+                            <label class="form-check-label text-uppercase" for="flexCheckDefault">
                             {{$licencia->licencia}}
                             </label>
                         </div>

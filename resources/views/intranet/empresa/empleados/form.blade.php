@@ -88,6 +88,6 @@
 </div>
 <div class="row">
     <div class="col-12 mt-4 mb-5">
-        <button class="btn btn-primary btn-sobra btn-xs pl-5 pr-5" type="submit">Guardar</button>
+        <button class="btn btn-primary btn-sobra btn-xs pl-5 pr-5 btn-sombra" type="submit">Guardar</button>
     </div>
 </div>

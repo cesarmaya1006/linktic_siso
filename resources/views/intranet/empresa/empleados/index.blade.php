@@ -6,6 +6,7 @@
 @endsection
 <!-- Pagina CSS -->
 @section('estilosHojas')
+<link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/4.3.0/css/fixedColumns.dataTables.min.css">
 @endsection
 <!-- ************************************************************* -->
 @section('tituloHoja')
@@ -36,10 +37,11 @@
                 <div class="row  d-flex justify-content-around">
                     @if ($permiso == null || $permiso->listar)
                         <div class="col-12 table-responsive">
-                            <table class="table table-striped table-hover table-sm tabla-borrando nowrap tabla_data_table"
+                            <table class="table table-striped table-hover table-sm tabla-borrando nowrap tabla_data_table_empleados"
                                 id="tablaEquipos">
                                 <thead class="thead-inverse">
                                     <tr>
+                                        <th></th>
                                         <th class="text-center" style="white-space:nowrap;">Id</th>
                                         <th class="text-center" style="white-space:nowrap;">Empresa</th>
                                         <th class="text-center" style="white-space:nowrap;">Usuario</th>
@@ -65,9 +67,26 @@
                                 <tbody>
                                     @foreach ($empleados as $empleado)
                                         <tr>
+                                            <td>
+                                                @if ($permiso == null || $permiso->actualizar == 1)
+                                                <a class="text-warning ml-3 mr-3"
+                                                    href="{{ route('empleados-retirar', ['id' => $empleado->id]) }}"
+                                                    class="btn-accion-tabla tooltipsC" title="Retirar">
+                                                    <i class="fas fa-user-alt-slash"></i>
+                                                </a>
+                                            @endif
+                                            </td>
                                             <td>{{ $empleado->id }}</td>
                                             <td>{{ $empleado->empresa->empresa ?? '---' }}</td>
-                                            <td>{{ $empleado->usuario }}</td>
+                                            <td>
+                                                @if ($permiso == null || $permiso->actualizar == 1)
+                                                <a href="{{ route('empleados-editar', ['id' => $empleado->id]) }}">
+                                                    {{ $empleado->usuario }}
+                                                </a>
+                                                @else
+                                                {{ $empleado->usuario }}
+                                                @endif
+                                                </td>
                                             <td>{{ $empleado->cargo }}</td>
                                             <td>{{ $empleado->cedula ?? '---' }}</td>
                                             <td class="text-center">{{ $empleado->telefono ?? '---' }}</td>
@@ -172,17 +191,6 @@
                                             </td>
                                             <td class="text-center">{{ $empleado->estado }}</td>
                                             <td class=" pl-3 pr-3" style="white-space:nowrap;">
-                                                @if ($permiso == null || $permiso->actualizar == 1)
-                                                    <a href="{{ route('empleados-editar', ['id' => $empleado->id]) }}"
-                                                        class="btn-accion-tabla tooltipsC" title="Editar este registro">
-                                                        <i class="fas fa-pen-square"></i>
-                                                    </a>
-                                                    <a class="text-warning ml-3 mr-3"
-                                                        href="{{ route('empleados-retirar', ['id' => $empleado->id]) }}"
-                                                        class="btn-accion-tabla tooltipsC" title="Retirar">
-                                                        <i class="fas fa-user-alt-slash"></i>
-                                                    </a>
-                                                @endif
                                                 @if ($permiso == null || $permiso->borrar == 1)
                                                     <form
                                                         action="{{ route('empleados-eliminar', ['id' => $empleado->id]) }}"
@@ -412,5 +420,6 @@
 <!-- script hoja -->
 @section('scripts_pagina')
     <script src="{{ asset('js/intranet/empresa/empleados/empleados.js') }}"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/4.3.0/js/dataTables.fixedColumns.min.js"></script>
 @endsection
 <!-- ************************************************************* -->

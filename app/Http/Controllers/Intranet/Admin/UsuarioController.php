@@ -247,7 +247,7 @@ class UsuarioController extends Controller
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         Persona::findOrFail($id)->update($actualizar_usuario);
         //-------------------------------------------
-        return redirect('admin/usuario-index')->with(
+        return redirect('admin/usuario/'.$id.'/editar')->with(
             'mensaje',
             'Usuario Actualizado con exito'
         );

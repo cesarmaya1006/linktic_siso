@@ -110,7 +110,31 @@ class EmpleadoController extends Controller
         $centros = CentroCosto::get();
         $empresas = Empresa:: get();
         $empleado = Empleado::findOrFail($id);
+        $empleados = Empleado::get();
+        $empleados = $empleados->sortBy('id');
+        $ultimo_empleado = $empleados->last();
+        $ultimo_id = $ultimo_empleado->id;
+        $primer_empleado = $empleados->first();
+        $primer_id = $primer_empleado->id;
+        if ($primer_id != $id) {
+            $empleadoAnterior = $empleados->where('id', '<', $id)->sortBy([['id', 'desc'],])->first();
+            $id_anterior = $empleadoAnterior->id;
+        }else{
+            $empleadoAnterior = $empleado;
+            $id_anterior = $empleadoAnterior->id;
+        }
+        if ($ultimo_id != $id) {
+            $empleadoSiguiente = $empleados->where('id', '>', $id)->sortBy([['id', 'asc'],])->first();
+            $id_siguiente = $empleadoSiguiente->id;
+        }else{
+            $empleadoSiguiente = $empleado;
+            $id_siguiente = $empleadoSiguiente->id;
+        }
+
+
+
         $cuentas = CuentaCorporativa::get();
+        $cuentas = $cuentas->sortBy('cuenta');
         $licencias = Licencia::get();
         //---
         $ids_equiposPropios =[];
@@ -134,7 +158,7 @@ class EmpleadoController extends Controller
 
         $otros  = EmpleadoOtro::where('estado','1')->where('empleado_id',$empleado->id)->get();
         //------
-        return view('intranet.empresa.empleados.editar', compact('empleado','gestiones','contratos','centros','empresas','cuentas','licencias','equipos_propios','impresoras','monitores','otros'));
+        return view('intranet.empresa.empleados.editar', compact('empleado','ultimo_id','primer_id','id_anterior','id_siguiente','gestiones','contratos','centros','empresas','cuentas','licencias','equipos_propios','impresoras','monitores','otros'));
     }
 
     /**
@@ -147,7 +171,7 @@ class EmpleadoController extends Controller
     public function actualizar(Request $request, $id)
     {
         Empleado::findOrFail($id)->update($request->all());
-        return redirect('admin/empleados')->with('mensaje', 'Empleado actualizado con exito');
+        return redirect('admin/empleados/'.$id.'/editar')->with('mensaje', 'Empleado actualizado con exito');
     }
 
     /**
