@@ -65,7 +65,7 @@
     <div class="col-12 col-md-4">
         <div class="form-group">
             <label for="centro_costos_id" class="control-label requerido">Centro de Costo</label>
-            <select class="form-control form-control-sm" name="centro_costos_id" id="centro_costos_id">
+            <select class="form-control form-control-sm" name="centro_costos_id[]" id="centro_costos_id" multiple="multiple">
                 <option value="">--Seleccione--</option>
                 @foreach ($centros as $centro)
                 <option value="{{$centro->id}}" {{isset($empleado)?($centro->id==$empleado->centro_costos_id?'selected':''):''}}>{{$centro->proyecto}}</option>

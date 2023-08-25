@@ -87,13 +87,18 @@
                                                 {{ $empleado->usuario }}
                                                 @endif
                                                 </td>
-                                            <td>{{ $empleado->cargo }}</td>
+                                            <td style="white-space: pre-wrap">{{ $empleado->cargo }}</td>
                                             <td>{{ $empleado->cedula ?? '---' }}</td>
                                             <td class="text-center">{{ $empleado->telefono ?? '---' }}</td>
                                             <td>{{ $empleado->gestion->gestion ?? '---' }}</td>
                                             <td>{{ $empleado->contrato->tipo ?? '---' }}</td>
                                             <td class="text-center">{{ $empleado->ticket ?? '---' }}</td>
-                                            <td class="text-center">{{ $empleado->centro->centro ?? '---' }}</td>
+                                            <td class="text-center">
+                                                @foreach ($empleado->cencos as $cenco)
+                                                <p>{{$cenco->proyecto?? '---'}}</p>
+
+                                                @endforeach
+                                            </td>
                                             <td class="text-center">{{ $empleado->fecha_retiro ?? '---' }}</td>
                                             <td class="text-center">
                                                 @if ($permiso == null || $permiso->listar == 1)

@@ -81,5 +81,14 @@ class Empleado extends Model
         return $this->hasMany(EmpleadoOtro::class, 'empleado_id', 'id');
     }
     //----------------------------------------------------------------------------------
-
+    //----------------------------------------------------------------------------------
+    public function empleadocenco()
+    {
+        return $this->hasMany(EmpleadoCenco::class, 'empleados_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+    public function cencos()
+    {
+        return $this->belongsToMany(CentroCosto::class, 'empleados_cencos');
+    }
 }

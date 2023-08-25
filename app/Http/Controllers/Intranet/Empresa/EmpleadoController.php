@@ -82,7 +82,10 @@ class EmpleadoController extends Controller
      */
     public function guardar(ValidacionEmpleado $request)
     {
-        Empleado::create($request->all());
+        $cencos = $request['centro_costos_id'];
+        unset($request['centro_costos_id']);
+        $empleado = Empleado::create($request->all());
+        $empleado->cencos()->sync($cencos);
         return redirect('admin/empleados')->with('mensaje', 'Empleado creado con exito');
     }
 

@@ -28,7 +28,7 @@ class CreateEmpleadosTable extends Migration
             $table->foreign('contratos_id', 'fk_empleado_contratos')->references('id')->on('contratos')->onDelete('restrict')->onUpdate('restrict');
             $table->date('fecha_retiro')->nullable();
             $table->string('ticket', 50)->nullable();
-            $table->unsignedBigInteger('centro_costos_id');
+            $table->unsignedBigInteger('centro_costos_id')->nullable();
             $table->foreign('centro_costos_id', 'fk_empleado_centro_costos')->references('id')->on('centro_costos')->onDelete('restrict')->onUpdate('restrict');
             $table->string('estado', 255)->default('Activo');
             $table->timestamps();
