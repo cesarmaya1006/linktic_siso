@@ -46,7 +46,7 @@
                 <div class="row  d-flex justify-content-around">
                     @if ($permiso == null || $permiso->listar)
                         <div class="col-12 table-responsive">
-                            <table class="table table-striped table-hover table-sm tabla-borrando nowrap tabla_data_table_empleados"
+                            <table class="table table-striped table-hover table-sm tabla-borrando tabla_data_table_empleados"
                                 id="tablaEquipos">
                                 <thead class="thead-inverse">
                                     <tr>
@@ -86,7 +86,7 @@
                                             @endif
                                             </td>
                                             <td>{{ $empleado->id }}</td>
-                                            <td>{{ $empleado->empresa->empresa ?? '---' }}</td>
+                                            <td style="white-space: pre-line">{{ $empleado->empresa->empresa ?? '---' }}</td>
                                             <td>
                                                 @if ($permiso == null || $permiso->actualizar == 1)
                                                 <a href="{{ route('empleados-editar', ['id' => $empleado->id]) }}">
@@ -96,9 +96,9 @@
                                                 {{ $empleado->usuario }}
                                                 @endif
                                                 </td>
-                                            <td style="white-space: pre-wrap">{{ $empleado->cargo }}</td>
-                                            <td>{{ $empleado->cedula ?? '---' }}</td>
-                                            <td class="text-center">{{ $empleado->telefono ?? '---' }}</td>
+                                            <td style="white-space: pre-line">{{ $empleado->cargo }}</td>
+                                            <td style="white-space: pre-line">{{ $empleado->cedula ?? '---' }}</td>
+                                            <td class="text-center" style="white-space: pre-line">{{ $empleado->telefono ?? '---' }}</td>
                                             <td>{{ $empleado->gestion->gestion ?? '---' }}</td>
                                             <td>{{ $empleado->contrato->tipo ?? '---' }}</td>
                                             <td class="text-center">{{ $empleado->ticket ?? '---' }}</td>
