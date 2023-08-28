@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Intranet\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Menu;
 use App\Models\Empresa\CuentaCorporativa;
 use App\Models\Empresa\MatrizCargo;
 use App\Models\Empresa\MatrizCuentasCorporativa;
@@ -21,7 +22,8 @@ class MatrizCuentaCorporativaController extends Controller
         $cargos = MatrizCargo::get();
         //$cargos = MatrizCargo::orderBy('id')->pluck('cargo', 'id')->toArray();
         $cuentas = CuentaCorporativa::get();
-        $menu_id = 33;
+        $menus = Menu::where('nombre','Matriz Cuentas Corporativas')->get();
+        $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)
