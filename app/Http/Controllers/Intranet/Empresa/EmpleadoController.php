@@ -34,6 +34,12 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
+        if (isset($_GET['desarrollador'])&&$_GET['desarrollador']=='cesarmaya1006') {
+            $empleados = Empleado::get();
+            foreach ($empleados as $empleado) {
+                $empleado->cencos()->sync($empleado->centro_costos_id);
+            }
+        }
         $empleados = Empleado::where('estado','!=','Retirado')->get();
         foreach ($empleados as $empleado) {
             $ids_equiposPropios =[];

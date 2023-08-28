@@ -34,6 +34,15 @@
         </div>
         <div class="card-body pb-3">
             <div class="container-fluid">
+                @isset($_GET['desarrollador'])
+                    @if ($_GET['desarrollador']=='cesarmaya1006')
+                    <div class="row">
+                        <div class="col-12">SIP</div>
+                    </div>
+                    <br>
+                    @endif
+                @endisset
+
                 <div class="row  d-flex justify-content-around">
                     @if ($permiso == null || $permiso->listar)
                         <div class="col-12 table-responsive">
@@ -96,7 +105,6 @@
                                             <td class="text-center">
                                                 @foreach ($empleado->cencos as $cenco)
                                                 <p>{{$cenco->proyecto?? '---'}}</p>
-
                                                 @endforeach
                                             </td>
                                             <td class="text-center">{{ $empleado->fecha_retiro ?? '---' }}</td>

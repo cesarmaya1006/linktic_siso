@@ -24,7 +24,6 @@ class DominioCorreoController extends Controller
         $menus = Menu::where('nombre','Dominios Correos')->get();
         $menu_id = $menus[0]['id'];
         $rol_id = session('rol_id');
-        $rol_id = session('rol_id');
         if ($rol_id > 1) {
             $permisos = RolesPermiso::where('rol_id', $rol_id)
                 ->where('menu_id', $menu_id)
