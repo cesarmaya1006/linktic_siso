@@ -91,4 +91,10 @@ class Empleado extends Model
     {
         return $this->belongsToMany(CentroCosto::class, 'empleados_cencos');
     }
+    //----------------------------------------------------------------------------------
+    public function licencias_administradas()
+    {
+        return $this->hasMany(LicenciasAdministrada::class, 'empleados_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
 }

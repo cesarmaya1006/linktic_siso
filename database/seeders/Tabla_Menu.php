@@ -90,7 +90,8 @@ class Tabla_Menu extends Seeder
             ['nombre' =>  'Pagos', 'menu_id' => '38', 'url' =>  'pagos', 'orden' => '2', 'icono' =>  'fas fa-cog'],
             ['nombre' =>  'Dominios GoDaddy', 'menu_id' => $menu_id, 'url' =>  'dominiosDaddy', 'orden' => '3', 'icono' =>  'fas fa-cog'],
             //['nombre' =>  'Dominios', 'menu_id' => $menu_linea_3, 'url' =>  'dominios', 'orden' => '14', 'icono' =>  'fas fa-cog'],
-
+            ['nombre' =>  'Asignación de equipos', 'menu_id' => $menu_linea_5, 'url' =>  'asignacion_equipos', 'orden' => '7', 'icono' =>  'fas fa-laptop'],
+            ['nombre' =>  'Licencias administradas', 'menu_id' => $menu_linea_5, 'url' =>  'licencias_administradas', 'orden' => '8', 'icono' =>  'fas fa-file-alt'],
 
         ];
         foreach ($menus as $menu) {

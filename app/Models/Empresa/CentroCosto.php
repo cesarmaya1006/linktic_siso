@@ -45,4 +45,12 @@ class CentroCosto extends Model
     {
         return $this->belongsToMany(Empleado::class, 'empleados_cencos');
     }
+    //----------------------------------------------------------------------------------
+    public function asignaciones()
+    {
+        return $this->hasMany(AsignacionEquipo::class, 'centro_costos_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+
 }
+

@@ -42,6 +42,8 @@ use App\Http\Controllers\Intranet\Empresa\MatrizPerfilCargoController;
 use App\Http\Controllers\Intranet\Empresa\MatrizPerfilController;
 use App\Http\Controllers\Intranet\Empresa\PagoCorreosController;
 use App\Http\Controllers\Intranet\Empresa\RetiroController;
+use App\Http\Controllers\Intranet\Empresa\AsignacionEquiposController;
+use App\Http\Controllers\Intranet\Empresa\LicenciasAdministradaController;
 use App\Models\Admin\Usuario;
 use App\Models\Intranet\Empresa\DominioCorreo;
 
@@ -437,6 +439,24 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dominiosDaddy/{id}/editar', [DominioDaddyController::class,'update',])->name('admin-dominiosDaddy-editar');
     Route::put('dominiosDaddy/{id}', [DominioDaddyController::class,'edit',])->name('dominiosDaddy-actualizar');
     Route::delete('dominiosDaddy/{id}', [DominioDaddyController::class,'destroy',])->name('admin-dominiosDaddy-eliminar');
+    // ------------------------------------------------------------------------------------
+    // Ruta Lista de asignación de equipos
+    Route::get('asignacion_equipos', [AsignacionEquiposController::class,'index',])->name('asignacion_equipos');
+    Route::get('asignacion_equipos-crear', [AsignacionEquiposController::class,'crear',])->name('asignacion_equipos-crear');
+    Route::post('asignacion_equipos', [AsignacionEquiposController::class, 'guardar'])->name('asignacion_equipos-guardar');
+    Route::get('asignacion_equipos/{id}/editar', [AsignacionEquiposController::class,'editar',])->name('asignacion_equipos-editar');
+    Route::put('asignacion_equipos/{id}', [AsignacionEquiposController::class,'actualizar',])->name('asignacion_equipos-actualizar');
+    Route::delete('asignacion_equipos/{id}', [AsignacionEquiposController::class,'eliminar',])->name('asignacion_equipos-eliminar');
+    // ------------------------------------------------------------------------------------
+    // Ruta Licencias administradas
+    Route::get('licencias_administradas', [LicenciasAdministradaController::class,'index',])->name('licencias_administradas');
+    Route::get('licencias_administradas-crear', [LicenciasAdministradaController::class,'crear',])->name('licencias_administradas-crear');
+    Route::post('licencias_administradas', [LicenciasAdministradaController::class, 'guardar'])->name('licencias_administradas-guardar');
+    Route::get('licencias_administradas/{id}/editar', [LicenciasAdministradaController::class,'editar',])->name('licencias_administradas-editar');
+    Route::put('licencias_administradas/{id}', [LicenciasAdministradaController::class,'actualizar',])->name('licencias_administradas-actualizar');
+    Route::delete('licencias_administradas/{id}', [LicenciasAdministradaController::class,'eliminar',])->name('licencias_administradas-eliminar');
+    // ------------------------------------------------------------------------------------
+
 
 });
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

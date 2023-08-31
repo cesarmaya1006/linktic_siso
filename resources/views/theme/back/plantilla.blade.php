@@ -1,6 +1,6 @@
 @yield ('funciones_php')
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="es">
 
 <head>
     <!-- head general de la pagina -->
