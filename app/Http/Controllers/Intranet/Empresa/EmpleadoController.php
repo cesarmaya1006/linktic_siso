@@ -179,6 +179,10 @@ class EmpleadoController extends Controller
      */
     public function actualizar(Request $request, $id)
     {
+        $empleado = Empleado::findOrFail($id);
+        $cencos = $request['centro_costos_id'];
+        unset($request['centro_costos_id']);
+        $empleado->cencos()->sync($cencos);
         Empleado::findOrFail($id)->update($request->all());
         return redirect('admin/empleados/'.$id.'/editar')->with('mensaje', 'Empleado actualizado con exito');
     }
